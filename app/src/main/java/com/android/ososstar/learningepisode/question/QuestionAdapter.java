@@ -1,9 +1,7 @@
 package com.android.ososstar.learningepisode.question;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,7 +20,6 @@ import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
 import com.android.ososstar.learningepisode.account.User;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -76,12 +73,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         holder.setQuestion(currentQuestion.getTitle());
         holder.setOptions(currentQuestion, position);
         holder.question_ID = currentQuestion.getID();
-
-//        holder.questionTitle.setText(currentQuestion.getTitle());
-//        holder.questionChoice1.setText(currentQuestion.getChoice1());
-//        holder.questionChoice2.setText(currentQuestion.getChoice2());
-//        holder.questionChoice3.setText(currentQuestion.getChoice3());
-//        holder.questionAnswer = currentQuestion.getAnswer();
     }
 
     @Override
@@ -97,7 +88,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private TextView questionTitle, questiodID;
         private RadioGroup radioGroup;
         private RadioButton questionChoice1, questionChoice2, questionChoice3, radioButton;
-        private String questionAnswer;
+        private String questionAnswer, admin_ID, question_ID, student_ID;
+
+        //getting the current user
+        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private RequestQueue mRequestQueue;
 
         public ViewHolder(View itemView, final OnItemClickListener mListener) {
             super(itemView);
@@ -139,11 +134,60 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     return true;
                 case R.id.option_2:
                     Toast.makeText(mContext, "delete activity is under construction", Toast.LENGTH_SHORT).show();
+                    deleteQuestion();
                     return true;
 
             }
             return false;
         }
+
+        private void deleteQuestion() {
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
+            mRequestQueue = Volley.newRequestQueue(mContext);
+
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_LESSON_DATA, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject baseJSONObject = new JSONObject(response);
+                        if (!baseJSONObject.getBoolean("error")) {
+                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            //TODO refresh RecyclerView List
+
+                        } else {
+                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> pars = new HashMap<String, String>();
+                    pars.put("Content-Type", "application/x-www-form-urlencoded");
+                    return pars;
+                }
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> pars = new HashMap<String, String>();
+                    pars.put("admin_ID", admin_ID);
+                    pars.put("question_ID", question_ID);
+                    return pars;
+                }
+            };
+            mRequestQueue.add(request);
+        }
+
 
         public void setQuestion(String question) {
             questionTitle.setText(question);
@@ -195,10 +239,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         /** Handles playback of all the sound files */
         private MediaPlayer mMediaPlayer;
 
-        private RequestQueue mRequestQueue;
-
-        private String student_ID, question_ID;
-
         private void rightAnswer(){
             // Create and setup the {@link MediaPlayer} for the audio resource associated
             // with the correct answer
@@ -233,14 +273,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     }
                 }) {
                     @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
+                    public Map<String, String> getHeaders() {
                         Map<String, String> pars = new HashMap<>();
                         pars.put("Content-Type", "application/x-www-form-urlencoded");
                         return pars;
                     }
 
                     @Override
-                    public Map<String, String> getParams() throws AuthFailureError {
+                    public Map<String, String> getParams() {
                         Map<String, String> pars = new HashMap<String, String>();
                         pars.put("student_ID", student_ID);
                         pars.put("question_ID", question_ID);
