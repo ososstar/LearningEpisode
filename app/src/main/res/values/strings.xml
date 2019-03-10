@@ -50,4 +50,5 @@
     <string name="current_enrollments">CURRENT ENROLLMENTS</string>
     <string name="no_questions">Currently no questions for this lesson</string>
     <string name="specify_the_right_answer">please specify the right answer</string>
+    <string name="my_courses">My Courses</string>
 </resources>

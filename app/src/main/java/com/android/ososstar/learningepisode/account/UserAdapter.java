@@ -5,20 +5,30 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
@@ -51,6 +61,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.user_username.setText(currentUser.getUsername());
         holder.user_email.setText(currentUser.getEmail());
         holder.user_creation_date.setText(currentUser.getDate());
+        holder.student_ID = String.valueOf(currentUser.getID());
     }
 
     @Override
@@ -60,6 +71,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private TextView user_name, user_username, user_email, user_creation_date;
+
+        //getting the current user
+        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private RequestQueue mRequestQueue;
+        private String admin_ID, student_ID;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -93,12 +109,61 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.option_2:
-                    Toast.makeText(mContext, "delete activity is under construction", Toast.LENGTH_SHORT).show();
+                    deleteStudent();
                     return true;
 
             }
             return false;
         }
+
+        private void deleteStudent() {
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
+            mRequestQueue = Volley.newRequestQueue(mContext);
+
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_LESSON_DATA, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject baseJSONObject = new JSONObject(response);
+                        if (!baseJSONObject.getBoolean("error")) {
+                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            //TODO refresh RecyclerView List
+
+                        } else {
+                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> pars = new HashMap<String, String>();
+                    pars.put("Content-Type", "application/x-www-form-urlencoded");
+                    return pars;
+                }
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> pars = new HashMap<String, String>();
+                    pars.put("admin_ID", admin_ID);
+                    pars.put("student_ID", student_ID);
+                    return pars;
+                }
+            };
+            mRequestQueue.add(request);
+        }
+
+
     }
 
 

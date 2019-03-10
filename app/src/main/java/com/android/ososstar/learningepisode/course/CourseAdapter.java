@@ -24,6 +24,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -161,7 +164,18 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_COURSE_DATA, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    
+                    try {
+                        JSONObject baseJSONObject = new JSONObject(response);
+                        if (!baseJSONObject.getBoolean("error")) {
+                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            //TODO refresh RecyclerView List
+
+                        } else {
+                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }, new Response.ErrorListener() {
@@ -188,6 +202,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             mRequestQueue.add(request);
         }
 
-
     }
+
 }

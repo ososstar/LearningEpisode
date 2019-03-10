@@ -3,9 +3,9 @@ package com.android.ososstar.learningepisode;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +15,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.android.ososstar.learningepisode.account.LoginActivity;
+import com.android.ososstar.learningepisode.account.User;
+import com.android.ososstar.learningepisode.course.Course;
+import com.android.ososstar.learningepisode.course.CourseActivity;
+import com.android.ososstar.learningepisode.course.CourseAdapter;
+import com.android.ososstar.learningepisode.course.CoursesListActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,12 +28,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.account.LoginActivity;
-import com.android.ososstar.learningepisode.account.User;
-import com.android.ososstar.learningepisode.course.Course;
-import com.android.ososstar.learningepisode.course.CourseActivity;
-import com.android.ososstar.learningepisode.course.CourseAdapter;
-import com.android.ososstar.learningepisode.course.CoursesListActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,7 +89,7 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
         User user = SharedPrefManager.getInstance(this).getUser();
 
         //greeting user in home activity
-        TextView homeUser = (TextView) findViewById(R.id.home_user);
+        TextView homeUser = findViewById(R.id.home_user);
         homeUser.setText("Welcome, " + user.getName());
 
         // Create a list of user Options
@@ -111,7 +110,6 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
         home_rv_options.setAdapter(adapter);
         adapter.setOnItemClickListener(HomeStudentActivity.this);
 
-
         mEmptyStateTextView = findViewById(R.id.stu_home_empty_view);
 
         mList = findViewById(R.id.stu_home_RecyclerView);
@@ -121,8 +119,6 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
-
-
 
         mList.setHasFixedSize(true);
         mList.setLayoutManager(linearLayoutManager);
@@ -231,14 +227,14 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("student_ID", student_ID);
                 return pars;
