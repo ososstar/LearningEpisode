@@ -150,7 +150,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
-                            //TODO refresh RecyclerView List
+                            //TODO Refresh RecyclerView List
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();

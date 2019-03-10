@@ -133,7 +133,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.option_2:
-                    Toast.makeText(mContext, "delete activity is under construction", Toast.LENGTH_SHORT).show();
                     deleteQuestion();
                     return true;
 
@@ -147,7 +146,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             }
             mRequestQueue = Volley.newRequestQueue(mContext);
 
-            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_LESSON_DATA, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_QUESTION_DATA, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
