@@ -14,11 +14,20 @@ import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
 import com.android.ososstar.learningepisode.account.User;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -74,6 +83,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.courseEnrolls.setText(new StringBuffer().append("Total Enrolls ").append(String.valueOf(currentCourse.getCourseEnrolls())));
         holder.courseDate.setText(new StringBuffer().append("Created ON ").append(String.valueOf(currentCourse.getCourseCreationDate())).toString());
 
+        holder.course_ID = currentCourse.getCourseID();
 
     }
 
@@ -85,6 +95,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private CircleImageView courseImage;
         private TextView courseName, courseDescription, courseEnrolls, courseDate;
+        private String admin_ID, course_ID;
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -121,6 +132,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 popup.show();
         }
 
+        //getting the current user
+        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private RequestQueue mRequestQueue;
+
         @Override
         public boolean onMenuItemClick(MenuItem item) {
 
@@ -131,12 +146,48 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                     Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.option_2:
-                    Toast.makeText(mContext, "delete activity is under construction", Toast.LENGTH_SHORT).show();
+                    deleteCourse();
                     return true;
-
             }
             return false;
         }
+
+        private void deleteCourse() {
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
+            mRequestQueue = Volley.newRequestQueue(mContext);
+
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_COURSE_DATA, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> pars = new HashMap<String, String>();
+                    pars.put("Content-Type", "application/x-www-form-urlencoded");
+                    return pars;
+                }
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> pars = new HashMap<String, String>();
+                    pars.put("admin_ID", admin_ID);
+                    pars.put("course_ID", course_ID);
+                    return pars;
+                }
+            };
+            mRequestQueue.add(request);
+        }
+
 
     }
 }
