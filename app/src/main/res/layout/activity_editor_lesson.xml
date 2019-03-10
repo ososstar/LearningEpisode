@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/mainpadding"
+    tools:context=".lesson.LessonInsertActivity">
+    <TextView
+        android:id="@+id/ilesson_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/insert_new_lesson"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".05"/>
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/ilesson_title_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lesson_title"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_tv"
+        app:layout_constraintVertical_bias="0.03"
+        app:layout_constraintWidth_percent=".3"/>
+
+    <EditText
+        android:id="@+id/ilesson_title_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="@string/lesson_title"
+        android:inputType="textCapWords"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/ilesson_title_tv"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/ilesson_title_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ilesson_title_tv"
+        app:layout_constraintVertical_bias=".5" />
+
+    <TextView
+        android:id="@+id/ilesson_description_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lesson_description"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_title_tv"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".5"/>
+
+    <EditText
+        android:id="@+id/ilesson_description_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="@string/lesson_desc_optional"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="5"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_description_tv"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_percent=".9"/>
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/ilesson_link_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="@string/download_link"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_description_et"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".5"/>
+
+    <EditText
+        android:id="@+id/ilesson_link_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="@string/download_url_optional"
+        android:inputType="textUri"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_link_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".9"/>
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/ilesson_video_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="@string/youtube_video_url"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_link_et"
+        app:layout_constraintVertical_bias="0.045"
+        app:layout_constraintWidth_percent=".5" />
+
+    <EditText
+        android:id="@+id/ilesson_video_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="@string/youtube_url_optional"
+        android:inputType="textUri"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_video_tv"
+        app:layout_constraintVertical_bias=".01"
+        app:layout_constraintWidth_percent=".9"/>
+
+    <Button
+        android:id="@+id/ilesson_insert_b"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/insert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ilesson_video_et"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintWidth_percent=".7"/>
+
+    <!-- ProgressBar is visible when the list is Loading. -->
+    <ProgressBar
+        android:id="@+id/ilesson_spinner"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/ilesson_video_et"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ilesson_title_et"/>
+
+</android.support.constraint.ConstraintLayout>

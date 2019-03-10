@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeAdminActivity"
+    app:layout_constraintHorizontal_chainStyle="spread">
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/home_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintVertical_bias=".03"
+        android:text="@string/welcome"
+        android:textSize="26sp"
+        app:layout_constraintWidth_percent=".75"
+        android:maxLines="1"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_rv_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/home_user"/>
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/welcome"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent">-->
+
+        <!--<GridView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/gridView"-->
+            <!--android:paddingTop="@dimen/vertical_space"-->
+            <!--android:paddingBottom="@dimen/vertical_space"-->
+            <!--android:columnWidth="200dp"-->
+            <!--android:gravity="center|bottom"-->
+            <!--android:horizontalSpacing="5dp"-->
+            <!--android:layout_marginLeft="@dimen/horizontal_space"-->
+            <!--android:layout_marginRight="@dimen/horizontal_space"-->
+            <!--android:numColumns="3"-->
+            <!--android:stretchMode="columnWidth"-->
+            <!--android:verticalSpacing="10dp"-->
+            <!--android:visibility="visible"-->
+            <!--/>-->
+
+    <!--</FrameLayout>-->
+
+
+</android.support.constraint.ConstraintLayout>

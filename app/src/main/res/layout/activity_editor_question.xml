@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/mainpadding"
+    tools:context=".question.QuestionInsertActivity">
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/eQuestionTitle_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Question Title"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".5" />
+
+    <EditText
+        android:id="@+id/eQuestionTitle_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="Question Title"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="1"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionTitle_tv"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_percent=".9" />
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/eQuestionChoiceOne_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Choice One"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionTitle_et"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".5" />
+
+    <EditText
+        android:id="@+id/eQuestionChoiceOne_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="Choice One"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="1"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionChoiceOne_tv"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_percent=".9" />
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/eQuestionChoiceTwo_tv"
+        android:layout_width="0dp"
+        android:layout_height="26dp"
+        android:text="Choice Two"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionChoiceOne_et"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".5" />
+
+    <EditText
+        android:id="@+id/eQuestionChoiceTwo_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="Choice Two"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="1"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionChoiceTwo_tv"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_percent=".9" />
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/eQuestionChoiceThree_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Choice Three"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionChoiceTwo_et"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".5" />
+
+    <EditText
+        android:id="@+id/eQuestionChoiceThree_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_style"
+        android:hint="Choice Three"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="1"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionChoiceThree_tv"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_percent=".9" />
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/eQuestionAnswer_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Please Specify The Right Answer"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionChoiceThree_et"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".7"
+        android:maxLines="1"/>
+
+    <Spinner
+        android:id="@+id/eQuestionAnswer_sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionAnswer_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent=".9"
+        app:layout_constraintHorizontal_bias=".5">
+    </Spinner>
+
+    <Button
+        android:id="@+id/eQuestionInsert_b"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/insert"
+        app:layout_constraintTop_toBottomOf="@id/eQuestionAnswer_sp"
+        app:layout_constraintVertical_bias=".8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent=".7" />
+
+    <!-- ProgressBar is visible when the list is Loading. -->
+    <ProgressBar
+        android:id="@+id/eQuestionProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/eQuestionAnswer_sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/eQuestionTitle_tv"/>
+
+</android.support.constraint.ConstraintLayout>

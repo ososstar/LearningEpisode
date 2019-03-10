@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/mainpadding">
+
+    <TextView
+        android:id="@+id/q_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/question_title_style"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textColor="@color/question_title"
+        android:text="Question Title"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/q_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/question_title_style"
+        android:inputType="text"
+        android:padding="2dp">
+
+        <RadioButton
+            android:id="@+id/q_choice1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="start|center"
+            android:layoutDirection="rtl"
+            android:padding="8dp"
+            android:text="Choice 1"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/q_choice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="5dp"
+            android:gravity="start|center"
+            android:layoutDirection="rtl"
+            android:padding="8dp"
+            android:text="Choice 2"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/q_choice3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="start|center"
+            android:layoutDirection="rtl"
+            android:padding="8dp"
+            android:text="Choice 3"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+
+</LinearLayout>

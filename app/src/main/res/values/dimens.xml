@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="horizontal_space">16dp</dimen>
+    <dimen name="vertical_space">16dp</dimen>
+    <dimen name="title">32sp</dimen>
+    <dimen name="mainpadding">16dp</dimen>
+</resources>
