@@ -20,8 +20,6 @@ import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
 import com.android.ososstar.learningepisode.account.User;
-import com.android.ososstar.learningepisode.course.CoursesListActivity;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -237,14 +235,14 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("lesson_ID", lesson_ID);
                 return pars;
@@ -255,6 +253,30 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
     }
 
+//    private final static String TAG = "QuestionListActivity";
+//    private final static String LIST_STATE_KEY = "LIST_STATE_KEY";
+//    private Parcelable mListState = null;
+//    protected void onSaveInstanceState(Bundle state) {
+//        super.onSaveInstanceState(state);
+//        // Save list state
+//        mListState = linearLayoutManager.onSaveInstanceState();
+//        state.putParcelable(LIST_STATE_KEY, mListState);
+//    }
+//
+//    protected void onRestoreInstanceState(Bundle state) {
+//        super.onRestoreInstanceState(state);
+//        // Retrieve list state and list/item positions
+//        if(state != null)
+//            mListState = state.getParcelable(LIST_STATE_KEY);
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (mListState != null) {
+//            linearLayoutManager.onRestoreInstanceState(mListState);
+//        }
+//    }
 
 
     @Override

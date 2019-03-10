@@ -2,8 +2,8 @@ package com.android.ososstar.learningepisode.question;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +17,6 @@ import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.course.CourseInsertActivity;
-import com.android.ososstar.learningepisode.course.CoursesListActivity;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -225,14 +222,14 @@ public class QuestionInsertActivity extends AppCompatActivity {
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("admin_ID", admin_ID);
                 pars.put("lesson_ID", lesson_ID);
