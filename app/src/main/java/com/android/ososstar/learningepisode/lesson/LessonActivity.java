@@ -1,10 +1,9 @@
 package com.android.ososstar.learningepisode.lesson;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -42,17 +41,17 @@ public class LessonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
-        Intent intent = getIntent();
-        if (intent == null) {
+        Bundle lessonBundle = getIntent().getExtras();
+        if (lessonBundle == null) {
             closeOnError();
         }
 
-        id = intent.getStringExtra(EXTRA_LESSON_ID);
-        title = intent.getStringExtra(EXTRA_LESSON_TITLE);
-        description = intent.getStringExtra(EXTRA_LESSON_DESCRIPTION);
-        link = intent.getStringExtra(EXTRA_LESSON_LINK);
-        videoURL = intent.getStringExtra(EXTRA_LESSON_VIDEO);
-        creation_date = intent.getStringExtra(EXTRA_LESSON_DATE);
+        id = lessonBundle.getString(EXTRA_LESSON_ID);
+        title = lessonBundle.getString(EXTRA_LESSON_TITLE);
+        description = lessonBundle.getString(EXTRA_LESSON_DESCRIPTION);
+        link = lessonBundle.getString(EXTRA_LESSON_LINK);
+        videoURL = lessonBundle.getString(EXTRA_LESSON_VIDEO);
+        creation_date = lessonBundle.getString(EXTRA_LESSON_DATE);
 
         setTitle(title);
 

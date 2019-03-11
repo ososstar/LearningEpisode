@@ -255,12 +255,15 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
         Lesson clickedItem = lessonList.get(position);
 
-        intent.putExtra(EXTRA_LESSON_ID, clickedItem.getID());
-        intent.putExtra(EXTRA_LESSON_TITLE, clickedItem.getTitle());
-        intent.putExtra(EXTRA_LESSON_DESCRIPTION, clickedItem.getDescription());
-        intent.putExtra(EXTRA_LESSON_LINK, clickedItem.getLink());
-        intent.putExtra(EXTRA_LESSON_VIDEO, clickedItem.getVideoURL());
-        intent.putExtra(EXTRA_LESSON_DATE, clickedItem.getCreationDate());
+        Bundle lessonBundle = new Bundle();
+        lessonBundle.putString(EXTRA_LESSON_ID, clickedItem.getID());
+        lessonBundle.putString(EXTRA_LESSON_TITLE, clickedItem.getTitle());
+        lessonBundle.putString(EXTRA_LESSON_DESCRIPTION, clickedItem.getDescription());
+        lessonBundle.putString(EXTRA_LESSON_LINK, clickedItem.getLink());
+        lessonBundle.putString(EXTRA_LESSON_VIDEO, clickedItem.getVideoURL());
+        lessonBundle.putString(EXTRA_LESSON_DATE, clickedItem.getCreationDate());
+
+        intent.putExtras(lessonBundle);
 
         LessonListActivity.this.startActivity(intent);
 
