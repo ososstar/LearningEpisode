@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/web_hi_res_512_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".lesson.LessonModifyActivity"></activity>
+        <activity android:name=".question.QuestionModifyActivity"></activity>
+        <activity android:name=".lesson.LessonModifyActivity" />
         <activity android:name=".question.QuestionInsertActivity" />
 
         <service
@@ -26,7 +27,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".lesson.LessonActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".lesson.LessonListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -35,8 +37,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".course.CourseActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".course.CourseInsertActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />

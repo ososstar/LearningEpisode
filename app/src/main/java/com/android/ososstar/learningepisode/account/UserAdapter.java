@@ -106,6 +106,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             // ERROR : How to get item position which ContextMenu Created
             switch (id) {
                 case R.id.option_1 :
+                    //TODO make modify activity
                     Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.option_2:
@@ -129,7 +130,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
-                            //TODO refresh RecyclerView List
+                            //Remove deleted row from RecyclerView List
+                            mUserList.remove(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
+                            notifyItemRangeChanged(getAdapterPosition(), mUserList.size());
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();

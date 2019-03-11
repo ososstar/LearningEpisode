@@ -113,7 +113,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
         progressBar = findViewById(R.id.l_spinner);
 
-        if (isConnected(getBaseContext())) {
+        if (isConnected(QuestionListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             getLessonQuestions();
 
@@ -141,8 +141,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            startActivity(new Intent(this, QuestionListActivity.class));
-            finish();
+            getLessonQuestions();
         }
     }
 
@@ -160,6 +159,9 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
                     JSONObject baseJSONObject = new JSONObject(response);
 
                     if (!baseJSONObject.getBoolean("error")) {
+
+                        questionList.clear();
+
                         //getting the questions list from the response
                         JSONArray questionArray = baseJSONObject.getJSONArray("questions");
 
@@ -197,7 +199,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
                             questionList.add(question);
                         }
 
-                        mQuestionAdapter = new QuestionAdapter(getBaseContext(), questionList);
+                        mQuestionAdapter = new QuestionAdapter(QuestionListActivity.this, questionList);
                         mList.setAdapter(mQuestionAdapter);
                         mQuestionAdapter.notifyDataSetChanged();
                         mQuestionAdapter.setOnItemClickListener(QuestionListActivity.this);
@@ -253,30 +255,6 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
     }
 
-//    private final static String TAG = "QuestionListActivity";
-//    private final static String LIST_STATE_KEY = "LIST_STATE_KEY";
-//    private Parcelable mListState = null;
-//    protected void onSaveInstanceState(Bundle state) {
-//        super.onSaveInstanceState(state);
-//        // Save list state
-//        mListState = linearLayoutManager.onSaveInstanceState();
-//        state.putParcelable(LIST_STATE_KEY, mListState);
-//    }
-//
-//    protected void onRestoreInstanceState(Bundle state) {
-//        super.onRestoreInstanceState(state);
-//        // Retrieve list state and list/item positions
-//        if(state != null)
-//            mListState = state.getParcelable(LIST_STATE_KEY);
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if (mListState != null) {
-//            linearLayoutManager.onRestoreInstanceState(mListState);
-//        }
-//    }
 
 
     @Override

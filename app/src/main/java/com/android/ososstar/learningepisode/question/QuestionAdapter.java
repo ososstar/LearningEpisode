@@ -1,7 +1,9 @@
 package com.android.ososstar.learningepisode.question;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -73,6 +75,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         holder.setQuestion(currentQuestion.getTitle());
         holder.setOptions(currentQuestion, position);
         holder.question_ID = currentQuestion.getID();
+
+        holder.question_Title = currentQuestion.getTitle();
+        holder.question_Choice1 = currentQuestion.getChoice1();
+        holder.question_Choice2 = currentQuestion.getChoice2();
+        holder.question_Choice3 = currentQuestion.getChoice3();
     }
 
     @Override
@@ -87,32 +94,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private TextView questionTitle, questiodID;
         private RadioGroup radioGroup;
-        private RadioButton questionChoice1, questionChoice2, questionChoice3, radioButton;
-        private String questionAnswer, admin_ID, question_ID, student_ID;
+        public static final String EXTRA_ADMIN_ID = "admin_ID";
+        public static final String EXTRA_QUESTION_ID = "question_ID";
 
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
-
-        public ViewHolder(View itemView, final OnItemClickListener mListener) {
-            super(itemView);
-            //getting the current user type
-            int userType = SharedPrefManager.getInstance(mContext).getUser().getType();
-            if (userType == 0) {
-                itemView.setOnCreateContextMenuListener(this);
-            }
-
-            questionTitle = itemView.findViewById(R.id.q_title);
-            radioGroup = itemView.findViewById(R.id.q_radioGroup);
-            questionChoice1 = itemView.findViewById(R.id.q_choice1);
-            questionChoice2 = itemView.findViewById(R.id.q_choice2);
-            questionChoice3 = itemView.findViewById(R.id.q_choice3);
-
-            questionChoice1.setChecked(false);
-            questionChoice2.setChecked(false);
-            questionChoice3.setChecked(false);
-
-        }
+        public static final String EXTRA_QUESTION_TITLE = "q_title";
 
 
         @Override
@@ -123,6 +111,36 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             popup.show();
         }
 
+        public static final String EXTRA_QUESTION_CHOICE_1 = "q_choice1";
+        public static final String EXTRA_QUESTION_CHOICE_2 = "q_choice2";
+        public static final String EXTRA_QUESTION_CHOICE_3 = "q_choice3";
+        public static final String EXTRA_QUESTION_ANSWER = "q_answer";
+        private RadioButton RQuestionChoice1, RQuestionChoice2, RQuestionChoice3;
+        private String admin_ID, question_ID, question_Title, question_Choice1, question_Choice2, question_Choice3, question_Answer, student_ID;
+        public ViewHolder(View itemView, final OnItemClickListener mListener) {
+            super(itemView);
+            //getting the current user type
+            int userType = SharedPrefManager.getInstance(mContext).getUser().getType();
+            if (userType == 0) {
+                itemView.setOnCreateContextMenuListener(this);
+            }
+
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
+
+            questionTitle = itemView.findViewById(R.id.q_title);
+            radioGroup = itemView.findViewById(R.id.q_radioGroup);
+            RQuestionChoice1 = itemView.findViewById(R.id.q_choice1);
+            RQuestionChoice2 = itemView.findViewById(R.id.q_choice2);
+            RQuestionChoice3 = itemView.findViewById(R.id.q_choice3);
+
+            RQuestionChoice1.setChecked(false);
+            RQuestionChoice2.setChecked(false);
+            RQuestionChoice3.setChecked(false);
+
+        }
+
         @Override
         public boolean onMenuItemClick(MenuItem item) {
 
@@ -131,6 +149,17 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             switch (id) {
                 case R.id.option_1 :
                     Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
+                    Intent modifyIntent = new Intent(itemView.getContext(), QuestionModifyActivity.class);
+                    Bundle modifyBundle = new Bundle();
+                    modifyBundle.putString(EXTRA_ADMIN_ID, admin_ID);
+                    modifyBundle.putString(EXTRA_QUESTION_ID, question_ID);
+                    modifyBundle.putString(EXTRA_QUESTION_TITLE, question_Title);
+                    modifyBundle.putString(EXTRA_QUESTION_CHOICE_1, question_Choice1);
+                    modifyBundle.putString(EXTRA_QUESTION_CHOICE_2, question_Choice2);
+                    modifyBundle.putString(EXTRA_QUESTION_CHOICE_3, question_Choice3);
+                    modifyBundle.putString(EXTRA_QUESTION_ANSWER, question_Answer);
+                    modifyIntent.putExtras(modifyBundle);
+                    ((QuestionListActivity) mContext).startActivityForResult(modifyIntent, 1);
                     return true;
                 case R.id.option_2:
                     deleteQuestion();
@@ -141,9 +170,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         }
 
         private void deleteQuestion() {
-            if (user.getType() == 0) {
-                admin_ID = String.valueOf(user.getID());
-            }
             mRequestQueue = Volley.newRequestQueue(mContext);
 
             StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_QUESTION_DATA, new Response.Listener<String>() {
@@ -153,7 +179,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
-                            //TODO refresh RecyclerView List
+                            //Remove deleted row from RecyclerView List
+                            mQuestionList.remove(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
+                            notifyItemRangeChanged(getAdapterPosition(), mQuestionList.size());
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
@@ -195,10 +224,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
         public void setOptions(Question question, int position) {
             radioGroup.setTag(position);
-            questionChoice1.setText(question.getChoice1());
-            questionChoice2.setText(question.getChoice2());
-            questionChoice3.setText(question.getChoice3());
-            questionAnswer = question.getAnswer();
+            RQuestionChoice1.setText(question.getChoice1());
+            RQuestionChoice2.setText(question.getChoice2());
+            RQuestionChoice3.setText(question.getChoice3());
+            question_Answer = question.getAnswer();
 
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -209,24 +238,24 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
                     switch (question.getCheckedId()){
                         case R.id.q_choice1:
-                            if (questionChoice1.getText().toString().equals(questionAnswer)){
+                            if (RQuestionChoice1.getText().toString().equals(question_Answer)) {
                                 Log.d("QuestionAdapter", "onCheckedChanged: " + "right");
-                                questionChoice1.setBackgroundColor(0xFF00FF00);
+                                RQuestionChoice1.setBackgroundColor(0xFF00FF00);
                                 rightAnswer();
 
                             }
                             break;
                         case R.id.q_choice2:
-                            if (questionChoice2.getText().toString().equals(questionAnswer)){
+                            if (RQuestionChoice2.getText().toString().equals(question_Answer)) {
                                 Log.d("QuestionAdapter", "onCheckedChanged: " + "right");
-                                questionChoice2.setBackgroundColor(0xFF00FF00);
+                                RQuestionChoice2.setBackgroundColor(0xFF00FF00);
                                 rightAnswer();
                             }
                             break;
                         case R.id.q_choice3:
-                            if (questionChoice3.getText().toString().equals(questionAnswer)){
+                            if (RQuestionChoice3.getText().toString().equals(question_Answer)) {
                                 Log.d("QuestionAdapter", "onCheckedChanged: " + "right");
-                                questionChoice3.setBackgroundColor(0xFF00FF00);
+                                RQuestionChoice3.setBackgroundColor(0xFF00FF00);
                                 rightAnswer();
                             }
                             break;

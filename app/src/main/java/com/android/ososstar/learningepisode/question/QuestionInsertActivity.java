@@ -78,13 +78,12 @@ public class QuestionInsertActivity extends AppCompatActivity {
                 "Choice Three"
         };
 
-        // Initializing an ArrayAdapter
+        // Initializing an ArrayAdapter for spinner
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, choices);
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //setAdapter(SpinnerAdapter adapter)
         //Sets the Adapter used to provide the data which backs this Spinner.
         answerSpinner.setAdapter(spinnerAdapter);
 
@@ -242,7 +241,6 @@ public class QuestionInsertActivity extends AppCompatActivity {
             }
         };
         mRequestQueue.add(request);
-
     }
 
 }

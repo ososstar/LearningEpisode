@@ -177,7 +177,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
-                            //TODO refresh RecyclerView List
+                            //Remove deleted row from RecyclerView List
+                            mCourseList.remove(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
+                            notifyItemRangeChanged(getAdapterPosition(), mCourseList.size());
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();

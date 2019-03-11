@@ -176,13 +176,11 @@ public class LessonModifyActivity extends AppCompatActivity {
             mRequestQueue.add(request);
 
         } else {
-            //continue
             modifyInsert_b.setEnabled(true);
             progressBar.setVisibility(View.GONE);
             Toast.makeText(this, "Error: please make any modification to process", Toast.LENGTH_SHORT).show();
             return;
         }
-
 
     }
 
