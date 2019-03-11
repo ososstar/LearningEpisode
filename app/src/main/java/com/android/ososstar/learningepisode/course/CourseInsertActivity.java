@@ -67,13 +67,13 @@ public class CourseInsertActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.icourse_spinner);
 
         //define EditTexts of CourseInsertActivity
-        icourse_name_et = findViewById(R.id.icourse_name_et);
-        icourse_description_et = findViewById(R.id.icourse_description_et);
-        icourse_imgurl_et = findViewById(R.id.icourse_image_et);
+        icourse_name_et = findViewById(R.id.editor_course_name_et);
+        icourse_description_et = findViewById(R.id.editor_course_description_et);
+        icourse_imgurl_et = findViewById(R.id.editor_course_image_et);
 
         //define the insert Button of CourseInsertActivity
         //declare the insert Button of CourseInsertActivity
-        Button icourse_insert_b = findViewById(R.id.icourse_insert_b);
+        Button icourse_insert_b = findViewById(R.id.editor_course_insert_b);
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -125,9 +125,9 @@ public class CourseInsertActivity extends AppCompatActivity {
                     if (!baseJSONObject.getBoolean("error")) {
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
 
-                        //start Activity CoursesListActivity
-                        setResult(RESULT_OK, new Intent());
+                        //start Activity CourseListActivity
                         finish();
+                        setResult(RESULT_OK);
 
                     }else{
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();

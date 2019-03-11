@@ -1,8 +1,8 @@
 package com.android.ososstar.learningepisode;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.android.ososstar.learningepisode.account.AccountsListActivity;
 import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.User;
-import com.android.ososstar.learningepisode.course.CoursesListActivity;
+import com.android.ososstar.learningepisode.course.CourseListActivity;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         User user = SharedPrefManager.getInstance(this).getUser();
 
         //greeting user in home activity
-        TextView homeUser = (TextView) findViewById(R.id.home_user);
+        TextView homeUser = findViewById(R.id.home_user);
         homeUser.setText("Welcome, " + user.getName());
 
 
@@ -67,7 +67,7 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
     public void onItemClickOptions(int position){
         switch (position){
             case 0:
-                startActivity(new Intent(getBaseContext(), CoursesListActivity.class));
+                startActivity(new Intent(getBaseContext(), CourseListActivity.class));
                 break;
             case 1:
                 startActivity(new Intent(getBaseContext(), AccountsListActivity.class));

@@ -13,6 +13,7 @@
         android:roundIcon="@drawable/web_hi_res_512_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".lesson.LessonModifyActivity"></activity>
         <activity android:name=".question.QuestionInsertActivity" />
 
         <service
@@ -22,29 +23,29 @@
 
         <activity
             android:name=".lesson.LessonInsertActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".lesson.LessonActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".lesson.LessonListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".question.QuestionListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".course.CourseActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".course.CourseInsertActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".account.AccountsListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".course.CoursesListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:name=".course.CourseListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".account.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
@@ -57,13 +58,14 @@
         </activity>
         <activity
             android:name=".account.RegisterActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".HomeStudentActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".HomeAdminActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity android:name=".course.CourseModifyActivity" />
     </application>
 
 </manifest>

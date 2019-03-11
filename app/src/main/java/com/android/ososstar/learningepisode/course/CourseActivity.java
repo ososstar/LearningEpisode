@@ -3,26 +3,25 @@ package com.android.ososstar.learningepisode.course;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
+import com.android.ososstar.learningepisode.account.User;
+import com.android.ososstar.learningepisode.lesson.LessonListActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.R;
-import com.android.ososstar.learningepisode.SharedPrefManager;
-import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.account.User;
-import com.android.ososstar.learningepisode.lesson.LessonListActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -31,12 +30,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.android.ososstar.learningepisode.course.CoursesListActivity.EXTRA_ID;
-import static com.android.ososstar.learningepisode.course.CoursesListActivity.EXTRA_NAME;
-import static com.android.ososstar.learningepisode.course.CoursesListActivity.EXTRA_DESCRIPTION;
-import static com.android.ososstar.learningepisode.course.CoursesListActivity.EXTRA_IMAGE;
-import static com.android.ososstar.learningepisode.course.CoursesListActivity.EXTRA_ENROLLS;
-import static com.android.ososstar.learningepisode.course.CoursesListActivity.EXTRA_DATE;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DATE;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DESCRIPTION;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_ENROLLS;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_ID;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_IMAGE;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_NAME;
 
 public class CourseActivity extends AppCompatActivity {
 
@@ -198,14 +197,14 @@ public class CourseActivity extends AppCompatActivity {
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("student_ID", student_ID);
                 pars.put("course_ID", id);
@@ -245,14 +244,14 @@ public class CourseActivity extends AppCompatActivity {
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("student_ID", student_ID);
                 pars.put("course_ID", id);
@@ -286,14 +285,14 @@ public class CourseActivity extends AppCompatActivity {
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<>();
                 switch (user.getType()){
                     case 0:

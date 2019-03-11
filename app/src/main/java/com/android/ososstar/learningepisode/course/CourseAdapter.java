@@ -1,6 +1,8 @@
 package com.android.ososstar.learningepisode.course;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
@@ -99,6 +101,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         private CircleImageView courseImage;
         private TextView courseName, courseDescription, courseEnrolls, courseDate;
         private String admin_ID, course_ID;
+        //getting the current user
+        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private RequestQueue mRequestQueue;
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -113,6 +118,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             courseImage = itemView.findViewById(R.id.course_item_image);
             courseEnrolls = itemView.findViewById(R.id.course_item_enrolls);
             courseDate = itemView.findViewById(R.id.course_item_date);
+
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,9 +144,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 popup.show();
         }
 
-        //getting the current user
-        private User user = SharedPrefManager.getInstance(mContext).getUser();
-        private RequestQueue mRequestQueue;
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {
@@ -146,8 +152,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             // ERROR : How to get item position which ContextMenu Created
             switch (id) {
                 case R.id.option_1 :
-                    Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
+                    Intent modifyIntent = new Intent(itemView.getContext(), CourseModifyActivity.class);
+                    Bundle modifyBundle = new Bundle();
+                    modifyBundle.putString("admin_ID", admin_ID);
+                    modifyBundle.putString("course_ID", course_ID);
+                    modifyIntent.putExtras(modifyBundle);
+                    ((CourseListActivity) mContext).startActivityForResult(modifyIntent, 1);
                     return true;
+
                 case R.id.option_2:
                     deleteCourse();
                     return true;
@@ -156,9 +168,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         }
 
         private void deleteCourse() {
-            if (user.getType() == 0) {
-                admin_ID = String.valueOf(user.getID());
-            }
             mRequestQueue = Volley.newRequestQueue(mContext);
 
             StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_COURSE_DATA, new Response.Listener<String>() {

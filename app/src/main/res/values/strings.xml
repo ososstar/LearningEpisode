@@ -46,7 +46,7 @@
     <string name="questions_list">Questions List</string>
     <string name="user_list">Users List</string>
     <string name="course_list">Course List</string>
-    <string name="error_no_data_received">Error: No Data Received, we will try again in a while</string>
+    <string name="error_no_data_received">Error: No Data Received</string>
     <string name="current_enrollments">CURRENT ENROLLMENTS</string>
     <string name="no_questions">Currently no questions for this lesson</string>
     <string name="specify_the_right_answer">please specify the right answer</string>

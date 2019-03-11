@@ -3,31 +3,27 @@ package com.android.ososstar.learningepisode.lesson;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.CountDownTimer;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
+import com.android.ososstar.learningepisode.account.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.R;
-import com.android.ososstar.learningepisode.SharedPrefManager;
-import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.account.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,9 +54,6 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
     private LessonAdapter mLessonAdapter;
     private ArrayList<Lesson> lessonList;
     private RequestQueue mRequestQueue;
-
-    private LinearLayoutManager linearLayoutManager;
-    private DividerItemDecoration dividerItemDecoration;
 
     //getting the current user
     private User user = SharedPrefManager.getInstance(LessonListActivity.this).getUser();
@@ -108,9 +101,9 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
         lessonList = new ArrayList<>();
 
-        linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
 
         mList.setHasFixedSize(true);
         mList.setLayoutManager(linearLayoutManager);
@@ -139,12 +132,20 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
                 // move to insert course activity
                 Intent insertLessonIntent = new Intent(LessonListActivity.this, LessonInsertActivity.class);
                 insertLessonIntent.putExtra(COURSE_ID, course_ID);
-                startActivity(insertLessonIntent);
+                startActivityForResult(insertLessonIntent, 10);
             }
         });
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            getCourseLessons();
+        }
+    }
 
     private void getCourseLessons(){
         StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_REQUEST_COURSE_LESSONS, new Response.Listener<String>() {
@@ -155,6 +156,8 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
                 try {
                     //if no error in response
                     JSONObject baseJSONObject = new JSONObject(response);
+
+                    lessonList.clear();
 
                     if (!baseJSONObject.getBoolean("error")) {
                         //getting the lessons list from the response
@@ -194,7 +197,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
                             lessonList.add(lesson);
                         }
 
-                        mLessonAdapter = new LessonAdapter(getBaseContext(), lessonList);
+                        mLessonAdapter = new LessonAdapter(LessonListActivity.this, lessonList);
                         mList.setAdapter(mLessonAdapter);
                         mLessonAdapter.notifyDataSetChanged();
                         mLessonAdapter.setOnItemClickListener(LessonListActivity.this);
@@ -217,29 +220,17 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 mEmptyStateTextView.setText(R.string.error_no_data_received);
-                CountDownTimer CDT = new CountDownTimer(2500, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        getCourseLessons();
-                    }
-                };
-                CDT.start();
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("course_ID", course_ID);
                 switch (user.getType()){
@@ -275,30 +266,4 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_editor.xml file.
-        // This adds menu items to the app bar.
-//        if (user.getType() == 0){
-//            getMenuInflater().inflate(R.menu.menu_add, menu);
-//        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert" icon menu option
-            case R.id.action_insert_new:
-                // move to insert course activity
-                Intent insertLessonIntent = new Intent(this, LessonInsertActivity.class);
-                insertLessonIntent.putExtra(COURSE_ID, course_ID);
-                startActivity(insertLessonIntent);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }

@@ -1,10 +1,8 @@
 package com.android.ososstar.learningepisode.lesson;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +13,8 @@ import android.widget.Toast;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
+import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.User;
-import com.android.ososstar.learningepisode.course.CourseInsertActivity;
-import com.android.ososstar.learningepisode.course.CoursesListActivity;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -40,36 +36,27 @@ public class LessonInsertActivity extends AppCompatActivity {
 
     //getting the current user
     private User user = SharedPrefManager.getInstance(this).getUser();
-    String admin_ID;
 
     //show progressBar spinner when sending data
     private ProgressBar progressBar;
 
     //declare the EditTexts to insert new lesson
-    private EditText iLessonTitle_et, iLessonDescription_et, iLessonLink_et, iLessonVideoUrl_et;
+    private EditText insertLessonTitle_et, insertLessonDescription_et, insertLessonLink_et, insertLessonVideoUrl_et;
 
-    private String course_ID;
+    private String admin_ID, course_ID;
 
     //declare RequestQueue to make http connection
     private RequestQueue mRequestQueue;
 
     private static final Pattern youtubePattern = Pattern.compile("^(https?://)?(www\\.)?(youtube\\.com|youtu\\.?be)/.+$");
 
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_lesson);
 
-        //define spinner
-        progressBar = findViewById(R.id.ilesson_spinner);
+        //define progressBar
+        progressBar = findViewById(R.id.editor_lesson_progressBar);
 
         //check user identity, only if admin take his id value
         if (user.getType() == 0){
@@ -77,10 +64,10 @@ public class LessonInsertActivity extends AppCompatActivity {
         }
 
         //define the EditTexts to insert new lesson
-        iLessonTitle_et = findViewById(R.id.ilesson_title_et);
-        iLessonDescription_et = findViewById(R.id.ilesson_description_et);
-        iLessonLink_et = findViewById(R.id.ilesson_link_et);
-        iLessonVideoUrl_et = findViewById(R.id.ilesson_video_et);
+        insertLessonTitle_et = findViewById(R.id.editor_lesson_title_et);
+        insertLessonDescription_et = findViewById(R.id.editor_lesson_description_et);
+        insertLessonLink_et = findViewById(R.id.editor_lesson_link_et);
+        insertLessonVideoUrl_et = findViewById(R.id.editor_lesson_video_et);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -91,14 +78,13 @@ public class LessonInsertActivity extends AppCompatActivity {
         //set up a RequestQueue to handle the http request
         mRequestQueue = Volley.newRequestQueue(this);
 
-        //define the insert button
-        //declare the insert new lesson button
-        Button iLessonInsert_b = findViewById(R.id.ilesson_insert_b);
+        //declare and define the insert button
+        Button insertLessonInsert_b = findViewById(R.id.editor_lesson_insert_b);
         //if the insert button is clicked, calling the method insert new lesson to send the values in the EditTexts to the database
-        iLessonInsert_b.setOnClickListener(new View.OnClickListener() {
+        insertLessonInsert_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isConnected(getBaseContext())) {
+                if (LoginActivity.isConnected(getBaseContext())) {
                     progressBar.setVisibility(View.VISIBLE);
                     insertNewLesson();
                 } else {
@@ -117,16 +103,16 @@ public class LessonInsertActivity extends AppCompatActivity {
     private void insertNewLesson(){
 
         //getting user input values
-        final String lesson_title = iLessonTitle_et.getText().toString().trim();
-        final String lesson_description = iLessonDescription_et.getText().toString().trim();
-        final String lesson_link = iLessonLink_et.getText().toString().trim();
-        final String lesson_videoURL = iLessonVideoUrl_et.getText().toString().trim();
+        final String lesson_title = insertLessonTitle_et.getText().toString().trim();
+        final String lesson_description = insertLessonDescription_et.getText().toString().trim();
+        final String lesson_link = insertLessonLink_et.getText().toString().trim();
+        final String lesson_videoURL = insertLessonVideoUrl_et.getText().toString().trim();
 
         //validating the input in lesson title
         if (TextUtils.isEmpty(lesson_title)) {
             progressBar.setVisibility(View.GONE);
-            iLessonTitle_et.setError("Please enter the Lesson Title");
-            iLessonTitle_et.requestFocus();
+            insertLessonTitle_et.setError("Please enter the Lesson Title");
+            insertLessonTitle_et.requestFocus();
             return;
         }
 
@@ -134,8 +120,8 @@ public class LessonInsertActivity extends AppCompatActivity {
             boolean isValidYoutube = youtubePattern.matcher(lesson_videoURL).matches();
             if (!isValidYoutube){
                 progressBar.setVisibility(View.GONE);
-                iLessonVideoUrl_et.setError("Please enter valid YouTube URL");
-                iLessonVideoUrl_et.requestFocus();
+                insertLessonVideoUrl_et.setError("Please enter valid YouTube URL");
+                insertLessonVideoUrl_et.requestFocus();
                 return;
             }
         }
@@ -151,9 +137,8 @@ public class LessonInsertActivity extends AppCompatActivity {
                     //if no error in response
                     if (!baseJSONObject.getBoolean("error")) {
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-                        //start Activity CoursesListActivity
-                        setResult(RESULT_OK, new Intent());
+                        //start Activity LessonListActivity
+                        setResult(RESULT_OK);
                         finish();
 
                     }else{
@@ -174,14 +159,14 @@ public class LessonInsertActivity extends AppCompatActivity {
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("admin_ID", admin_ID);
                 pars.put("title", lesson_title);

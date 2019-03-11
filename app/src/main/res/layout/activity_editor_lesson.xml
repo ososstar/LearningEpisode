@@ -7,7 +7,7 @@
     android:padding="@dimen/mainpadding"
     tools:context=".lesson.LessonInsertActivity">
     <TextView
-        android:id="@+id/ilesson_tv"
+        android:id="@+id/editor_lesson_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/insert_new_lesson"
@@ -19,19 +19,19 @@
         app:layout_constraintVertical_bias=".05"/>
 
     <me.grantland.widget.AutofitTextView
-        android:id="@+id/ilesson_title_tv"
+        android:id="@+id/editor_lesson_title_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/lesson_title"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_tv"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_tv"
         app:layout_constraintVertical_bias="0.03"
         app:layout_constraintWidth_percent=".3"/>
 
     <EditText
-        android:id="@+id/ilesson_title_et"
+        android:id="@+id/editor_lesson_title_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style"
@@ -39,27 +39,27 @@
         android:inputType="textCapWords"
         android:padding="10dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/ilesson_title_tv"
+        app:layout_constraintBottom_toBottomOf="@id/editor_lesson_title_tv"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toRightOf="@id/ilesson_title_tv"
+        app:layout_constraintLeft_toRightOf="@id/editor_lesson_title_tv"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ilesson_title_tv"
+        app:layout_constraintTop_toTopOf="@id/editor_lesson_title_tv"
         app:layout_constraintVertical_bias=".5" />
 
     <TextView
-        android:id="@+id/ilesson_description_tv"
+        android:id="@+id/editor_lesson_description_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/lesson_description"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_title_tv"
         app:layout_constraintVertical_bias="0.05"
         app:layout_constraintWidth_percent=".5"/>
 
     <EditText
-        android:id="@+id/ilesson_description_et"
+        android:id="@+id/editor_lesson_description_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style"
@@ -74,26 +74,26 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_description_tv"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_description_tv"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_weight="1"
         app:layout_constraintWidth_percent=".9"/>
 
     <me.grantland.widget.AutofitTextView
-        android:id="@+id/ilesson_link_tv"
+        android:id="@+id/editor_lesson_link_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:text="@string/download_link"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_description_et"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_description_et"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.05"
         app:layout_constraintWidth_percent=".5"/>
 
     <EditText
-        android:id="@+id/ilesson_link_et"
+        android:id="@+id/editor_lesson_link_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style"
@@ -105,13 +105,13 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_link_tv"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_link_tv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent=".9"/>
 
     <me.grantland.widget.AutofitTextView
-        android:id="@+id/ilesson_video_tv"
+        android:id="@+id/editor_lesson_video_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -119,12 +119,12 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_link_et"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_link_et"
         app:layout_constraintVertical_bias="0.045"
         app:layout_constraintWidth_percent=".5" />
 
     <EditText
-        android:id="@+id/ilesson_video_et"
+        android:id="@+id/editor_lesson_video_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style"
@@ -136,32 +136,32 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_video_tv"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_video_tv"
         app:layout_constraintVertical_bias=".01"
         app:layout_constraintWidth_percent=".9"/>
 
     <Button
-        android:id="@+id/ilesson_insert_b"
+        android:id="@+id/editor_lesson_insert_b"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/insert"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ilesson_video_et"
+        app:layout_constraintTop_toBottomOf="@id/editor_lesson_video_et"
         app:layout_constraintVertical_bias=".05"
         app:layout_constraintWidth_percent=".7"/>
 
     <!-- ProgressBar is visible when the list is Loading. -->
     <ProgressBar
-        android:id="@+id/ilesson_spinner"
+        android:id="@+id/editor_lesson_progressBar"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/ilesson_video_et"
+        app:layout_constraintBottom_toBottomOf="@id/editor_lesson_video_et"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ilesson_title_et"/>
+        app:layout_constraintTop_toTopOf="@id/editor_lesson_title_et" />
 
 </android.support.constraint.ConstraintLayout>

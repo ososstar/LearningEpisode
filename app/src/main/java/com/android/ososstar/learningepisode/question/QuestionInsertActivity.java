@@ -200,7 +200,7 @@ public class QuestionInsertActivity extends AppCompatActivity {
                     if (!baseJSONObject.getBoolean("error")) {
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
 
-                        //start Activity CoursesListActivity
+                        //start Activity CourseListActivity
                         setResult(RESULT_OK, new Intent());
                         finish();
 

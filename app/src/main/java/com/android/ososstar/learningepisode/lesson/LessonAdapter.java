@@ -1,8 +1,11 @@
 package com.android.ososstar.learningepisode.lesson;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
     private OnItemClickListener mListener;
@@ -69,6 +73,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         holder.lessonTitle.setText(currentLesson.getTitle());
         holder.lessonCreationDate.setText(mContext.getString(R.string.created_on) + currentLesson.getCreationDate());
         holder.lesson_ID = currentLesson.getID();
+        holder.course_ID = currentLesson.getCourseID();
 
     }
 
@@ -77,14 +82,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         return mLessonList.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private TextView lessonID, lessonTitle, lessonDescription, lessonLink, lessonImage, lessonCreationDate;
-
+        private String admin_ID, lesson_ID, course_ID;
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
-        private String admin_ID, lesson_ID;
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -97,6 +100,12 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
             lessonID = itemView.findViewById(R.id.lesson_item_ID);
             lessonTitle = itemView.findViewById(R.id.lesson_item_title);
             lessonCreationDate = itemView.findViewById(R.id.lesson_item_date);
+
+            mRequestQueue = Volley.newRequestQueue(mContext);
+
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -119,6 +128,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
             popup.show();
         }
 
+
         @Override
         public boolean onMenuItemClick(MenuItem item) {
 
@@ -126,34 +136,43 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
             // ERROR : How to get item position which ContextMenu Created
             switch (id) {
                 case R.id.option_1 :
-                    Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.option_2:
-                    deleteLesson();
-                    Toast.makeText(mContext, "delete activity is under construction", Toast.LENGTH_SHORT).show();
+                    Intent modifyIntent = new Intent(itemView.getContext(), LessonModifyActivity.class);
+                    Bundle modifyBundle = new Bundle();
+                    modifyBundle.putString("admin_ID", admin_ID);
+                    modifyBundle.putString("lesson_ID", lesson_ID);
+                    modifyBundle.putString("course_ID", course_ID);
+                    modifyIntent.putExtras(modifyBundle);
+                    try {
+                        ((LessonListActivity) mContext).startActivityForResult(modifyIntent, 2);
+                    } catch (Exception e) {
+                        Log.e("LessonAdapter", String.valueOf(e));
+                    }
                     return true;
 
+                case R.id.option_2:
+                    deleteLesson();
+                    return true;
             }
             return false;
         }
 
         private void deleteLesson() {
-            if (user.getType() == 0) {
-                admin_ID = String.valueOf(user.getID());
-            }
-            mRequestQueue = Volley.newRequestQueue(mContext);
 
             StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_LESSON_DATA, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
                         JSONObject baseJSONObject = new JSONObject(response);
+                        String message = baseJSONObject.getString("message");
                         if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
-                            //TODO Refresh RecyclerView List
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+                            //Remove deleted row from RecyclerView List
+                            mLessonList.remove(getAdapterPosition());
+                            notifyItemRemoved(getAdapterPosition());
+                            notifyItemRangeChanged(getAdapterPosition(), mLessonList.size());
 
                         } else {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -177,13 +196,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
                 protected Map<String, String> getParams() {
                     Map<String, String> pars = new HashMap<String, String>();
                     pars.put("admin_ID", admin_ID);
-                    pars.put("course_ID", lesson_ID);
+                    pars.put("lesson_ID", lesson_ID);
                     return pars;
                 }
             };
             mRequestQueue.add(request);
         }
 
-
     }
+
 }

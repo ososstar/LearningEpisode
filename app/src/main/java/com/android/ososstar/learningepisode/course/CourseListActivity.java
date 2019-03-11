@@ -4,34 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.ososstar.learningepisode.question.QuestionInsertActivity;
-import com.android.ososstar.learningepisode.question.QuestionListActivity;
+import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
+import com.android.ososstar.learningepisode.account.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.R;
-import com.android.ososstar.learningepisode.SharedPrefManager;
-import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.account.User;
-import com.google.android.exoplayer2.C;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,12 +32,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CoursesListActivity extends AppCompatActivity implements CourseAdapter.OnItemClickListener {
+public class CourseListActivity extends AppCompatActivity implements CourseAdapter.OnItemClickListener {
 
     /**
      * Tag for log messages
      */
-    private static final String LOG_TAG = CoursesListActivity.class.getName();
+    private static final String LOG_TAG = CourseListActivity.class.getName();
 
     /**
      * TextView that is displayed when the list is empty
@@ -124,7 +117,7 @@ public class CoursesListActivity extends AppCompatActivity implements CourseAdap
             @Override
             public void onClick(View v) {
                 // move to insert course activity
-                startActivityForResult(new Intent(CoursesListActivity.this, CourseInsertActivity.class), 1);
+                startActivityForResult(new Intent(CourseListActivity.this, CourseInsertActivity.class), 1);
             }
         });
 
@@ -133,7 +126,7 @@ public class CoursesListActivity extends AppCompatActivity implements CourseAdap
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            startActivity(new Intent(this, CoursesListActivity.class));
+            startActivity(new Intent(this, CourseListActivity.class));
             finish();
         }
     }
@@ -183,10 +176,10 @@ public class CoursesListActivity extends AppCompatActivity implements CourseAdap
                                         courseList.add(course);
                                     }
 
-                                    mCourseAdapter = new CourseAdapter(CoursesListActivity.this, courseList);
+                                    mCourseAdapter = new CourseAdapter(CourseListActivity.this, courseList);
                                     mList.setAdapter(mCourseAdapter);
                                     mCourseAdapter.notifyDataSetChanged();
-                                    mCourseAdapter.setOnItemClickListener(CoursesListActivity.this);
+                                    mCourseAdapter.setOnItemClickListener(CourseListActivity.this);
 
 
                                 } else {
@@ -215,18 +208,6 @@ public class CoursesListActivity extends AppCompatActivity implements CourseAdap
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 mEmptyStateTextView.setText(R.string.error_no_data_received);
-                CountDownTimer CDT = new CountDownTimer(2500, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        parseJSON();
-                    }
-                };
-                CDT.start();
 
             }
         });
@@ -234,33 +215,8 @@ public class CoursesListActivity extends AppCompatActivity implements CourseAdap
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_editor.xml file.
-        // This adds menu items to the app bar.
-//        if (user.getType() == 0){
-//            getMenuInflater().inflate(R.menu.menu_add, menu);
-//        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert" icon menu option
-            case R.id.action_insert_new:
-                // move to insert course activity
-                startActivity(new Intent(CoursesListActivity.this, CourseInsertActivity.class));
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
     public void onItemClick(int position){
-        Intent intent = new Intent(CoursesListActivity.this, CourseActivity.class);
+        Intent intent = new Intent(CourseListActivity.this, CourseActivity.class);
         Course clickedItem = courseList.get(position);
         intent.putExtra(EXTRA_ID, clickedItem.getCourseID());
         intent.putExtra(EXTRA_NAME, clickedItem.getCourseName());
@@ -268,7 +224,7 @@ public class CoursesListActivity extends AppCompatActivity implements CourseAdap
         intent.putExtra(EXTRA_IMAGE, clickedItem.getCourseImage());
         intent.putExtra(EXTRA_ENROLLS, clickedItem.getCourseEnrolls());
         intent.putExtra(EXTRA_DATE, clickedItem.getCourseCreationDate());
-        CoursesListActivity.this.startActivity(intent);
+        CourseListActivity.this.startActivity(intent);
     }
 
 
