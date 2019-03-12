@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="@dimen/horizontal_space"
         tools:context=".lesson.LessonActivity">
 
@@ -58,13 +54,13 @@
             android:background="#A6000000"
             app:controller_layout_id="@layout/exo_playback_control_view"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent=".65"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lesson_date_tv"
-            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintHeight_percent="0.7"
             app:layout_constraintWidth_percent=".5"
+            app:layout_constraintVertical_bias="0.2"
             app:player_layout_id="@layout/exo_simple_player_view"
             app:repeat_toggle_modes="none"
             app:resize_mode="fixed_height"
@@ -94,7 +90,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/youtubeFragment"
             app:layout_constraintTop_toBottomOf="@id/lesson_description_tv"
-            app:layout_constraintVertical_bias=".8"
+            app:layout_constraintVertical_bias=".58"
             app:layout_constraintWidth_percent="0.4" />
 
         <Button
@@ -112,4 +108,3 @@
             app:layout_constraintWidth_percent="0.4" />
 
     </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
