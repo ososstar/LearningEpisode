@@ -27,8 +27,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".lesson.LessonActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <!--android:screenOrientation="portrait"-->
         <activity
             android:name=".lesson.LessonListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />

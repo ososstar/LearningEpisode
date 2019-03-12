@@ -3,9 +3,9 @@ package com.android.ososstar.learningepisode.account;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +15,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.HomeAdminActivity;
+import com.android.ososstar.learningepisode.HomeStudentActivity;
+import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
 import com.android.ososstar.learningepisode.sslService;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,22 +28,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.HomeAdminActivity;
-import com.android.ososstar.learningepisode.HomeStudentActivity;
-import com.android.ososstar.learningepisode.HttpsTrustManager;
-import com.android.ososstar.learningepisode.R;
-import com.android.ososstar.learningepisode.SharedPrefManager;
-import com.android.ososstar.learningepisode.URLs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.net.ssl.SSLContext;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,16 +62,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //allow HTTP SSL connections for older devices
-//        HttpsTrustManager.allowAllSSL();
-//        if (android.os.Build.VERSION.SDK_INT>=16 && android.os.Build.VERSION.SDK_INT<=19 || android.os.Build.VERSION.SDK_INT<=23){}
-        Intent sslIntent = new Intent(this, sslService.class);
-        startService(sslIntent);
+        //support ssl for older devices
+        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {
+            Intent sslIntent = new Intent(this, sslService.class);
+            startService(sslIntent);
+        }
 
         //if the user is already logged in we will directly start the Home activity for admin or student
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
-            switch (SharedPrefManager.getInstance(this).getUser().getType()){
+            switch (SharedPrefManager.getInstance(this).getUser().getType()) {
                 case 0:
                     startActivity(new Intent(this, HomeAdminActivity.class));
                     break;
@@ -91,8 +85,8 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.login_spinner);
 
         //define EditTexts of LoginActivity
-        l_username_et = (EditText) findViewById(R.id.l_username);
-        l_password_et = (EditText) findViewById(R.id.l_password);
+        l_username_et = findViewById(R.id.l_username);
+        l_password_et = findViewById(R.id.l_password);
 
         //define login Button
         Login_b = findViewById(R.id.l_login_b);
@@ -107,13 +101,14 @@ public class LoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     userLogin();
 
-                }else { Toast.makeText(LoginActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         //define register TextView to make intent to RegisterActivity on click
-        TextView l_register = (TextView) findViewById(R.id.l_register);
+        TextView l_register = findViewById(R.id.l_register);
 
         //setup intent to move from LoginActivity to RegisterActivity
         l_register.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +122,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
-        Login_b.setEnabled(false);
-
         //first getting the values
         final String username = l_username_et.getText().toString().trim();
         final String password = l_password_et.getText().toString().trim();
@@ -151,7 +144,9 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-            //if everything is fine
+        //if everything is fine
+        Login_b.setEnabled(false);
+
         StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -185,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPrefManager.getInstance(getBaseContext()).userLogin(user);
 
                             //starting the User activity
-                            switch (type){
+                            switch (type) {
                                 case 0:
                                     //case of admin
                                     finish();
@@ -198,7 +193,8 @@ public class LoginActivity extends AppCompatActivity {
                                     break;
                             }
 
-                        }else {Login_b.setEnabled(true);
+                        } else {
+                            Login_b.setEnabled(true);
                             Toast.makeText(LoginActivity.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
@@ -218,23 +214,22 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 Login_b.setEnabled(true);
 
-                Intent sslIntent = new Intent(LoginActivity.this, sslService.class);
-                startService(sslIntent);
+                SharedPrefManager.getInstance(LoginActivity.this).setSSLStatus(1);
 
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 Toast.makeText(LoginActivity.this, "Error: connection failed", Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("username", username);
                 pars.put("password", password);

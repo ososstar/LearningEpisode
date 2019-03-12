@@ -18,6 +18,7 @@ public class SharedPrefManager {
     private static final String KEY_NAME = "keyname";
     private static final String KEY_TYPE = "keytype";
     private static final String KEY_DATE = "keydate";
+    private static final String KEY_FAIL_CONNECTION = "keySSL";
 
     private static SharedPrefManager mInstance;
     private static Context mCtx;
@@ -65,6 +66,20 @@ public class SharedPrefManager {
                 sharedPreferences.getInt(KEY_TYPE, -1),
                 sharedPreferences.getString(KEY_DATE, null)
         );
+    }
+
+    //this method will give the logged in user
+    public boolean getSSLStatus() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        int sslStatus = sharedPreferences.getInt(KEY_FAIL_CONNECTION, -1);
+        return sslStatus == 1;
+    }
+
+    public void setSSLStatus(int status) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(KEY_FAIL_CONNECTION, status);
+        editor.apply();
     }
 
     //this method will logout the user

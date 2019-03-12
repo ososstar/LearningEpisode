@@ -1,8 +1,6 @@
 package com.android.ososstar.learningepisode.question;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -19,6 +17,7 @@ import android.widget.Toast;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
+import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -68,14 +67,6 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
     private String lesson_ID, admin_ID, student_ID;
 
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +104,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
         progressBar = findViewById(R.id.l_spinner);
 
-        if (isConnected(QuestionListActivity.this)) {
+        if (LoginActivity.isConnected(QuestionListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             getLessonQuestions();
 
@@ -145,7 +136,24 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
         }
     }
 
+    private void connectASAP() {
+        if (LoginActivity.isConnected(QuestionListActivity.this)) {
+            getLessonQuestions();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
 
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
+    }
 
     private void getLessonQuestions() {
 
@@ -220,6 +228,8 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
                 progressBar.setVisibility(View.GONE);
                 mEmptyStateTextView.setVisibility(View.VISIBLE);
                 error.printStackTrace();
+                connectASAP();
+                SharedPrefManager.getInstance(QuestionListActivity.this).setSSLStatus(1);
                 // Set empty state text to display "No Users is found."
                 mEmptyStateTextView.setText(R.string.error_no_data_received);
                 CountDownTimer CDT = new CountDownTimer(5000, 1000) {

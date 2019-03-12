@@ -1,9 +1,8 @@
 package com.android.ososstar.learningepisode.lesson;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
+import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -68,13 +68,6 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
     public static final String EXTRA_LESSON_DATE = "date";
     public static final String COURSE_ID = "course_ID";
 
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +106,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
         progressBar = findViewById(R.id.l_spinner);
 
-        if (isConnected(getBaseContext())) {
+        if (LoginActivity.isConnected(LessonListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             getCourseLessons();
 
@@ -145,6 +138,25 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
         if (resultCode == RESULT_OK) {
             getCourseLessons();
         }
+    }
+
+    private void connectASAP() {
+        if (LoginActivity.isConnected(LessonListActivity.this)) {
+            getCourseLessons();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
     }
 
     private void getCourseLessons(){
@@ -217,6 +229,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
             public void onErrorResponse(VolleyError error) {
                 mEmptyStateTextView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
+                connectASAP();
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 mEmptyStateTextView.setText(R.string.error_no_data_received);

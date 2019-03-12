@@ -1,8 +1,8 @@
 package com.android.ososstar.learningepisode.account;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.android.ososstar.learningepisode.HomeStudentActivity;
+import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,10 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.HomeStudentActivity;
-import com.android.ososstar.learningepisode.R;
-import com.android.ososstar.learningepisode.SharedPrefManager;
-import com.android.ososstar.learningepisode.URLs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,28 +48,28 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         //define EditTexts of RegisterActivity
-        Username_et = (EditText) findViewById(R.id.r_username);
-        Password_et = (EditText) findViewById(R.id.r_password);
-        Email_et = (EditText) findViewById(R.id.r_email);
-        Name_et = (EditText) findViewById(R.id.r_name);
+        Username_et = findViewById(R.id.r_username);
+        Password_et = findViewById(R.id.r_password);
+        Email_et = findViewById(R.id.r_email);
+        Name_et = findViewById(R.id.r_name);
 
 
 
         mRequestQueue = Volley.newRequestQueue(this);
 
         //define Register Button
-        Register_b = (Button) findViewById(R.id.r_register_b);
+        Register_b = findViewById(R.id.r_register_b);
         Register_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar = (ProgressBar) findViewById(R.id.spinner);
+                progressBar = findViewById(R.id.spinner);
                 progressBar.setVisibility(View.VISIBLE);
                 registerUser();
             }
         });
 
         //define login TextView to make intent to LoginActivity
-        TextView r_login = (TextView) findViewById(R.id.r_login);
+        TextView r_login = findViewById(R.id.r_login);
 
         //setup intent to move from LoginActivity to RegisterActivity
         r_login.setOnClickListener(new View.OnClickListener() {
@@ -156,11 +155,11 @@ public class RegisterActivity extends AppCompatActivity {
                             );
 
                             //storing the user in shared preferences
-                            SharedPrefManager.getInstance(getBaseContext()).userLogin(user);
+                            SharedPrefManager.getInstance(RegisterActivity.this).userLogin(user);
 
                             //starting the User Home activity
                             finish();
-                            startActivity(new Intent(getBaseContext(), HomeStudentActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, HomeStudentActivity.class));
                         } else {
                             Toast.makeText(getApplicationContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
                         }
@@ -180,20 +179,22 @@ public class RegisterActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 progressBar.setVisibility(View.GONE);
 
+                SharedPrefManager.getInstance(RegisterActivity.this).setSSLStatus(1);
+
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 Toast.makeText(RegisterActivity.this, "account is not properly registered", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
+            public Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<String, String>();
                 pars.put("username", username);
                 pars.put("email", email);

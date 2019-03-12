@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -101,7 +102,7 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        if (isConnected(getBaseContext())) {
+        if (isConnected(CourseListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             parseJSON();
 
@@ -129,6 +130,25 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
             startActivity(new Intent(this, CourseListActivity.class));
             finish();
         }
+    }
+
+    private void connectASAP() {
+        if (isConnected(CourseListActivity.this)) {
+            parseJSON();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
     }
 
     private void parseJSON(){
@@ -205,6 +225,8 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
             public void onErrorResponse(VolleyError error) {
                 mEmptyStateTextView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
+                connectASAP();
+                SharedPrefManager.getInstance(CourseListActivity.this).setSSLStatus(1);
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 mEmptyStateTextView.setText(R.string.error_no_data_received);

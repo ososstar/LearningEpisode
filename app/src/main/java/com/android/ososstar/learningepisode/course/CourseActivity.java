@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -176,6 +177,25 @@ public class CourseActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.no_description, Toast.LENGTH_SHORT).show();
     }
 
+    private void connectASAP() {
+        if (isConnected(CourseActivity.this)) {
+            isEnrolledCheck();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
+    }
+
     private void isEnrolledCheck(){
 
         StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_CHECK_STUDENT_ENROLL, new Response.Listener<String>() {
@@ -240,7 +260,8 @@ public class CourseActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                SharedPrefManager.getInstance(CourseActivity.this).setSSLStatus(1);
+                connectASAP();
             }
         }){
             @Override

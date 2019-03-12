@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/horizontal_space"
+        tools:context=".lesson.LessonActivity">
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/lesson_title_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/lesson_title"
+            android:textSize="@dimen/title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/lesson_id_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/id"
+            android:textSize="12sp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toRightOf="@id/lesson_title_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".20" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/lesson_date_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/creation_date"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/lesson_title_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_id_tv"
+            app:layout_constraintVertical_bias="0.02"
+            app:layout_constraintWidth_percent=".5" />
+
+        <fragment
+            android:id="@+id/youtubeFragment"
+            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#A6000000"
+            app:controller_layout_id="@layout/exo_playback_control_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".65"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_date_tv"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintWidth_percent=".5"
+            app:player_layout_id="@layout/exo_simple_player_view"
+            app:repeat_toggle_modes="none"
+            app:resize_mode="fixed_height"
+            app:show_timeout="45000"
+            app:surface_type="texture_view" />
+
+        <TextView
+            android:id="@+id/lesson_description_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lesson_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_title_tv"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".45" />
+
+        <Button
+            android:id="@+id/lesson_download_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/download_lesson"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias=".2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/youtubeFragment"
+            app:layout_constraintTop_toBottomOf="@id/lesson_description_tv"
+            app:layout_constraintVertical_bias=".8"
+            app:layout_constraintWidth_percent="0.4" />
+
+        <Button
+            android:id="@+id/lesson_questions_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lesson_questions"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/youtubeFragment"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_download_b"
+            app:layout_constraintVertical_bias=".005"
+            app:layout_constraintWidth_percent="0.4" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

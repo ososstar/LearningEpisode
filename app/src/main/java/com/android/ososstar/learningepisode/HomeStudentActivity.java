@@ -25,7 +25,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -126,15 +125,34 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        if (isConnected(getBaseContext())) {
-
+        if (isConnected(HomeStudentActivity.this)) {
             getStudentEnrollment();
-
-        }else {Toast.makeText(this, "Please check your connection", Toast.LENGTH_SHORT).show();
-            // Set empty state text to display "No earthquakes found."
+        } else {
+            Toast.makeText(HomeStudentActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
+            mEmptyStateTextView.setVisibility(View.VISIBLE);
             mEmptyStateTextView.setText(R.string.noInternet);
+            connectASAP();
         }
 
+    }
+
+    private void connectASAP() {
+        if (isConnected(HomeStudentActivity.this)) {
+            getStudentEnrollment();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
     }
 
     private void getStudentEnrollment(){
@@ -202,7 +220,6 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
                     mEmptyStateTextView.setText("No Data Received");
                 }
 
-                VolleyLog.wtf(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -210,20 +227,8 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."
                 mEmptyStateTextView.setVisibility(View.VISIBLE);
-                mEmptyStateTextView.setText(R.string.error_no_data_received);
-                CountDownTimer CDT = new CountDownTimer(2500, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        getStudentEnrollment();
-                    }
-                };
-                CDT.start();
-
+                mEmptyStateTextView.setText(R.string.noInternet);
+                connectASAP();
             }
         }){
             @Override

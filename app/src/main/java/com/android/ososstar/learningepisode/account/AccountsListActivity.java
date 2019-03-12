@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -16,7 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
+import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
+import com.android.ososstar.learningepisode.URLs;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,16 +27,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.ososstar.learningepisode.HttpsTrustManager;
-import com.android.ososstar.learningepisode.R;
-import com.android.ososstar.learningepisode.SharedPrefManager;
-import com.android.ososstar.learningepisode.URLs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AccountsListActivity extends AppCompatActivity {
@@ -101,7 +100,7 @@ public class AccountsListActivity extends AppCompatActivity {
         mRequestQueue = Volley.newRequestQueue(this);
 
         if (isConnected(this)) {
-            progressBar = (ProgressBar) findViewById(R.id.l_spinner);
+            progressBar = findViewById(R.id.l_spinner);
             progressBar.setVisibility(View.VISIBLE);
             parseJSON();
         }else {
@@ -122,11 +121,26 @@ public class AccountsListActivity extends AppCompatActivity {
 
     }
 
+    private void connectASAP() {
+        if (LoginActivity.isConnected(AccountsListActivity.this)) {
+            parseJSON();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
+    }
+
     private void parseJSON(){
-
-    //allow HTTP SSL connections for older devices
-    HttpsTrustManager.allowAllSSL();
-
     StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_REQUEST_STUDENT_LIST, new Response.Listener<String>() {
         @Override
         public void onResponse(String response) {
@@ -189,25 +203,20 @@ public class AccountsListActivity extends AppCompatActivity {
     }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.GONE);
-
-                error.printStackTrace();
-                // Set empty state text to display "No Users is found."
-                mEmptyStateTextView.setText("Error: No Data Received");
+            progressBar.setVisibility(View.GONE);
+            SharedPrefManager.getInstance(AccountsListActivity.this).setSSLStatus(1);
+            connectASAP();
+            error.printStackTrace();
+            // Set empty state text to display "No Users is found."
+            mEmptyStateTextView.setText("Error: No Data Received");
         }
     }){
         @Override
-        public byte[] getBody() throws AuthFailureError {
+        public byte[] getBody() {
 
             String requestBody = "admin_ID="+admin_ID;  //The request body goes in here.
 
-            try {
-                return requestBody.getBytes("utf-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                return null;
-            }
+            return requestBody.getBytes(StandardCharsets.UTF_8);
         }
 
         @Override
