@@ -62,7 +62,7 @@ public class LessonActivity extends AppCompatActivity {
         lessonTitleTV.setText(title);
 
         TextView lessonDescriptionTV = findViewById(R.id.lesson_description_tv);
-        if (!description.isEmpty() && !description.equals("null") && description != null) {
+        if (!description.isEmpty() && !description.equals("null")) {
             lessonDescriptionTV.setText(description);
         }else {
             lessonDescriptionTV.setText(R.string.no_description);

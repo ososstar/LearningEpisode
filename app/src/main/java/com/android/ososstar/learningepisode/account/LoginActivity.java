@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,8 +41,11 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "LoginActivity";
     //declare EditTexts of LoginActivity
     EditText l_username_et, l_password_et;
+
+    TextInputLayout usernameTL, passwordTL;
 
     /**
      * Volley Method to make login request
@@ -54,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     public static boolean isConnected(Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+        return (connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null) != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
     @Override
@@ -63,10 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //support ssl for older devices
-        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {
-            Intent sslIntent = new Intent(this, sslService.class);
-            startService(sslIntent);
-        }
+        supportSSL();
 
         //if the user is already logged in we will directly start the Home activity for admin or student
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -84,9 +88,57 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.login_spinner);
 
+        //define TextInputLayouts of Login
+        usernameTL = findViewById(R.id.l_Username_TL);
+        passwordTL = findViewById(R.id.l_password_TL);
+
         //define EditTexts of LoginActivity
         l_username_et = findViewById(R.id.l_username);
         l_password_et = findViewById(R.id.l_password);
+
+        l_username_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                usernameTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        l_password_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passwordTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        l_password_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (hasWindowFocus()) {
+                    passwordTL.setErrorEnabled(false);
+                }
+            }
+        });
+
 
         //define login Button
         Login_b = findViewById(R.id.l_login_b);
@@ -99,7 +151,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isConnected(getBaseContext())) {
                     progressBar.setVisibility(View.VISIBLE);
-                    userLogin();
+                    try {
+                        userLogin();
+                    } catch (Exception e) {
+                        Log.e(TAG, "onClick: ", e);
+                    }
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
@@ -121,6 +177,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void supportSSL() {
+        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {
+            Intent sslIntent = new Intent(this, sslService.class);
+            startService(sslIntent);
+        }
+    }
+
     private void userLogin() {
         //first getting the values
         final String username = l_username_et.getText().toString().trim();
@@ -128,7 +191,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //validating inputs
         if (TextUtils.isEmpty(username)) {
-            l_username_et.setError("Please enter your username");
+            usernameTL.setErrorEnabled(true);
+            usernameTL.setError("Please enter your username");
             l_username_et.requestFocus();
             progressBar.setVisibility(View.GONE);
             Login_b.setEnabled(true);
@@ -137,7 +201,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (TextUtils.isEmpty(password)) {
-            l_password_et.setError("Please enter your password");
+            passwordTL.setErrorEnabled(true);
+            passwordTL.setError("Please enter your password");
             l_password_et.requestFocus();
             progressBar.setVisibility(View.GONE);
             Login_b.setEnabled(true);
@@ -214,6 +279,8 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 Login_b.setEnabled(true);
 
+                connectASAP();
+
                 SharedPrefManager.getInstance(LoginActivity.this).setSSLStatus(1);
 
                 error.printStackTrace();
@@ -230,7 +297,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public Map<String, String> getParams() {
-                Map<String, String> pars = new HashMap<String, String>();
+                Map<String, String> pars = new HashMap<>();
                 pars.put("username", username);
                 pars.put("password", password);
                 return pars;
@@ -244,4 +311,27 @@ public class LoginActivity extends AppCompatActivity {
 
         mRequestQueue.add(request);
     }
+
+    private void connectASAP() {
+        if (isConnected(LoginActivity.this) && !TextUtils.isEmpty(l_username_et.getText().toString().trim()) && !TextUtils.isEmpty(l_password_et.getText().toString().trim())) {
+            if (SharedPrefManager.getInstance(getBaseContext()).getSSLStatus()) {
+                supportSSL();
+            }
+            userLogin();
+            return;
+        }
+        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                connectASAP();
+            }
+        };
+        cd.start();
+    }
+
 }

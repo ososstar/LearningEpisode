@@ -1,6 +1,7 @@
 package com.android.ososstar.learningepisode.account;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -10,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,7 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class AccountsListActivity extends AppCompatActivity {
@@ -115,10 +113,18 @@ public class AccountsListActivity extends AppCompatActivity {
         insertFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AccountsListActivity.this, "Insert New Account Activity is Under Construction", Toast.LENGTH_SHORT).show();
+                startActivityForResult(new Intent(AccountsListActivity.this, AccountInsertActivity.class), 1);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            parseJSON();
+        }
     }
 
     private void connectASAP() {
@@ -215,8 +221,8 @@ public class AccountsListActivity extends AppCompatActivity {
         public byte[] getBody() {
 
             String requestBody = "admin_ID="+admin_ID;  //The request body goes in here.
-
-            return requestBody.getBytes(StandardCharsets.UTF_8);
+//            StandardCharsets.UTF_8
+            return requestBody.getBytes();
         }
 
         @Override
@@ -228,32 +234,31 @@ public class AccountsListActivity extends AppCompatActivity {
     }
 
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_editor.xml file.
-        // This adds menu items to the app bar for the admin.
-        if (user.getType() == 0){
-            getMenuInflater().inflate(R.menu.menu_add, menu);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-             //Respond to a click on the "Insert" icon menu option
-            case R.id.action_insert_new:
-                // move to insert course activity
-//                startActivity(new Intent(AccountsListActivity.this, InsertAccountActivity.class));
-                Toast.makeText(AccountsListActivity.this, "Under Construction", Toast.LENGTH_SHORT).show();
-                // Exit Activity
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu options from the res/menu/menu_editor.xml file.
+//        // This adds menu items to the app bar for the admin.
+//        if (user.getType() == 0){
+//            getMenuInflater().inflate(R.menu.menu_add, menu);
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle presses on the action bar items
+//        switch (item.getItemId()) {
+//             //Respond to a click on the "Insert" icon menu option
+//            case R.id.action_insert_new:
+//                // move to insert course activity
+////                startActivity(new Intent(AccountsListActivity.this, InsertAccountActivity.class));
+//                Toast.makeText(AccountsListActivity.this, "Under Construction", Toast.LENGTH_SHORT).show();
+//                // Exit Activity
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
 }

@@ -240,7 +240,7 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
 
             @Override
             public Map<String, String> getParams() {
-                Map<String, String> pars = new HashMap<String, String>();
+                Map<String, String> pars = new HashMap<>();
                 pars.put("student_ID", student_ID);
                 return pars;
             }

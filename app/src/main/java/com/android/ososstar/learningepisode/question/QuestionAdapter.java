@@ -200,14 +200,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("Content-Type", "application/x-www-form-urlencoded");
                     return pars;
                 }
 
                 @Override
                 protected Map<String, String> getParams() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("admin_ID", admin_ID);
                     pars.put("question_ID", question_ID);
                     return pars;
@@ -309,7 +309,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
                     @Override
                     public Map<String, String> getParams() {
-                        Map<String, String> pars = new HashMap<String, String>();
+                        Map<String, String> pars = new HashMap<>();
                         pars.put("student_ID", student_ID);
                         pars.put("question_ID", question_ID);
                         pars.put("answer_status", "1");

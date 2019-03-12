@@ -147,14 +147,14 @@ public class LessonModifyActivity extends AppCompatActivity {
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("Content-Type", "application/x-www-form-urlencoded");
                     return pars;
                 }
 
                 @Override
                 public Map<String, String> getParams() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("admin_ID", admin_ID);
                     pars.put("lesson_ID", lesson_ID);
                     pars.put("course_ID", course_ID);
@@ -179,7 +179,6 @@ public class LessonModifyActivity extends AppCompatActivity {
             modifyInsert_b.setEnabled(true);
             progressBar.setVisibility(View.GONE);
             Toast.makeText(this, "Error: please make any modification to process", Toast.LENGTH_SHORT).show();
-            return;
         }
 
     }

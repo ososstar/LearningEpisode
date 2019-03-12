@@ -187,14 +187,14 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("Content-Type", "application/x-www-form-urlencoded");
                     return pars;
                 }
 
                 @Override
                 protected Map<String, String> getParams() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("admin_ID", admin_ID);
                     pars.put("lesson_ID", lesson_ID);
                     return pars;

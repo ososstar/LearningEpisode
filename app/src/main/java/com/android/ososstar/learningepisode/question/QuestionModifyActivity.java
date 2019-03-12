@@ -195,14 +195,14 @@ public class QuestionModifyActivity extends AppCompatActivity {
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("Content-Type", "application/x-www-form-urlencoded");
                     return pars;
                 }
 
                 @Override
                 protected Map<String, String> getParams() {
-                    Map<String, String> pars = new HashMap<String, String>();
+                    Map<String, String> pars = new HashMap<>();
                     pars.put("admin_ID", admin_ID);
                     pars.put("question_ID", question_ID);
                     if (!TextUtils.isEmpty(questionTitle)) {
@@ -228,7 +228,6 @@ public class QuestionModifyActivity extends AppCompatActivity {
             insertButton.setEnabled(true);
             progressBar.setVisibility(View.GONE);
             Toast.makeText(this, "Error: please make any modification to process", Toast.LENGTH_SHORT).show();
-            return;
         }
 
     }

@@ -244,7 +244,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
             @Override
             public Map<String, String> getParams() {
-                Map<String, String> pars = new HashMap<String, String>();
+                Map<String, String> pars = new HashMap<>();
                 pars.put("course_ID", course_ID);
                 switch (user.getType()){
                     case 0:

@@ -255,7 +255,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
             @Override
             public Map<String, String> getParams() {
-                Map<String, String> pars = new HashMap<String, String>();
+                Map<String, String> pars = new HashMap<>();
                 pars.put("lesson_ID", lesson_ID);
                 return pars;
             }

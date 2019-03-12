@@ -148,14 +148,14 @@ public class CourseInsertActivity extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() {
-                Map<String, String> pars = new HashMap<String, String>();
+                Map<String, String> pars = new HashMap<>();
                 pars.put("Content-Type", "application/x-www-form-urlencoded");
                 return pars;
             }
 
             @Override
             public Map<String, String> getParams() {
-                Map<String, String> pars = new HashMap<String, String>();
+                Map<String, String> pars = new HashMap<>();
                 pars.put("admin_ID", admin_ID);
                 pars.put("name", course_name);
                 pars.put("description", course_description);

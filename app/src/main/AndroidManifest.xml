@@ -13,7 +13,9 @@
         android:roundIcon="@drawable/web_hi_res_512_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".question.QuestionModifyActivity"></activity>
+
+        <activity android:name=".account.AccountInsertActivity"></activity>
+        <activity android:name=".question.QuestionModifyActivity" />
         <activity android:name=".lesson.LessonModifyActivity" />
         <activity android:name=".question.QuestionInsertActivity" />
 
@@ -25,31 +27,38 @@
         <activity
             android:name=".lesson.LessonInsertActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".lesson.LessonActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <!--android:screenOrientation="portrait"-->
+
         <activity
             android:name=".lesson.LessonListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".question.QuestionListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".course.CourseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".course.CourseInsertActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".account.AccountsListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".course.CourseListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".account.LoginActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppFullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -59,14 +68,21 @@
         </activity>
         <activity
             android:name=".account.RegisterActivity"
+            android:theme="@style/AppFullScreenTheme"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".HomeStudentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".HomeAdminActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".course.CourseModifyActivity" />
+
+        <activity
+            android:name=".course.CourseModifyActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
     </application>
 
 </manifest>
