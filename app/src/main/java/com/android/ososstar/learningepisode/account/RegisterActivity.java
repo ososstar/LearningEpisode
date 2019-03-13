@@ -53,8 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
         Email_et = findViewById(R.id.r_email);
         Name_et = findViewById(R.id.r_name);
 
-
-
         mRequestQueue = Volley.newRequestQueue(this);
 
         //define Register Button

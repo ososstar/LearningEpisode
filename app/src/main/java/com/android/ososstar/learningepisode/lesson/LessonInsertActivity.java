@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -84,7 +84,7 @@ public class LessonInsertActivity extends AppCompatActivity {
         insertLessonInsert_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (LoginActivity.isConnected(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvaliable(getBaseContext())) {
                     progressBar.setVisibility(View.VISIBLE);
                     insertNewLesson();
                 } else {

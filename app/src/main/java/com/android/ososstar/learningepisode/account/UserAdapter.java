@@ -123,7 +123,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }
             mRequestQueue = Volley.newRequestQueue(mContext);
 
-            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_LESSON_DATA, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_STUDENT_DATA, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
@@ -146,7 +146,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Toast.makeText(mContext, itemView.getContext().getString(R.string.error_no_data_received), Toast.LENGTH_SHORT).show();
                 }
             }) {
                 @Override

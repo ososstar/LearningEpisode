@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
@@ -109,7 +110,7 @@ public class AccountsListActivity extends AppCompatActivity {
 
         FloatingActionButton insertFAB = findViewById(R.id.l_insertFAB);
         //show FAB for admin
-        if (user.getType() == 0) insertFAB.setVisibility(View.VISIBLE);
+        if (user.getType() == 0) insertFAB.show();
         insertFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +129,7 @@ public class AccountsListActivity extends AppCompatActivity {
     }
 
     private void connectASAP() {
-        if (LoginActivity.isConnected(AccountsListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvaliable(AccountsListActivity.this)) {
             parseJSON();
             return;
         }

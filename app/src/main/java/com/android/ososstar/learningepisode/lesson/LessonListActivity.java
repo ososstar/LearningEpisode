@@ -11,12 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -106,19 +105,19 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
         progressBar = findViewById(R.id.l_spinner);
 
-        if (LoginActivity.isConnected(LessonListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvaliable(LessonListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             getCourseLessons();
 
         }else {
-            Toast.makeText(this, "Please check your connection", Toast.LENGTH_SHORT).show();
-            // Set empty state text to display "No earthquakes found."
+            // Set empty state text to display "check your internet"
+            connectASAP();
             mEmptyStateTextView.setText(R.string.noInternet);
         }
 
         FloatingActionButton insertFAB = findViewById(R.id.l_insertFAB);
         //show FAB for admin
-        if (user.getType() == 0) insertFAB.setVisibility(View.VISIBLE);
+        if (user.getType() == 0) insertFAB.show();
         insertFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +140,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
     }
 
     private void connectASAP() {
-        if (LoginActivity.isConnected(LessonListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvaliable(LessonListActivity.this)) {
             getCourseLessons();
             return;
         }

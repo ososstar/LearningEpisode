@@ -12,18 +12,19 @@
     <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="TextLabel" parent="TextAppearance.AppCompat">
+    <!--TextAppearance.AppCompat-->
+    <style name="TextLabel" parent="Theme.AppCompat.DayNight">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="android:textSize">20sp</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
 
 </resources>

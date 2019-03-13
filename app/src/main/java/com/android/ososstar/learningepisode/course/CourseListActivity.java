@@ -1,8 +1,6 @@
 package com.android.ososstar.learningepisode.course;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
@@ -68,13 +66,13 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
     public static final String EXTRA_ENROLLS = "enrolls";
     public static final String EXTRA_DATE = "date";
 
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
+//    /**
+//     * check if network is Connected or not
+//     */
+//    public static boolean isConnected(Context context) {
+//        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+//        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,18 +100,18 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        if (isConnected(CourseListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvaliable(CourseListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             parseJSON();
 
-        }else {Toast.makeText(this, "Please check your connection", Toast.LENGTH_SHORT).show();
-            // Set empty state text to display "No earthquakes found."
+        } else {// Set empty state text to display "Check your connection"
             mEmptyStateTextView.setText(R.string.noInternet);
+            connectASAP();
             }
 
         FloatingActionButton insertFAB = findViewById(R.id.l_insertFAB);
         //show FAB for admin
-        if (user.getType() == 0) insertFAB.setVisibility(View.VISIBLE);
+        if (user.getType() == 0) insertFAB.show();
         insertFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +131,7 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
     }
 
     private void connectASAP() {
-        if (isConnected(CourseListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvaliable(CourseListActivity.this)) {
             parseJSON();
             return;
         }

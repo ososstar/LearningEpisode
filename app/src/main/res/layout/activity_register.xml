@@ -21,76 +21,68 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".2" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/r.et-layout"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/r_username"
+        style="@style/TextLabel"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/create_an_account">
+        android:layout_marginTop="10dp"
+        android:hint="@string/username"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_an_account"
+        app:layout_constraintWidth_percent=".7" />
 
-        <EditText
-            android:id="@+id/r_username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:ems="15"
-            android:hint="@string/username"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".8" />
+    <EditText
+        android:id="@+id/r_password"
+        style="@style/TextLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/r_username"
+        app:layout_constraintWidth_percent=".7" />
 
-        <EditText
-            android:id="@+id/r_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:ems="15"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/r_username"
-            app:layout_constraintWidth_percent=".8" />
+    <EditText
+        android:id="@+id/r_email"
+        style="@style/TextLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/r_password"
+        app:layout_constraintWidth_percent=".7" />
 
-        <EditText
-            android:id="@+id/r_email"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:ems="15"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/r_password"
-            app:layout_constraintWidth_percent=".8" />
+    <EditText
+        android:id="@+id/r_name"
+        style="@style/TextLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/r_email"
+        app:layout_constraintWidth_percent=".7" />
 
-        <EditText
-            android:id="@+id/r_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:ems="15"
-            android:hint="@string/name"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/r_email"
-            app:layout_constraintWidth_percent=".8" />
-
-        <!-- ProgressBar is visible when the list is Loading. -->
-        <ProgressBar
-            android:id="@+id/spinner"
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
+    <!-- ProgressBar is visible when the list is Loading. -->
+    <ProgressBar
+        android:id="@+id/spinner"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/r_register_b"
@@ -100,7 +92,9 @@
         android:text="@string/register"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/r.et-layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/r_name"
+        app:layout_constraintVertical_bias=".15"
         app:layout_constraintWidth_percent=".7" />
 
     <TextView

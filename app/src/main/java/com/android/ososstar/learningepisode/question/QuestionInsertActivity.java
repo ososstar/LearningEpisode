@@ -191,7 +191,6 @@ public class QuestionInsertActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 progressBar.setVisibility(View.GONE);
-                insertButton.setEnabled(true);
                 try {
                     JSONObject baseJSONObject = new JSONObject(response);
 
@@ -205,6 +204,7 @@ public class QuestionInsertActivity extends AppCompatActivity {
 
                     }else{
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        insertButton.setEnabled(true);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

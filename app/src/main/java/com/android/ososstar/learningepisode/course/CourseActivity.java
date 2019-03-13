@@ -1,8 +1,6 @@
 package com.android.ososstar.learningepisode.course;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
@@ -57,14 +56,6 @@ public class CourseActivity extends AppCompatActivity {
     private String id, name, description, image, enrolls, creation_date;
 
     private Button course_enroll_b;
-
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +113,7 @@ public class CourseActivity extends AppCompatActivity {
                 break;
             case 1:
                 course_enroll_b.setVisibility(View.INVISIBLE);
-                if (isConnected(this)) {
+                if (ConnectivityHelper.isNetworkAvaliable(this)) {
                     isEnrolledCheck();
                     student_ID = String.valueOf(user.getID());
                 }else{
@@ -135,7 +126,7 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (user.getType() == 1) {
-                    if (isConnected(getBaseContext())) {
+                    if (ConnectivityHelper.isNetworkAvaliable(CourseActivity.this)) {
                         if (!isEnrolled) {
                             makeEnroll();
                             course_enroll_b.setText(R.string.enrolled);
@@ -178,7 +169,7 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     private void connectASAP() {
-        if (isConnected(CourseActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvaliable(CourseActivity.this)) {
             isEnrolledCheck();
             return;
         }

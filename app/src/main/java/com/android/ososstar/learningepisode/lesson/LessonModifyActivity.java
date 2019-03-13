@@ -11,9 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.URLs;
-import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -75,7 +75,7 @@ public class LessonModifyActivity extends AppCompatActivity {
         modifyInsert_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (LoginActivity.isConnected(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvaliable(getBaseContext())) {
                     modifyInsert_b.setEnabled(false);
                     progressBar.setVisibility(View.VISIBLE);
                     modifyLessonRequest();

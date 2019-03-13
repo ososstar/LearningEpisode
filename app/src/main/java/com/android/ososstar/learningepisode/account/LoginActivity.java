@@ -1,11 +1,8 @@
 package com.android.ososstar.learningepisode.account;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -19,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.HomeAdminActivity;
 import com.android.ososstar.learningepisode.HomeStudentActivity;
 import com.android.ososstar.learningepisode.R;
@@ -56,12 +54,11 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isLoggedIn;
     private Button Login_b;
 
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return (connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null) != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    public void supportSSL() {
+        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {
+            Intent sslIntent = new Intent(this, sslService.class);
+            startService(sslIntent);
+        }
     }
 
     @Override
@@ -130,16 +127,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        l_password_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (hasWindowFocus()) {
-                    passwordTL.setErrorEnabled(false);
-                }
-            }
-        });
-
-
         //define login Button
         Login_b = findViewById(R.id.l_login_b);
 
@@ -149,14 +136,8 @@ public class LoginActivity extends AppCompatActivity {
         Login_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isConnected(getBaseContext())) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    try {
-                        userLogin();
-                    } catch (Exception e) {
-                        Log.e(TAG, "onClick: ", e);
-                    }
-
+                if (ConnectivityHelper.isNetworkAvaliable(getApplicationContext())) {
+                    userLogin();
                 } else {
                     Toast.makeText(LoginActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
                 }
@@ -175,13 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void supportSSL() {
-        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {
-            Intent sslIntent = new Intent(this, sslService.class);
-            startService(sslIntent);
-        }
     }
 
     private void userLogin() {
@@ -211,6 +185,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //if everything is fine
         Login_b.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
 
         StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_LOGIN, new Response.Listener<String>() {
             @Override
@@ -279,8 +254,6 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 Login_b.setEnabled(true);
 
-                connectASAP();
-
                 SharedPrefManager.getInstance(LoginActivity.this).setSSLStatus(1);
 
                 error.printStackTrace();
@@ -311,27 +284,4 @@ public class LoginActivity extends AppCompatActivity {
 
         mRequestQueue.add(request);
     }
-
-    private void connectASAP() {
-        if (isConnected(LoginActivity.this) && !TextUtils.isEmpty(l_username_et.getText().toString().trim()) && !TextUtils.isEmpty(l_password_et.getText().toString().trim())) {
-            if (SharedPrefManager.getInstance(getBaseContext()).getSSLStatus()) {
-                supportSSL();
-            }
-            userLogin();
-            return;
-        }
-        CountDownTimer cd = new CountDownTimer(2222, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                connectASAP();
-            }
-        };
-        cd.start();
-    }
-
 }

@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.URLs;
 import com.android.volley.Request;
@@ -73,7 +74,7 @@ public class CourseModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //if is connected start modify course request
-                if (CourseListActivity.isConnected(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvaliable(getBaseContext())) {
                     modifyCourseRequest();
                 } else {
                     Toast.makeText(CourseModifyActivity.this, "Please Check your connection", Toast.LENGTH_SHORT).show();
