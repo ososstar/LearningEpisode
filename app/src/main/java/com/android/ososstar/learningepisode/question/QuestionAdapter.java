@@ -148,18 +148,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             // ERROR : How to get item position which ContextMenu Created
             switch (id) {
                 case R.id.option_1 :
-                    Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
-                    Intent modifyIntent = new Intent(itemView.getContext(), QuestionModifyActivity.class);
-                    Bundle modifyBundle = new Bundle();
-                    modifyBundle.putString(EXTRA_ADMIN_ID, admin_ID);
-                    modifyBundle.putString(EXTRA_QUESTION_ID, question_ID);
-                    modifyBundle.putString(EXTRA_QUESTION_TITLE, question_Title);
-                    modifyBundle.putString(EXTRA_QUESTION_CHOICE_1, question_Choice1);
-                    modifyBundle.putString(EXTRA_QUESTION_CHOICE_2, question_Choice2);
-                    modifyBundle.putString(EXTRA_QUESTION_CHOICE_3, question_Choice3);
-                    modifyBundle.putString(EXTRA_QUESTION_ANSWER, question_Answer);
-                    modifyIntent.putExtras(modifyBundle);
-                    ((QuestionListActivity) mContext).startActivityForResult(modifyIntent, 1);
+                    modifyQuestion();
                     return true;
                 case R.id.option_2:
                     deleteQuestion();
@@ -167,6 +156,20 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
             }
             return false;
+        }
+
+        private void modifyQuestion() {
+            Intent modifyIntent = new Intent(itemView.getContext(), QuestionModifyActivity.class);
+            Bundle modifyBundle = new Bundle();
+            modifyBundle.putString(EXTRA_ADMIN_ID, admin_ID);
+            modifyBundle.putString(EXTRA_QUESTION_ID, question_ID);
+            modifyBundle.putString(EXTRA_QUESTION_TITLE, question_Title);
+            modifyBundle.putString(EXTRA_QUESTION_CHOICE_1, question_Choice1);
+            modifyBundle.putString(EXTRA_QUESTION_CHOICE_2, question_Choice2);
+            modifyBundle.putString(EXTRA_QUESTION_CHOICE_3, question_Choice3);
+            modifyBundle.putString(EXTRA_QUESTION_ANSWER, question_Answer);
+            modifyIntent.putExtras(modifyBundle);
+            ((QuestionListActivity) mContext).startActivityForResult(modifyIntent, 1);
         }
 
         private void deleteQuestion() {

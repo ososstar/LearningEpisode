@@ -191,6 +191,7 @@ public class QuestionModifyActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     progressBar.setVisibility(View.GONE);
                     insertButton.setEnabled(true);
+                    Toast.makeText(QuestionModifyActivity.this, getString(R.string.error_no_data_received), Toast.LENGTH_SHORT).show();
                 }
             }) {
                 @Override

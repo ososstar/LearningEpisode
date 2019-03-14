@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -91,6 +92,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             if (userType == 0) {
                 itemView.setOnCreateContextMenuListener(this);
             }
+            if (user.getType() == 0) {
+                admin_ID = String.valueOf(user.getID());
+            }
 
             user_name = itemView.findViewById(R.id.user_name);
             user_username = itemView.findViewById(R.id.user_username);
@@ -139,13 +143,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             modifyBundle.putString(STUDENT_NAME, name);
             modifyBundle.putString(STUDENT_TYPE, type);
             modifyIntent.putExtras(modifyBundle);
+            Log.d("UserADapter", "modifyStudent: " + modifyBundle);
             ((AccountsListActivity) mContext).startActivityForResult(modifyIntent, 1);
         }
 
         private void deleteStudent() {
-            if (user.getType() == 0) {
-                admin_ID = String.valueOf(user.getID());
-            }
             mRequestQueue = Volley.newRequestQueue(mContext);
 
             StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_STUDENT_DATA, new Response.Listener<String>() {

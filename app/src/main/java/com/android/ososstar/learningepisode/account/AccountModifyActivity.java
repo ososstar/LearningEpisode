@@ -3,14 +3,38 @@ package com.android.ososstar.learningepisode.account;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.URLs;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.ADMIN_ID;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_EMAIL;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_ID;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_NAME;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_TYPE;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_USERNAME;
 
 public class AccountModifyActivity extends AppCompatActivity {
 
@@ -33,12 +57,21 @@ public class AccountModifyActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     //user type variable
-    private String eAccountType;
+    private String admin_ID, eAccountID, eAccountUsername, eAccountEmail, eAccountName, eAccountType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_account);
+
+        //getting Bundle Intent Values
+        Bundle modifyBundle = getIntent().getExtras();
+        admin_ID = modifyBundle.getString(ADMIN_ID);
+        eAccountID = modifyBundle.getString(STUDENT_ID);
+        eAccountUsername = modifyBundle.getString(STUDENT_USERNAME);
+        eAccountEmail = modifyBundle.getString(STUDENT_EMAIL);
+        eAccountName = modifyBundle.getString(STUDENT_NAME);
+        eAccountType = modifyBundle.getString(STUDENT_TYPE);
 
         //set activity name in action bar
         setTitle(R.string.modify_user_data);
@@ -59,9 +92,161 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountEmailET = findViewById(R.id.eEmail_et);
         eAccountNameET = findViewById(R.id.eName_et);
 
+        eAccountPasswordTL.setHint("Password (Optional)");
+
+        //insert old values
+        eAccountUsernameET.setText(eAccountUsername);
+        eAccountEmailET.setText(eAccountEmail);
+        eAccountNameET.setText(eAccountName);
+
         //define type spinner
         eAccountTypeSP = findViewById(R.id.eAccountType_sp);
 
+        // Initializing a String Array
+        String[] types = new String[]{
+                "Admin",
+                "Student"
+        };
+
+        // Initializing an ArrayAdapter for spinner
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, types);
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //Sets the Adapter used to provide the data which backs this Spinner.
+        eAccountTypeSP.setAdapter(spinnerAdapter);
+
+        switch (eAccountType) {
+            case "0":
+                eAccountTypeSP.setSelection(0);
+                break;
+            case "1":
+                eAccountTypeSP.setSelection(1);
+                break;
+        }
+
+        eAccountTypeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //use position value
+                switch (position) {
+                    case 0:
+                        eAccountType = "0";
+                        break;
+                    case 1:
+                        eAccountType = "1";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //define progressbar
+        progressBar = findViewById(R.id.eAccountProgressSpinner);
+
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        eAccountInsertB = findViewById(R.id.eAccountInsert_b);
+        eAccountInsertB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modifyAccount();
+            }
+        });
 
     }
+
+
+    private void modifyAccount() {
+
+        final String eAccountUsername, eAccountPassword, eAccountEmail, eAccountName;
+        eAccountUsername = eAccountUsernameET.getText().toString().trim();
+        eAccountPassword = eAccountPasswordET.getText().toString().trim();
+        eAccountEmail = eAccountEmailET.getText().toString().trim();
+        eAccountName = eAccountNameET.getText().toString().trim();
+
+        //validating the inserted values
+        if (TextUtils.isEmpty(eAccountUsername)) {
+            eAccountUsernameTL.setErrorEnabled(true);
+            eAccountUsernameTL.setError("please insert the Username");
+            eAccountUsernameET.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(eAccountEmail)) {
+            eAccountEmailTL.setErrorEnabled(true);
+            eAccountEmailTL.setError("please insert the email");
+            eAccountUsernameET.requestFocus();
+        }
+        if (TextUtils.isEmpty(eAccountName)) {
+            eAccountNameTL.setErrorEnabled(true);
+            eAccountNameTL.setError("please insert the name of the student");
+        }
+
+        //if everything is fine make setup HTTP request
+        eAccountInsertB.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+
+        StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_MODIFY_STUDENT_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressBar.setVisibility(View.GONE);
+                eAccountInsertB.setEnabled(true);
+                try {
+                    JSONObject baseJSONObject = new JSONObject(response);
+
+                    //if no error in response
+                    if (!baseJSONObject.getBoolean("error")) {
+                        Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                        //start Activity CourseListActivity
+                        setResult(RESULT_OK);
+                        finish();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                eAccountInsertB.setEnabled(true);
+                Toast.makeText(AccountModifyActivity.this, getString(R.string.error_no_data_received), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("Content-Type", "application/x-www-form-urlencoded");
+                return pars;
+            }
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("admin_ID", admin_ID);
+                pars.put("student_ID", eAccountID);
+                pars.put("username", eAccountUsername);
+                if (!TextUtils.isEmpty(eAccountPassword)) {
+                    pars.put("password", eAccountPassword);
+                }
+                pars.put("email", eAccountEmail);
+                pars.put("name", eAccountName);
+                pars.put("type", eAccountType);
+                return pars;
+            }
+        };
+        mRequestQueue.add(request);
+
+    }
+
+
 }

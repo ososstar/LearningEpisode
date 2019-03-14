@@ -192,7 +192,7 @@ public class AccountsListActivity extends AppCompatActivity {
                         userList.add(user);
                     }
 
-                    mUserAdapter = new UserAdapter(getBaseContext(), userList);
+                    mUserAdapter = new UserAdapter(AccountsListActivity.this, userList);
                     mList.setAdapter(mUserAdapter);
 
                 } else {
