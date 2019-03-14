@@ -1,6 +1,8 @@
 package com.android.ososstar.learningepisode.account;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
@@ -62,6 +64,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.user_email.setText(currentUser.getEmail());
         holder.user_creation_date.setText(currentUser.getDate());
         holder.student_ID = String.valueOf(currentUser.getID());
+
+        holder.username = currentUser.getUsername();
+        holder.email = currentUser.getEmail();
+        holder.name = currentUser.getName();
+        holder.type = String.valueOf(currentUser.getType());
     }
 
     @Override
@@ -75,7 +82,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
-        private String admin_ID, student_ID;
+        public static final String ADMIN_ID = "admin_ID";
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -99,15 +106,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             popup.show();
         }
 
+        public static final String STUDENT_ID = "student_ID";
+        public static final String STUDENT_USERNAME = "username";
+        public static final String STUDENT_EMAIL = "email";
+        public static final String STUDENT_NAME = "name";
+        public static final String STUDENT_TYPE = "type";
+        private String admin_ID, student_ID, username, email, name, type;
+
         @Override
         public boolean onMenuItemClick(MenuItem item) {
 
             int id = item.getItemId();
-            // ERROR : How to get item position which ContextMenu Created
             switch (id) {
                 case R.id.option_1 :
-                    //TODO make modify activity
-                    Toast.makeText(mContext, "modify activity is under construction", Toast.LENGTH_SHORT).show();
+                    modifyStudent();
                     return true;
                 case R.id.option_2:
                     deleteStudent();
@@ -115,6 +127,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             }
             return false;
+        }
+
+        private void modifyStudent() {
+            Intent modifyIntent = new Intent(itemView.getContext(), AccountModifyActivity.class);
+            Bundle modifyBundle = new Bundle();
+            modifyBundle.putString(ADMIN_ID, admin_ID);
+            modifyBundle.putString(STUDENT_ID, student_ID);
+            modifyBundle.putString(STUDENT_USERNAME, username);
+            modifyBundle.putString(STUDENT_EMAIL, email);
+            modifyBundle.putString(STUDENT_NAME, name);
+            modifyBundle.putString(STUDENT_TYPE, type);
+            modifyIntent.putExtras(modifyBundle);
+            ((AccountsListActivity) mContext).startActivityForResult(modifyIntent, 1);
         }
 
         private void deleteStudent() {

@@ -46,6 +46,7 @@ public class AccountInsertActivity extends AppCompatActivity {
     //declare spinner of AccountInsertActivity
     private Spinner eAccountTypeSP;
 
+    //declare the insert button of this activity
     private Button eAccountInsertB;
 
     //declare RequestQueue for volley http request
@@ -54,6 +55,7 @@ public class AccountInsertActivity extends AppCompatActivity {
     //declare progressBar
     private ProgressBar progressBar;
 
+    //user type variable
     private String eAccountType;
 
 
@@ -61,7 +63,6 @@ public class AccountInsertActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_account);
-        //TODO make insert activity
 
         //define TextInputLayouts
         eAccountUsernameTL = findViewById(R.id.eAccountUsername);
