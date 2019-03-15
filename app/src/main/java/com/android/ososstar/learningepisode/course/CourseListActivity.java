@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CourseListActivity extends AppCompatActivity implements CourseAdapter.OnItemClickListener {
 
@@ -135,7 +137,7 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
             parseJSON();
             return;
         }
-        CountDownTimer cd = new CountDownTimer(2222, 1000) {
+        CountDownTimer cd = new CountDownTimer(3333, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -230,7 +232,14 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
                 mEmptyStateTextView.setText(R.string.error_no_data_received);
 
             }
-        });
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("Content-Type", "application/x-www-form-urlencoded");
+                return pars;
+            }
+        };
         mRequestQueue.add(request);
     }
 

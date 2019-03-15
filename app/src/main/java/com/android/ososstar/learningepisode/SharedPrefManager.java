@@ -17,6 +17,7 @@ public class SharedPrefManager {
     private static final String KEY_EMAIL = "keyemail";
     private static final String KEY_NAME = "keyname";
     private static final String KEY_TYPE = "keytype";
+    private static final String KEY_PROFILE_PICTURE = "keypp";
     private static final String KEY_DATE = "keydate";
     private static final String KEY_FAIL_CONNECTION = "keySSL";
 
@@ -44,6 +45,7 @@ public class SharedPrefManager {
         editor.putString(KEY_USERNAME, user.getUsername());
         editor.putString(KEY_EMAIL, user.getEmail());
         editor.putString(KEY_NAME, user.getName());
+        editor.putString(KEY_PROFILE_PICTURE, user.getImageURL());
         editor.putInt(KEY_TYPE, user.getType());
         editor.putString(KEY_DATE, user.getDate());
         editor.apply();
@@ -63,6 +65,7 @@ public class SharedPrefManager {
                 sharedPreferences.getString(KEY_USERNAME, null),
                 sharedPreferences.getString(KEY_EMAIL, null),
                 sharedPreferences.getString(KEY_NAME, null),
+                sharedPreferences.getString(KEY_PROFILE_PICTURE, null),
                 sharedPreferences.getInt(KEY_TYPE, -1),
                 sharedPreferences.getString(KEY_DATE, null)
         );

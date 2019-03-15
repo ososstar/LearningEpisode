@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +69,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.username = currentUser.getUsername();
         holder.email = currentUser.getEmail();
         holder.name = currentUser.getName();
+        holder.imageURL = currentUser.getImageURL();
         holder.type = String.valueOf(currentUser.getType());
 
         holder.user_name.setText(currentUser.getName());
@@ -84,6 +87,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         holder.user_creation_date.setText(holder.dateSB);
         holder.student_ID = String.valueOf(currentUser.getID());
+
+        String userImg = currentUser.getImageURL();
+        if (userImg != null && userImg.isEmpty()) {
+            holder.user_image.setImageResource(R.drawable.man);
+        } else {
+            Picasso.with(mContext).load(userImg)
+                    .placeholder(R.drawable.man).error(R.drawable.man).noFade()
+                    .into(holder.user_image);
+        }
+
     }
 
     public interface OnItemClickListener {
@@ -97,15 +110,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private TextView user_name, user_type, user_creation_date;
-
-        private String admin_ID, student_ID, username, email, name, type;
+        public static final String STUDENT_IMAGE = "imageURL";
+        private ImageView user_image;
         private StringBuilder dateSB;
 
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
         public static final String ADMIN_ID = "admin_ID";
+        private String admin_ID, student_ID, username, email, name, imageURL, type;
 
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            PopupMenu popup = new PopupMenu(itemView.getContext(), itemView);
+            popup.getMenuInflater().inflate(R.menu.menu_management, popup.getMenu());
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
+        }
+
+        public static final String STUDENT_ID = "student_ID";
+        public static final String STUDENT_USERNAME = "username";
+        public static final String STUDENT_EMAIL = "email";
+        public static final String STUDENT_NAME = "name";
         public ViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             //getting the current user type
@@ -121,6 +147,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             user_type = itemView.findViewById(R.id.user_Type);
             user_creation_date = itemView.findViewById(R.id.user_creation_date);
 
+            user_image = itemView.findViewById(R.id.user_image);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -133,19 +161,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 }
             });
         }
-
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            PopupMenu popup = new PopupMenu(itemView.getContext(), itemView);
-            popup.getMenuInflater().inflate(R.menu.menu_management, popup.getMenu());
-            popup.setOnMenuItemClickListener(this);
-            popup.show();
-        }
-
-        public static final String STUDENT_ID = "student_ID";
-        public static final String STUDENT_USERNAME = "username";
-        public static final String STUDENT_EMAIL = "email";
-        public static final String STUDENT_NAME = "name";
         public static final String STUDENT_TYPE = "type";
 
         @Override
@@ -172,6 +187,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             modifyBundle.putString(STUDENT_USERNAME, username);
             modifyBundle.putString(STUDENT_EMAIL, email);
             modifyBundle.putString(STUDENT_NAME, name);
+            modifyBundle.getString(STUDENT_IMAGE, imageURL);
             modifyBundle.putString(STUDENT_TYPE, type);
             modifyIntent.putExtras(modifyBundle);
             ((AccountsListActivity) mContext).startActivityForResult(modifyIntent, 1);

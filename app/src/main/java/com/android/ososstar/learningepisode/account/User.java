@@ -6,17 +6,18 @@ public class User {
      * The Username, Email, Name of the User
      */
     private int mID, mType;
-    private String mUsername, mEmail, mName, mDate;
+    private String mUsername, mEmail, mName, mImageURL, mDate;
 
     /**
      * Create a new User Object
      */
-    public User(int ID, String Username, String Email, String Name, int Type, String Date){
+    public User(int ID, String Username, String Email, String Name, String ImageURL, int Type, String Date) {
         mID = ID;
         mUsername = Username;
         mEmail = Email;
         mName = Name;
         mType = Type;
+        mImageURL = ImageURL;
         mDate = Date;
     }
 
@@ -46,6 +47,13 @@ public class User {
      */
     public String getName(){
         return mName;
+    }
+
+    /**
+     * Get The Profile Picture of the User
+     */
+    public String getImageURL() {
+        return mImageURL;
     }
 
     /**

@@ -34,14 +34,15 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class AccountInsertActivity extends AppCompatActivity {
 
     //declare TextInputLayout of Account InsertActivity
-    private TextInputLayout eAccountUsernameTL, eAccountPasswordTL, eAccountEmailTL, eAccountNameTL;
+    private TextInputLayout eAccountUsernameTL, eAccountPasswordTL, eAccountEmailTL, eAccountNameTL, eAccountImageTL;
 
     //declare EditTexts of AccountInsertActivity
-    private EditText eAccountUsernameET, eAccountPasswordET, eAccountEmailET, eAccountNameET;
+    private EditText eAccountUsernameET, eAccountPasswordET, eAccountEmailET, eAccountNameET, eAccountImageET;
 
     //declare spinner of AccountInsertActivity
     private Spinner eAccountTypeSP;
@@ -69,12 +70,14 @@ public class AccountInsertActivity extends AppCompatActivity {
         eAccountPasswordTL = findViewById(R.id.eAccountPassword);
         eAccountEmailTL = findViewById(R.id.eAccountEmail);
         eAccountNameTL = findViewById(R.id.eAccountName);
+        eAccountImageTL = findViewById(R.id.eAccountImage);
 
         //define EditText
         eAccountUsernameET = findViewById(R.id.eUsername_et);
         eAccountPasswordET = findViewById(R.id.ePassword_et);
         eAccountEmailET = findViewById(R.id.eEmail_et);
         eAccountNameET = findViewById(R.id.eName_et);
+        eAccountImageET = findViewById(R.id.eImage_et);
 
         //define type spinner
         eAccountTypeSP = findViewById(R.id.eAccountType_sp);
@@ -147,6 +150,22 @@ public class AccountInsertActivity extends AppCompatActivity {
 
             }
         });
+        eAccountImageET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                eAccountImageTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         // Initializing a String Array
@@ -210,11 +229,12 @@ public class AccountInsertActivity extends AppCompatActivity {
 
     private void insertNewUser() {
         //variables to be filled by the user
-        final String eAccountUsername, eAccountPassword, eAccountEmail, eAccountName;
+        final String eAccountUsername, eAccountPassword, eAccountEmail, eAccountName, eAccountImage;
         eAccountUsername = eAccountUsernameET.getText().toString().trim();
         eAccountPassword = eAccountPasswordET.getText().toString().trim();
         eAccountEmail = eAccountEmailET.getText().toString().trim();
         eAccountName = eAccountNameET.getText().toString().trim();
+        eAccountImage = eAccountImageET.getText().toString().trim();
 
         //validating required data
         if (TextUtils.isEmpty(eAccountUsername)) {
@@ -243,6 +263,18 @@ public class AccountInsertActivity extends AppCompatActivity {
             eAccountNameTL.setError("Please Fill the Username Field");
             eAccountNameET.requestFocus();
             return;
+        }
+        //validating required data
+        if (!TextUtils.isEmpty(eAccountImage)) {
+            Pattern urlPattern = Pattern.compile("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+            boolean isValidImageURL = urlPattern.matcher(eAccountImage).matches();
+            //check if the given link is a url
+            if (!isValidImageURL) {
+                eAccountImageTL.setErrorEnabled(true);
+                eAccountImageTL.setError("Please insert valid image url");
+                eAccountImageET.requestFocus();
+                return;
+            }
         }
         //validating required data
         if (TextUtils.isEmpty(eAccountType)) {
@@ -302,6 +334,9 @@ public class AccountInsertActivity extends AppCompatActivity {
                 pars.put("password", eAccountPassword);
                 pars.put("email", eAccountEmail);
                 pars.put("name", eAccountName);
+                if (!TextUtils.isEmpty(eAccountImage)) {
+                    pars.put("image_URL", eAccountImage);
+                }
                 pars.put("type", eAccountType);
                 return pars;
             }

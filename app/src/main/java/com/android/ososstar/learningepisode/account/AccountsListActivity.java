@@ -24,7 +24,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -185,6 +184,8 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
                         // Extract the value for the key called "c_name"
                         String name = currentUser.getString("s_name");
 
+                        String image = currentUser.getString("s_image");
+
                         // Extract the value for the key called "c_enrolls"
                         int type = currentUser.getInt("type");
 
@@ -193,7 +194,7 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
 
                         // Create a new {@link User} object with the ID, Name, Description
                         // , Image, enrolls and creation Date from the JSON response.
-                        User user = new User(id, username, email, name, type, creationDate);
+                        User user = new User(id, username, email, name, image, type, creationDate);
 
                         // Add the new {@link User} to the list of userList.
                         userList.add(user);
@@ -214,7 +215,6 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
                 e.printStackTrace();
             }
 
-            VolleyLog.wtf(response);
         }
     }, new Response.ErrorListener() {
         @Override
@@ -224,7 +224,7 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
             connectASAP();
             error.printStackTrace();
             // Set empty state text to display "No Users is found."
-            mEmptyStateTextView.setText("Error: No Data Received");
+            mEmptyStateTextView.setText(R.string.error_no_data_received);
         }
     }){
         @Override

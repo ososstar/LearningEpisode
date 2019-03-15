@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,21 +31,24 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.ADMIN_ID;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_EMAIL;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_ID;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_IMAGE;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_NAME;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_TYPE;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_USERNAME;
 
 public class AccountModifyActivity extends AppCompatActivity {
 
+    private static final String TAG = "AccountModifyActivity";
     //declare TextInputLayout of Account InsertActivity
-    private TextInputLayout eAccountUsernameTL, eAccountPasswordTL, eAccountEmailTL, eAccountNameTL;
+    private TextInputLayout eAccountUsernameTL, eAccountPasswordTL, eAccountEmailTL, eAccountNameTL, eAccountImageTL;
 
     //declare EditTexts of AccountInsertActivity
-    private EditText eAccountUsernameET, eAccountPasswordET, eAccountEmailET, eAccountNameET;
+    private EditText eAccountUsernameET, eAccountPasswordET, eAccountEmailET, eAccountNameET, eAccountImageET;
 
     //declare spinner of AccountInsertActivity
     private Spinner eAccountTypeSP;
@@ -59,7 +63,7 @@ public class AccountModifyActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     //user type variable
-    private String admin_ID, eAccountID, eAccountUsername, eAccountEmail, eAccountName, eAccountType;
+    private String admin_ID, eAccountID, eAccountUsername, eAccountEmail, eAccountName, eAccountImage, eAccountType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,10 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountUsername = modifyBundle.getString(STUDENT_USERNAME);
         eAccountEmail = modifyBundle.getString(STUDENT_EMAIL);
         eAccountName = modifyBundle.getString(STUDENT_NAME);
+        eAccountImage = modifyBundle.getString(STUDENT_IMAGE);
         eAccountType = modifyBundle.getString(STUDENT_TYPE);
+
+        Log.d(TAG, "onCreate: " + modifyBundle);
 
         //set activity name in action bar
         setTitle(R.string.modify_user_data);
@@ -87,12 +94,14 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountPasswordTL = findViewById(R.id.eAccountPassword);
         eAccountEmailTL = findViewById(R.id.eAccountEmail);
         eAccountNameTL = findViewById(R.id.eAccountName);
+        eAccountImageTL = findViewById(R.id.eAccountImage);
 
         //define EditText
         eAccountUsernameET = findViewById(R.id.eUsername_et);
         eAccountPasswordET = findViewById(R.id.ePassword_et);
         eAccountEmailET = findViewById(R.id.eEmail_et);
         eAccountNameET = findViewById(R.id.eName_et);
+        eAccountImageET = findViewById(R.id.eImage_et);
 
         eAccountPasswordTL.setHint("Password (Optional)");
 
@@ -100,6 +109,7 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountUsernameET.setText(eAccountUsername);
         eAccountEmailET.setText(eAccountEmail);
         eAccountNameET.setText(eAccountName);
+        eAccountImageET.setText(eAccountImage);
 
         eAccountUsernameET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -144,6 +154,22 @@ public class AccountModifyActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 eAccountNameTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        eAccountImageET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                eAccountImageTL.setErrorEnabled(false);
             }
 
             @Override
@@ -216,11 +242,14 @@ public class AccountModifyActivity extends AppCompatActivity {
     }
 
     private void modifyAccount() {
-        final String eAccountUsername, eAccountPassword, eAccountEmail, eAccountName;
+        final String eAccountUsername, eAccountPassword, eAccountEmail, eAccountName, eAccountImage;
         eAccountUsername = eAccountUsernameET.getText().toString().trim();
         eAccountPassword = eAccountPasswordET.getText().toString().trim();
         eAccountEmail = eAccountEmailET.getText().toString().trim();
         eAccountName = eAccountNameET.getText().toString().trim();
+        eAccountImage = eAccountImageET.getText().toString().trim();
+
+        Log.d(TAG, "modifyAccount: " + eAccountImage);
 
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -241,6 +270,17 @@ public class AccountModifyActivity extends AppCompatActivity {
             eAccountNameTL.setErrorEnabled(true);
             eAccountNameTL.setError("please insert the name of the student");
             return;
+        }
+        if (!TextUtils.isEmpty(eAccountImage)) {
+            Pattern urlPattern = Pattern.compile("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
+            boolean isValidImageURL = urlPattern.matcher(eAccountImage).matches();
+            //check if the given link is a url
+            if (!isValidImageURL) {
+                eAccountImageTL.setErrorEnabled(true);
+                eAccountImageTL.setError("Please insert valid image url");
+                eAccountImageET.requestFocus();
+                return;
+            }
         }
 
         //if everything is fine make setup HTTP request
@@ -296,6 +336,9 @@ public class AccountModifyActivity extends AppCompatActivity {
                 }
                 pars.put("email", eAccountEmail);
                 pars.put("name", eAccountName);
+                if (!TextUtils.isEmpty(eAccountImage)) {
+                    pars.put("image", eAccountImage);
+                }
                 pars.put("type", eAccountType);
                 return pars;
             }

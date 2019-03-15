@@ -209,6 +209,7 @@ public class LoginActivity extends AppCompatActivity {
                                     userJson.getString("username"),
                                     userJson.getString("email"),
                                     userJson.getString("name"),
+                                    userJson.getString("image_URL"),
                                     userJson.getInt("type"),
                                     null
                             );
