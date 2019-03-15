@@ -84,7 +84,7 @@ public class LessonInsertActivity extends AppCompatActivity {
         insertLessonInsert_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ConnectivityHelper.isNetworkAvaliable(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvailable(getBaseContext())) {
                     progressBar.setVisibility(View.VISIBLE);
                     insertNewLesson();
                 } else {

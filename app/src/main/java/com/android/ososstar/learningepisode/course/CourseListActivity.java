@@ -100,7 +100,7 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
 
         mRequestQueue = Volley.newRequestQueue(this);
 
-        if (ConnectivityHelper.isNetworkAvaliable(CourseListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(CourseListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             parseJSON();
 
@@ -131,7 +131,7 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
     }
 
     private void connectASAP() {
-        if (ConnectivityHelper.isNetworkAvaliable(CourseListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(CourseListActivity.this)) {
             parseJSON();
             return;
         }

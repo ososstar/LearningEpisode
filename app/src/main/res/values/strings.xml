@@ -52,4 +52,6 @@
     <string name="specify_the_right_answer">please specify the right answer</string>
     <string name="my_courses">My Courses</string>
     <string name="modify_user_data">Modify User Data</string>
+    <string name="student">Student</string>
+    <string name="admin">Admin</string>
 </resources>

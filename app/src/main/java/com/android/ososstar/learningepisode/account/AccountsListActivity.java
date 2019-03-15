@@ -34,7 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AccountsListActivity extends AppCompatActivity {
+public class AccountsListActivity extends AppCompatActivity implements UserAdapter.OnItemClickListener {
 
     /**
      * Tag for log messages
@@ -128,8 +128,15 @@ public class AccountsListActivity extends AppCompatActivity {
         }
     }
 
+    public static final String ADMIN_ID = "admin_ID";
+    public static final String PROFILE_ID = "user_ID";
+    public static final String PROFILE_USERNAME = "username";
+    public static final String PROFILE_EMAIL = "email";
+    public static final String PROFILE_NAME = "name";
+    public static final String PROFILE_TYPE = "type";
+
     private void connectASAP() {
-        if (ConnectivityHelper.isNetworkAvaliable(AccountsListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(AccountsListActivity.this)) {
             parseJSON();
             return;
         }
@@ -194,6 +201,8 @@ public class AccountsListActivity extends AppCompatActivity {
 
                     mUserAdapter = new UserAdapter(AccountsListActivity.this, userList);
                     mList.setAdapter(mUserAdapter);
+                    mUserAdapter.notifyDataSetChanged();
+                    mUserAdapter.setOnItemClickListener(AccountsListActivity.this);
 
                 } else {
                     // Set empty state text to display "No earthquakes found."
@@ -232,6 +241,27 @@ public class AccountsListActivity extends AppCompatActivity {
         }
     };
     mRequestQueue.add(request);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        Intent profileIntent = new Intent(AccountsListActivity.this, ProfileActivity.class);
+
+        User clickedItem = userList.get(position);
+
+        Bundle profileBundle = new Bundle();
+        profileBundle.putString(ADMIN_ID, admin_ID);
+        profileBundle.putString(PROFILE_ID, String.valueOf(clickedItem.getID()));
+        profileBundle.putString(PROFILE_USERNAME, clickedItem.getUsername());
+        profileBundle.putString(PROFILE_EMAIL, clickedItem.getEmail());
+        profileBundle.putString(PROFILE_NAME, clickedItem.getName());
+        profileBundle.putString(PROFILE_TYPE, String.valueOf(clickedItem.getType()));
+
+        profileIntent.putExtras(profileBundle);
+
+        AccountsListActivity.this.startActivity(profileIntent);
+
     }
 
 

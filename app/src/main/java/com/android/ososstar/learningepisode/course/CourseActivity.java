@@ -113,7 +113,7 @@ public class CourseActivity extends AppCompatActivity {
                 break;
             case 1:
                 course_enroll_b.setVisibility(View.INVISIBLE);
-                if (ConnectivityHelper.isNetworkAvaliable(this)) {
+                if (ConnectivityHelper.isNetworkAvailable(this)) {
                     isEnrolledCheck();
                     student_ID = String.valueOf(user.getID());
                 }else{
@@ -126,7 +126,7 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (user.getType() == 1) {
-                    if (ConnectivityHelper.isNetworkAvaliable(CourseActivity.this)) {
+                    if (ConnectivityHelper.isNetworkAvailable(CourseActivity.this)) {
                         if (!isEnrolled) {
                             makeEnroll();
                             course_enroll_b.setText(R.string.enrolled);
@@ -169,7 +169,7 @@ public class CourseActivity extends AppCompatActivity {
     }
 
     private void connectASAP() {
-        if (ConnectivityHelper.isNetworkAvaliable(CourseActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(CourseActivity.this)) {
             isEnrolledCheck();
             return;
         }

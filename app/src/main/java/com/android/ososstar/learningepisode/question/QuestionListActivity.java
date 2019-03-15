@@ -105,7 +105,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
 
         progressBar = findViewById(R.id.l_spinner);
 
-        if (ConnectivityHelper.isNetworkAvaliable(QuestionListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(QuestionListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             getLessonQuestions();
         }else {
@@ -138,7 +138,7 @@ public class QuestionListActivity extends AppCompatActivity implements QuestionA
     }
 
     private void connectASAP() {
-        if (ConnectivityHelper.isNetworkAvaliable(QuestionListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(QuestionListActivity.this)) {
             Intent sslIntent = new Intent(this, sslService.class);
             startService(sslIntent);
             getLessonQuestions();

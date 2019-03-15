@@ -105,7 +105,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
 
         progressBar = findViewById(R.id.l_spinner);
 
-        if (ConnectivityHelper.isNetworkAvaliable(LessonListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(LessonListActivity.this)) {
             progressBar.setVisibility(View.VISIBLE);
             getCourseLessons();
 
@@ -140,7 +140,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
     }
 
     private void connectASAP() {
-        if (ConnectivityHelper.isNetworkAvaliable(LessonListActivity.this)) {
+        if (ConnectivityHelper.isNetworkAvailable(LessonListActivity.this)) {
             getCourseLessons();
             return;
         }

@@ -74,7 +74,7 @@ public class CourseModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //if is connected start modify course request
-                if (ConnectivityHelper.isNetworkAvaliable(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvailable(getBaseContext())) {
                     modifyCourseRequest();
                 } else {
                     Toast.makeText(CourseModifyActivity.this, "Please Check your connection", Toast.LENGTH_SHORT).show();

@@ -44,7 +44,7 @@
         android:id="@+id/youtubeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
         android:background="#A6000000"
         app:controller_layout_id="@layout/exo_playback_control_view"
         app:player_layout_id="@layout/exo_simple_player_view"

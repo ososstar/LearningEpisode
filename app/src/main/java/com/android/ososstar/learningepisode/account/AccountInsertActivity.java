@@ -200,7 +200,7 @@ public class AccountInsertActivity extends AppCompatActivity {
         eAccountInsertB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ConnectivityHelper.isNetworkAvaliable(AccountInsertActivity.this)) {
+                if (ConnectivityHelper.isNetworkAvailable(AccountInsertActivity.this)) {
                     insertNewUser();
                 }
             }

@@ -75,7 +75,7 @@ public class LessonModifyActivity extends AppCompatActivity {
         modifyInsert_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ConnectivityHelper.isNetworkAvaliable(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvailable(getBaseContext())) {
                     modifyInsert_b.setEnabled(false);
                     progressBar.setVisibility(View.VISIBLE);
                     modifyLessonRequest();

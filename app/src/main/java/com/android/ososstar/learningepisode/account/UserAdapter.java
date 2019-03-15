@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -35,8 +34,20 @@ import java.util.Map;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
+    private OnItemClickListener mListener;
     private Context mContext;
     private List<User> mUserList;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_user, parent, false);
+        return new ViewHolder(v, mListener);
+    }
 
     /**
      * Create a new {@link UserAdapter} object.
@@ -49,27 +60,34 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         mUserList = userList;
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_user, parent, false);
-        return new ViewHolder(v);
-    }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User currentUser = mUserList.get(position);
-
-        holder.user_name.setText(currentUser.getName());
-        holder.user_username.setText(currentUser.getUsername());
-        holder.user_email.setText(currentUser.getEmail());
-        holder.user_creation_date.setText(currentUser.getDate());
-        holder.student_ID = String.valueOf(currentUser.getID());
 
         holder.username = currentUser.getUsername();
         holder.email = currentUser.getEmail();
         holder.name = currentUser.getName();
         holder.type = String.valueOf(currentUser.getType());
+
+        holder.user_name.setText(currentUser.getName());
+        switch (holder.type) {
+            case "0":
+                holder.user_type.setText(mContext.getString(R.string.admin));
+                break;
+            case "1":
+                holder.user_type.setText(mContext.getString(R.string.student));
+                break;
+        }
+
+        holder.dateSB = new StringBuilder(mContext.getString(R.string.created_on));
+        holder.dateSB.append(currentUser.getDate());
+
+        holder.user_creation_date.setText(holder.dateSB);
+        holder.student_ID = String.valueOf(currentUser.getID());
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 
     @Override
@@ -78,14 +96,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private TextView user_name, user_username, user_email, user_creation_date;
+        private TextView user_name, user_type, user_creation_date;
+
+        private String admin_ID, student_ID, username, email, name, type;
+        private StringBuilder dateSB;
 
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
         public static final String ADMIN_ID = "admin_ID";
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             //getting the current user type
             int userType = SharedPrefManager.getInstance(mContext).getUser().getType();
@@ -97,9 +118,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }
 
             user_name = itemView.findViewById(R.id.user_name);
-            user_username = itemView.findViewById(R.id.user_username);
-            user_email = itemView.findViewById(R.id.user_email);
+            user_type = itemView.findViewById(R.id.user_Type);
             user_creation_date = itemView.findViewById(R.id.user_creation_date);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
         @Override
@@ -115,7 +147,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public static final String STUDENT_EMAIL = "email";
         public static final String STUDENT_NAME = "name";
         public static final String STUDENT_TYPE = "type";
-        private String admin_ID, student_ID, username, email, name, type;
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {
@@ -143,7 +174,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             modifyBundle.putString(STUDENT_NAME, name);
             modifyBundle.putString(STUDENT_TYPE, type);
             modifyIntent.putExtras(modifyBundle);
-            Log.d("UserADapter", "modifyStudent: " + modifyBundle);
             ((AccountsListActivity) mContext).startActivityForResult(modifyIntent, 1);
         }
 

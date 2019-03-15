@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         Login_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ConnectivityHelper.isNetworkAvaliable(getApplicationContext())) {
+                if (ConnectivityHelper.isNetworkAvailable(getApplicationContext())) {
                     userLogin();
                 } else {
                     Toast.makeText(LoginActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();

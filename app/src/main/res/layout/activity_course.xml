@@ -47,22 +47,24 @@
             app:layout_constraintVertical_bias=".02"
             app:layout_constraintWidth_percent=".6" />
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/course_enrolls_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Total Enrolls #"
             app:layout_constraintHorizontal_bias=".05"
+            app:layout_constraintWidth_percent=".4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/course_name_tv" />
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/course_date_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Created On"
-            app:layout_constraintHorizontal_bias=".75"
+            app:layout_constraintHorizontal_bias=".85"
+            app:layout_constraintWidth_percent=".5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/course_name_tv" />

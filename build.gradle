@@ -22,6 +22,10 @@ allprojects {
          * Add dependency in Project build.gradle
          */
         maven { url "https://jitpack.io" }
+
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
     }
 }
 

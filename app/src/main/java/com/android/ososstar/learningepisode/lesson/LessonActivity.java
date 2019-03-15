@@ -15,7 +15,7 @@ import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.question.QuestionListActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DATE;
 import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DESCRIPTION;
@@ -35,6 +35,11 @@ public class LessonActivity extends AppCompatActivity {
     private Button lessonDownloadB, lessonQuestionsB;
 
     public static final String LESSON_ID = "lesson_ID";
+
+    //youtube player fragment
+    private YouTubePlayerSupportFragment youTubePlayerFragment;
+    //youtube player to play video when new video selected
+    private YouTubePlayer youTubePlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,24 +78,29 @@ public class LessonActivity extends AppCompatActivity {
 
         vidSplitter = videoURL.substring(Math.max(0, videoURL.length() - 11));
 
-        YouTubePlayerFragment youtubeFragment = (YouTubePlayerFragment)
-                getFragmentManager().findFragmentById(R.id.youtubeFragment);
-        youtubeFragment.initialize(API_KEY,
-                new YouTubePlayer.OnInitializedListener() {
-                    @Override
-                    public void onInitializationSuccess(YouTubePlayer.Provider provider,
-                                                        YouTubePlayer youTubePlayer, boolean b) {
-                        // do any work here to cue video, play video, etc.
-                        youTubePlayer.cueVideo(vidSplitter);
-                    }
-                    @Override
-                    public void onInitializationFailure(YouTubePlayer.Provider provider,
-                                                        YouTubeInitializationResult youTubeInitializationResult) {
+//        @SuppressWarnings({"deprecation"})
+//        YouTubePlayerFragment youtubeFragment = (YouTubePlayerFragment)
+//                getFragmentManager().findFragmentById(R.id.youtubeFragment);
+//        youtubeFragment.initialize(API_KEY,
+//                new YouTubePlayer.OnInitializedListener() {
+//                    @Override
+//                    public void onInitializationSuccess(YouTubePlayer.Provider provider,
+//                                                        YouTubePlayer youTubePlayer, boolean b) {
+//                        //set the player style default
+//                        youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
+//                        // do any work here to cue video, play video, etc.
+//                        youTubePlayer.cueVideo(vidSplitter);
+//                    }
+//                    @Override
+//                    public void onInitializationFailure(YouTubePlayer.Provider provider,
+//                                                        YouTubeInitializationResult youTubeInitializationResult) {
+//
+//                    }
+//                });
 
-                    }
-                });
+        initializeYoutubePlayer();
 
-                lessonDownloadB = findViewById(R.id.lesson_download_b);
+        lessonDownloadB = findViewById(R.id.lesson_download_b);
         if (!TextUtils.isEmpty(link) && link != null && !link.equals("null")) {
             lessonDownloadB.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,6 +125,41 @@ public class LessonActivity extends AppCompatActivity {
                 }catch (Exception e){
                     Log.e("Lesson Activity ->", String.valueOf(e));
                 }
+
+            }
+        });
+    }
+
+    /**
+     * initialize youtube player via Fragment and get instance of YoutubePlayer
+     */
+    private void initializeYoutubePlayer() {
+
+        youTubePlayerFragment = (YouTubePlayerSupportFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.youtubeFragment);
+
+        if (youTubePlayerFragment == null)
+            return;
+
+        youTubePlayerFragment.initialize(API_KEY, new YouTubePlayer.OnInitializedListener() {
+
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player,
+                                                boolean wasRestored) {
+                if (!wasRestored) {
+                    youTubePlayer = player;
+
+                    //set the player style default
+                    youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+
+                    //cue the 1st video by default
+                    youTubePlayer.cueVideo(vidSplitter);
+                }
+            }
+
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
 
             }
         });

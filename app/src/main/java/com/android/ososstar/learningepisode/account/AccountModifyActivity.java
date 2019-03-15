@@ -3,7 +3,9 @@ package com.android.ososstar.learningepisode.account;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -99,6 +101,58 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountEmailET.setText(eAccountEmail);
         eAccountNameET.setText(eAccountName);
 
+        eAccountUsernameET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                eAccountUsernameTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        eAccountEmailET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                eAccountEmailTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        eAccountNameET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                eAccountNameTL.setErrorEnabled(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
         //define type spinner
         eAccountTypeSP = findViewById(R.id.eAccountType_sp);
 
@@ -161,14 +215,14 @@ public class AccountModifyActivity extends AppCompatActivity {
 
     }
 
-
     private void modifyAccount() {
-
         final String eAccountUsername, eAccountPassword, eAccountEmail, eAccountName;
         eAccountUsername = eAccountUsernameET.getText().toString().trim();
         eAccountPassword = eAccountPasswordET.getText().toString().trim();
         eAccountEmail = eAccountEmailET.getText().toString().trim();
         eAccountName = eAccountNameET.getText().toString().trim();
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         //validating the inserted values
         if (TextUtils.isEmpty(eAccountUsername)) {
@@ -177,14 +231,16 @@ public class AccountModifyActivity extends AppCompatActivity {
             eAccountUsernameET.requestFocus();
             return;
         }
-        if (TextUtils.isEmpty(eAccountEmail)) {
+        if (!eAccountEmail.matches(emailPattern)) {
             eAccountEmailTL.setErrorEnabled(true);
-            eAccountEmailTL.setError("please insert the email");
+            eAccountEmailTL.setError("please insert a valid Email");
             eAccountUsernameET.requestFocus();
+            return;
         }
         if (TextUtils.isEmpty(eAccountName)) {
             eAccountNameTL.setErrorEnabled(true);
             eAccountNameTL.setError("please insert the name of the student");
+            return;
         }
 
         //if everything is fine make setup HTTP request
