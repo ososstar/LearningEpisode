@@ -55,6 +55,14 @@
         app:layout_constraintWidth_percent=".8">
 
         <me.grantland.widget.AutofitTextView
+            android:id="@+id/profileDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/horizontal_space"
+            android:text="Date"
+            android:textSize="20dp" />
+
+        <me.grantland.widget.AutofitTextView
             android:id="@+id/profileID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -132,7 +132,9 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
     public static final String PROFILE_USERNAME = "username";
     public static final String PROFILE_EMAIL = "email";
     public static final String PROFILE_NAME = "name";
+    public static final String PROFILE_PICTURE = "profilePicture";
     public static final String PROFILE_TYPE = "type";
+    public static final String PROFILE_DATE = "date";
 
     private void connectASAP() {
         if (ConnectivityHelper.isNetworkAvailable(AccountsListActivity.this)) {
@@ -158,6 +160,8 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
         @Override
         public void onResponse(String response) {
             progressBar.setVisibility(View.GONE);
+
+            userList.clear();
 
             try {
                 JSONObject baseJSONObject = new JSONObject(response);
@@ -246,7 +250,7 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
     @Override
     public void onItemClick(int position) {
 
-        Intent profileIntent = new Intent(AccountsListActivity.this, ProfileActivity.class);
+        Intent profileIntent = new Intent(AccountsListActivity.this, ProfileViewActivity.class);
 
         User clickedItem = userList.get(position);
 
@@ -256,7 +260,9 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
         profileBundle.putString(PROFILE_USERNAME, clickedItem.getUsername());
         profileBundle.putString(PROFILE_EMAIL, clickedItem.getEmail());
         profileBundle.putString(PROFILE_NAME, clickedItem.getName());
+        profileBundle.putString(PROFILE_PICTURE, clickedItem.getImageURL());
         profileBundle.putString(PROFILE_TYPE, String.valueOf(clickedItem.getType()));
+        profileBundle.putString(PROFILE_DATE, clickedItem.getDate());
 
         profileIntent.putExtras(profileBundle);
 

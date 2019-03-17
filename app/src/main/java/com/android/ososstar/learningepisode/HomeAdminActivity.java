@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.account.AccountsListActivity;
 import com.android.ososstar.learningepisode.account.LoginActivity;
+import com.android.ososstar.learningepisode.account.ProfileActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.ososstar.learningepisode.course.CourseListActivity;
 
@@ -93,6 +94,9 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         // User clicked on a menu_add option in the app bar overflow menu_add
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu_add option
+            case R.id.action_profile:
+                startActivity(new Intent(HomeAdminActivity.this, ProfileActivity.class));
+                return true;
             case R.id.menu_logout:
                 finish();
                 finishAffinity();

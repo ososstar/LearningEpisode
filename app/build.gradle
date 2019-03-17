@@ -41,7 +41,7 @@ dependencies {
     // For youtube Url Extractor
     implementation 'com.github.HaarigerHarald:android-youtubeExtractor:v1.7.0'
     // ExoPlayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.9.0'
+    implementation 'com.google.android.exoplayer:exoplayer:r2.5.4'
 
     implementation 'com.novoda:download-manager:2.3.0'
     testImplementation 'junit:junit:4.12'

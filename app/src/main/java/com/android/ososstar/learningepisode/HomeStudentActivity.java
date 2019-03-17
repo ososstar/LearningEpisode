@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.account.LoginActivity;
+import com.android.ososstar.learningepisode.account.ProfileActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.ososstar.learningepisode.course.Course;
 import com.android.ososstar.learningepisode.course.CourseActivity;
@@ -262,6 +263,9 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
         // User clicked on a menu_add option in the app bar overflow menu_add
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu_add option
+            case R.id.action_profile:
+                startActivity(new Intent(HomeStudentActivity.this, ProfileActivity.class));
+                return true;
             case R.id.menu_logout:
                 finish();
                 SharedPrefManager.getInstance(getBaseContext()).logout();

@@ -336,9 +336,8 @@ public class AccountModifyActivity extends AppCompatActivity {
                 }
                 pars.put("email", eAccountEmail);
                 pars.put("name", eAccountName);
-                if (!TextUtils.isEmpty(eAccountImage)) {
-                    pars.put("image", eAccountImage);
-                }
+                pars.put("image", eAccountImage);
+
                 pars.put("type", eAccountType);
                 return pars;
             }

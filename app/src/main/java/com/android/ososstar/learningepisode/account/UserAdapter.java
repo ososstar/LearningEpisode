@@ -110,7 +110,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private TextView user_name, user_type, user_creation_date;
-        public static final String STUDENT_IMAGE = "imageURL";
         private ImageView user_image;
         private StringBuilder dateSB;
 
@@ -132,6 +131,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public static final String STUDENT_USERNAME = "username";
         public static final String STUDENT_EMAIL = "email";
         public static final String STUDENT_NAME = "name";
+        public static final String STUDENT_IMAGE = "imageURL";
         public ViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             //getting the current user type
@@ -187,7 +187,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             modifyBundle.putString(STUDENT_USERNAME, username);
             modifyBundle.putString(STUDENT_EMAIL, email);
             modifyBundle.putString(STUDENT_NAME, name);
-            modifyBundle.getString(STUDENT_IMAGE, imageURL);
+            modifyBundle.putString(STUDENT_IMAGE, imageURL);
             modifyBundle.putString(STUDENT_TYPE, type);
             modifyIntent.putExtras(modifyBundle);
             ((AccountsListActivity) mContext).startActivityForResult(modifyIntent, 1);

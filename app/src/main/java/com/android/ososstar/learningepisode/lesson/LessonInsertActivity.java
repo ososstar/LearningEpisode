@@ -116,14 +116,15 @@ public class LessonInsertActivity extends AppCompatActivity {
             return;
         }
 
-        if (!TextUtils.isEmpty(lesson_videoURL)){
-            boolean isValidYoutube = youtubePattern.matcher(lesson_videoURL).matches();
-            if (!isValidYoutube){
-                progressBar.setVisibility(View.GONE);
-                insertLessonVideoUrl_et.setError("Please enter valid YouTube URL");
-                insertLessonVideoUrl_et.requestFocus();
-                return;
-            }
+        if (TextUtils.isEmpty(lesson_videoURL)) {
+//            boolean isValidYoutube = youtubePattern.matcher(lesson_videoURL).matches();
+//            if (!isValidYoutube){
+            progressBar.setVisibility(View.GONE);
+            insertLessonVideoUrl_et.setError("Please enter valid video URL");
+            insertLessonVideoUrl_et.requestFocus();
+            return;
+//                return;
+//            }
         }
 
         //if everything is fine start StringRequest

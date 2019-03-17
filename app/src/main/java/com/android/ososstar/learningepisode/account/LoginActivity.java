@@ -211,14 +211,14 @@ public class LoginActivity extends AppCompatActivity {
                                     userJson.getString("name"),
                                     userJson.getString("image"),
                                     userJson.getInt("type"),
-                                    null
+                                    userJson.getString("creation_date")
                             );
 
                             int type = user.getType();
                             Log.v("type = ", Integer.toString(type));
 
                             //storing the user in shared preferences
-                            SharedPrefManager.getInstance(getBaseContext()).userLogin(user);
+                            SharedPrefManager.getInstance(LoginActivity.this).userLogin(user);
 
                             //starting the User activity
                             switch (type) {
