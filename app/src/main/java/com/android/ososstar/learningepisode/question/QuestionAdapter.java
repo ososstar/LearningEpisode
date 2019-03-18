@@ -185,7 +185,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                             //Remove deleted row from RecyclerView List
                             mQuestionList.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), mQuestionList.size());
+                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            itemView.setVisibility(View.GONE);
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();

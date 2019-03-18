@@ -2,8 +2,11 @@ package com.android.ososstar.learningepisode.account;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.ososstar.learningepisode.R;
+import com.squareup.picasso.Picasso;
 
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.ADMIN_ID;
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.PROFILE_DATE;
@@ -31,5 +34,47 @@ public class ProfileViewActivity extends AppCompatActivity {
         String imageURL = profileBundle.getString(PROFILE_PICTURE);
         String type = profileBundle.getString(PROFILE_TYPE);
         String date = profileBundle.getString(PROFILE_DATE);
+
+        //define ImageView
+        ImageView profilePicture = findViewById(R.id.profilePic);
+
+        //define TextViews of profileActivity
+        TextView profileID, profileUsername, profileEmail, profileName, profileType, profileDate;
+        profileID = findViewById(R.id.profileID);
+        profileUsername = findViewById(R.id.profileUsername);
+        profileEmail = findViewById(R.id.profileEmail);
+        profileName = findViewById(R.id.profileName);
+        profileType = findViewById(R.id.profileType);
+        profileDate = findViewById(R.id.profileDate);
+
+        //set values to show the profile picture and the TextViews
+        Picasso.with(ProfileViewActivity.this).load(imageURL).placeholder(R.drawable.man).error(R.drawable.man).noFade().into(profilePicture);
+        profileName.setText(name);
+
+        StringBuilder ID_sb = new StringBuilder(getString(R.string.id));
+        ID_sb.append(id);
+        profileID.setText(ID_sb);
+
+        StringBuilder username_sb = new StringBuilder(getString(R.string.username));
+        username_sb.append(username);
+        profileUsername.setText(username_sb);
+
+        StringBuilder email_sb = new StringBuilder(getString(R.string.email));
+        email_sb.append(email);
+        profileEmail.setText(email_sb);
+
+        switch (type) {
+            case "0":
+                profileType.setText(getString(R.string.admin));
+                break;
+            case "1":
+                profileType.setText(getString(R.string.student));
+                break;
+        }
+
+        StringBuilder date_sb = new StringBuilder(getString(R.string.creation_date));
+        date_sb.append(date);
+        profileDate.setText(date_sb);
+
     }
 }

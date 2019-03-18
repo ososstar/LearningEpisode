@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.R;
+import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +34,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_EMAIL;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_ID;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_IMAGE;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_NAME;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_TYPE;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_USERNAME;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.ADMIN_ID;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_EMAIL;
 import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_ID;
@@ -65,20 +72,35 @@ public class AccountModifyActivity extends AppCompatActivity {
     //user type variable
     private String admin_ID, eAccountID, eAccountUsername, eAccountEmail, eAccountName, eAccountImage, eAccountType;
 
+    private Bundle modifyBundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_account);
 
         //getting Bundle Intent Values
-        Bundle modifyBundle = getIntent().getExtras();
-        admin_ID = modifyBundle.getString(ADMIN_ID);
-        eAccountID = modifyBundle.getString(STUDENT_ID);
-        eAccountUsername = modifyBundle.getString(STUDENT_USERNAME);
-        eAccountEmail = modifyBundle.getString(STUDENT_EMAIL);
-        eAccountName = modifyBundle.getString(STUDENT_NAME);
-        eAccountImage = modifyBundle.getString(STUDENT_IMAGE);
-        eAccountType = modifyBundle.getString(STUDENT_TYPE);
+        modifyBundle = getIntent().getExtras();
+        if (!TextUtils.isEmpty(modifyBundle.getString(ADMIN_ID))) {
+            admin_ID = modifyBundle.getString(ADMIN_ID);
+            eAccountID = modifyBundle.getString(STUDENT_ID);
+            eAccountUsername = modifyBundle.getString(STUDENT_USERNAME);
+            eAccountEmail = modifyBundle.getString(STUDENT_EMAIL);
+            eAccountName = modifyBundle.getString(STUDENT_NAME);
+            eAccountImage = modifyBundle.getString(STUDENT_IMAGE);
+            eAccountType = modifyBundle.getString(STUDENT_TYPE);
+        } else {
+            eAccountID = modifyBundle.getString(USER_ID);
+            eAccountUsername = modifyBundle.getString(USER_USERNAME);
+            eAccountEmail = modifyBundle.getString(USER_EMAIL);
+            eAccountName = modifyBundle.getString(USER_NAME);
+            eAccountImage = modifyBundle.getString(USER_IMAGE);
+            eAccountType = modifyBundle.getString(USER_TYPE);
+
+            if (eAccountType.matches("0")) {
+                admin_ID = eAccountID;
+            }
+        }
 
         Log.d(TAG, "onCreate: " + modifyBundle);
 
@@ -178,53 +200,59 @@ public class AccountModifyActivity extends AppCompatActivity {
             }
         });
 
-
         //define type spinner
         eAccountTypeSP = findViewById(R.id.eAccountType_sp);
 
-        // Initializing a String Array
-        String[] types = new String[]{
-                "Admin",
-                "Student"
-        };
 
-        // Initializing an ArrayAdapter for spinner
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, types);
+        if (TextUtils.isEmpty(modifyBundle.getString(ADMIN_ID))) {
+            eAccountTypeSP.setVisibility(View.GONE);
+        } else {
 
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // Initializing a String Array
+            String[] types = new String[]{
+                    "Admin",
+                    "Student"
+            };
 
-        //Sets the Adapter used to provide the data which backs this Spinner.
-        eAccountTypeSP.setAdapter(spinnerAdapter);
+            // Initializing an ArrayAdapter for spinner
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_list_item_1, types);
 
-        switch (eAccountType) {
-            case "0":
-                eAccountTypeSP.setSelection(0);
-                break;
-            case "1":
-                eAccountTypeSP.setSelection(1);
-                break;
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            //Sets the Adapter used to provide the data which backs this Spinner.
+            eAccountTypeSP.setAdapter(spinnerAdapter);
+
+            switch (eAccountType) {
+                case "0":
+                    eAccountTypeSP.setSelection(0);
+                    break;
+                case "1":
+                    eAccountTypeSP.setSelection(1);
+                    break;
+            }
+
+            eAccountTypeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //use position value
+                    switch (position) {
+                        case 0:
+                            eAccountType = "0";
+                            break;
+                        case 1:
+                            eAccountType = "1";
+                            break;
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
         }
 
-        eAccountTypeSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //use position value
-                switch (position) {
-                    case 0:
-                        eAccountType = "0";
-                        break;
-                    case 1:
-                        eAccountType = "1";
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         //define progressbar
         progressBar = findViewById(R.id.eAccountProgressSpinner);
@@ -299,9 +327,33 @@ public class AccountModifyActivity extends AppCompatActivity {
                     if (!baseJSONObject.getBoolean("error")) {
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
 
-                        //start Activity CourseListActivity
+                        if (TextUtils.isEmpty(modifyBundle.getString(ADMIN_ID))) {
+                            //getting the user from the response
+                            JSONObject userJson = baseJSONObject.getJSONObject("user");
+
+                            //creating a new user object
+                            User user = new User(
+                                    userJson.getInt("id"),
+                                    userJson.getString("username"),
+                                    userJson.getString("email"),
+                                    userJson.getString("name"),
+                                    userJson.getString("image"),
+                                    userJson.getInt("type"),
+                                    userJson.getString("creation_date")
+                            );
+
+                            //storing the user in shared preferences
+                            SharedPrefManager.getInstance(AccountModifyActivity.this).userLogin(user);
+
+                            //finish Activity AccountModifyActivity
+                            setResult(RESULT_OK);
+                            finish();
+                        }
+
+                        //finish Activity AccountModifyActivity
                         setResult(RESULT_OK);
                         finish();
+
 
                     } else {
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -328,7 +380,12 @@ public class AccountModifyActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<>();
-                pars.put("admin_ID", admin_ID);
+                if (!TextUtils.isEmpty(admin_ID)) {
+                    pars.put("admin_ID", admin_ID);
+                }
+                if (!TextUtils.isEmpty(modifyBundle.getString(ADMIN_ID))) {
+                    pars.put("type", eAccountType);
+                }
                 pars.put("student_ID", eAccountID);
                 pars.put("username", eAccountUsername);
                 if (!TextUtils.isEmpty(eAccountPassword)) {
@@ -338,7 +395,6 @@ public class AccountModifyActivity extends AppCompatActivity {
                 pars.put("name", eAccountName);
                 pars.put("image", eAccountImage);
 
-                pars.put("type", eAccountType);
                 return pars;
             }
         };

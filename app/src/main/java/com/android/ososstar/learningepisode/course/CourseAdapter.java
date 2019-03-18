@@ -180,7 +180,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                             //Remove deleted row from RecyclerView List
                             mCourseList.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), mCourseList.size());
+                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            itemView.setVisibility(View.GONE);
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();

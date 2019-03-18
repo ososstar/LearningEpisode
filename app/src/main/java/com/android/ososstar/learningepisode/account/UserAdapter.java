@@ -206,7 +206,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                             //Remove deleted row from RecyclerView List
                             mUserList.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), mUserList.size());
+                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            itemView.setVisibility(View.GONE);
 
                         } else {
                             Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();

@@ -52,7 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileName"
         app:layout_constraintVertical_bias=".05"
-        app:layout_constraintWidth_percent=".8">
+        app:layout_constraintWidth_percent=".9">
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/profileDate"
@@ -60,7 +60,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
             android:text="Date"
-            android:textSize="20dp" />
+            android:maxLines="1"
+            android:textSize="18dp" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/profileID"
@@ -68,7 +69,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
             android:text="ID"
-            android:textSize="20dp" />
+            android:maxLines="1"
+            android:textSize="18dp" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/profileUsername"
@@ -76,7 +78,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
             android:text="Username"
-            android:textSize="20dp" />
+            android:maxLines="1"
+            android:textSize="18dp" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/profileType"
@@ -84,7 +87,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
             android:text="Type"
-            android:textSize="20dp" />
+            android:maxLines="1"
+            android:textSize="18dp" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/profileEmail"
@@ -92,7 +96,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
             android:text="Email"
-            android:textSize="20dp" />
+            android:maxLines="1"
+            android:textSize="18dp" />
     </LinearLayout>
 
 

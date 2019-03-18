@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">LearningEpisode</string>
     <string name="ProjectName">LearningEpisode</string>
-    <string name="email">E-Mail</string>
+    <string name="email">E-Mail #</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="username">Username</string>
+    <string name="username">Username #</string>
     <string name="name">Name</string>
     <string name="create_an_account">Create an Account</string>
     <string name="have_an_account">Already have an account? Login</string>
@@ -54,4 +54,5 @@
     <string name="modify_user_data">Modify User Data</string>
     <string name="student">Student</string>
     <string name="admin">Admin</string>
+    <string name="edit">edit</string>
 </resources>
