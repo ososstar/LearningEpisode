@@ -55,7 +55,7 @@ import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXT
 
 public class LessonActivity extends AppCompatActivity {
 
-    public static final String API_KEY = "AIzaSyAPyC3VEWub9v1v6vPWLDDvru1lfpUqJKg";
+    public static final String YOUTUBE_API_KEY = "AIzaSyAPyC3VEWub9v1v6vPWLDDvru1lfpUqJKg";
 
     private String id, title, description, link, videoURL, creation_date;
 
@@ -317,27 +317,6 @@ public class LessonActivity extends AppCompatActivity {
             mFullScreenDialog.dismiss();
     }
 
-
-//    private void initializePlayer() {
-//        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(LessonActivity.this);
-//
-//        PlayerView playerView = findViewById(R.id.exoPlayer);
-//
-//        // Bind the player to the view.
-//        playerView.setPlayer(player);
-//
-//        // Produces DataSource instances through which media data is loaded.
-//        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(LessonActivity.this,
-//                Util.getUserAgent(LessonActivity.this, "LearningEpisode"));
-//        // This is the MediaSource representing the media to be played.
-//        MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
-//                .createMediaSource(Uri.parse(videoURL));
-//        // Prepare the player with the source.
-//        player.prepare(videoSource);
-//    }
-
-
-
     /**
      * initialize youtube player via Fragment and get instance of YoutubePlayer
      */
@@ -346,7 +325,7 @@ public class LessonActivity extends AppCompatActivity {
         if (youTubePlayerFragment == null)
             return;
 
-        youTubePlayerFragment.initialize(API_KEY, new YouTubePlayer.OnInitializedListener() {
+        youTubePlayerFragment.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
 
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player,
