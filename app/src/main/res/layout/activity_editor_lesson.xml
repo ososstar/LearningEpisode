@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editor_lesson_tv"
-        app:layout_constraintVertical_bias="0.03"
+        app:layout_constraintVertical_bias="0.05"
         app:layout_constraintWidth_percent=".3"/>
 
     <EditText
@@ -115,7 +115,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        android:text="@string/youtube_video_url"
+        android:text="@string/video_url"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -128,7 +128,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style"
-        android:hint="@string/youtube_url_optional"
+        android:hint="@string/video_url_optional"
         android:inputType="textUri"
         android:maxLines="1"
         android:padding="10dp"

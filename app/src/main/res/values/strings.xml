@@ -40,8 +40,8 @@
     <string name="lesson_desc_optional">Lesson Desc. (Optional)</string>
     <string name="download_link">Download Link</string>
     <string name="download_url_optional">Download URL (optional)</string>
-    <string name="youtube_video_url">Youtube Video Url</string>
-    <string name="youtube_url_optional">Youtube URL (optional)</string>
+    <string name="video_url">Video Url</string>
+    <string name="video_url_optional">Video URL (optional)</string>
     <string name="insert_new_lesson">Insert New Lesson</string>
     <string name="questions_list">Questions List</string>
     <string name="user_list">Users List</string>

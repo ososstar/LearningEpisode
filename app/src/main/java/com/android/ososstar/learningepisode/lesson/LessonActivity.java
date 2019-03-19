@@ -22,16 +22,22 @@ import com.android.ososstar.learningepisode.question.QuestionListActivity;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
@@ -125,6 +131,7 @@ public class LessonActivity extends AppCompatActivity {
         TextView lessonDateTv = findViewById(R.id.lesson_date_tv);
         lessonDateTv.setText(getString(R.string.creation_date) + creation_date);
 
+        //define youtubePlayerFragment
         youTubePlayerFragment = (YouTubePlayerSupportFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.youtubeFragment);
 
@@ -247,6 +254,51 @@ public class LessonActivity extends AppCompatActivity {
 
         mExoPlayerView.getPlayer().prepare(mVideoSource);
         mExoPlayerView.getPlayer().setPlayWhenReady(true);
+
+        player.addListener(new PlayerEventListener());
+    }
+
+    //method to prevent screen from sleep if player is launched
+    private class PlayerEventListener implements Player.EventListener {
+        @Override
+        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+            if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
+                    !playWhenReady) {
+
+                mExoPlayerView.setKeepScreenOn(false);
+            } else { // STATE_IDLE, STATE_ENDED
+                // This prevents the screen from getting dim/lock
+                mExoPlayerView.setKeepScreenOn(true);
+            }
+        }
+
+        @Override
+        public void onTimelineChanged(Timeline timeline, Object manifest) {
+        }
+
+        @Override
+        public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        }
+
+        @Override
+        public void onLoadingChanged(boolean isLoading) {
+        }
+
+        @Override
+        public void onRepeatModeChanged(int repeatMode) {
+        }
+
+        @Override
+        public void onPlayerError(ExoPlaybackException error) {
+        }
+
+        @Override
+        public void onPositionDiscontinuity() {
+        }
+
+        @Override
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        }
     }
 
     @Override
