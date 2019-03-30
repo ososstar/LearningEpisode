@@ -8,13 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.ososstar.learningepisode.account.AccountsListActivity;
 import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.ProfileActivity;
 import com.android.ososstar.learningepisode.account.User;
 import com.android.ososstar.learningepisode.course.CourseListActivity;
+import com.android.ososstar.learningepisode.feedback.FeedbackListActivity;
 
 import java.util.ArrayList;
 
@@ -74,7 +74,7 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
                 startActivity(new Intent(getBaseContext(), AccountsListActivity.class));
                 break;
             case 2:
-                Toast.makeText(getBaseContext(), "Feedback Activity is Under Construction", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getBaseContext(), FeedbackListActivity.class));
                 break;
         }
 

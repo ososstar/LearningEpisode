@@ -13,6 +13,7 @@
         android:roundIcon="@drawable/web_hi_res_512_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".feedback.FeedbackListActivity"></activity>
         <activity android:name=".account.ProfileViewActivity" />
         <activity android:name=".account.ProfileActivity" />
         <activity android:name=".account.AccountModifyActivity" />

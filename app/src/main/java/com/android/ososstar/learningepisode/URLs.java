@@ -4,7 +4,9 @@ public final class URLs {
 
     //online host
     //https://learningepisode.000webhostapp.com
-    private static final String ROOT_URL = "http://192.168.1.3/learning_episode/";
+
+    //localhost
+    private static final String ROOT_URL = "http://192.168.1.2/learning_episode/";
 
     private static final String ACCOUNT_API = ROOT_URL+"apiA.php?apicall=";
     public static final String URL_LOGIN = ACCOUNT_API + "login";
@@ -40,6 +42,13 @@ public final class URLs {
     public static final String URL_RECORD_STUDENT_ANSWER = COURSE_API + "record_student_answer";
     public static final String URL_SHOW_STUDENT_ANSWER = COURSE_API + "show_student_answer";
     public static final String URL_DELETE_STUDENT_ANSWER = COURSE_API + "delete_student_answer";
+
+    private static final String FEEDBACK_API = ROOT_URL + "apiF.php?apicall=";
+    public static final String URL_INSERT_NEW_FEEDBACK = FEEDBACK_API + "insert_new_feedback";
+    public static final String URL_REQUEST_STUDENT_FEEDBACK_LIST = FEEDBACK_API + "request_student_feedback_list";
+    public static final String URL_REQUEST_FEEDBACK_LIST = FEEDBACK_API + "request_feedback_list";
+    public static final String URL_MODIFY_FEEDBACK = FEEDBACK_API + "modify_feedback";
+    public static final String URL_DELETE_FEEDBACK = FEEDBACK_API + "delete_feedback";
 
 
 
