@@ -46,7 +46,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         //define ImageView
         ImageView profilePicture = findViewById(R.id.profilePic);
-        Picasso.with(ProfileActivity.this).load(imageURL).placeholder(R.drawable.man).error(R.drawable.man).noFade().into(profilePicture);
+        if (imageURL != null && imageURL.isEmpty()) {
+            profilePicture.setImageResource(R.drawable.man);
+        } else {
+            Picasso.with(ProfileActivity.this).load(imageURL).placeholder(R.drawable.man).error(R.drawable.man).noFade().into(profilePicture);
+        }
 
         //define TextViews of profileActivity
         TextView profileID, profileUsername, profileEmail, profileName, profileType, profileDate;
@@ -58,7 +62,9 @@ public class ProfileActivity extends AppCompatActivity {
         profileDate = findViewById(R.id.profileDate);
 
         //set values on the TextViews
-        profileID.setText(id);
+        StringBuilder idBuilder = new StringBuilder(getString(R.string.idHash));
+        idBuilder.append(id);
+        profileID.setText(idBuilder);
         profileUsername.setText(username);
         profileEmail.setText(email);
         profileName.setText(name);

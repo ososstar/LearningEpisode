@@ -14,6 +14,7 @@ public final class URLs {
     public static final String URL_REQUEST_STUDENT_LIST = ACCOUNT_API + "request_student_list";
     public static final String URL_MODIFY_STUDENT_DATA = ACCOUNT_API + "modify_student_data";
     public static final String URL_DELETE_STUDENT_DATA = ACCOUNT_API + "delete_student_data";
+    public static final String URL_REQUEST_STUDENT_NAME = ACCOUNT_API + "request_student_name";
 
     private static final String COURSE_API = ROOT_URL+"apiC.php?apicall=";
     public static final String URL_INSERT_NEW_COURSE = COURSE_API + "insert_new_course";

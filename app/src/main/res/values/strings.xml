@@ -56,4 +56,6 @@
     <string name="admin">Admin</string>
     <string name="edit">edit</string>
     <string name="feedbackList">Feedback List</string>
+    <string name="idHash">ID #</string>
+    <string name="dateHash">Created on #</string>
 </resources>

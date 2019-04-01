@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/horizontal_space"
+        tools:context=".feedback.FeedbackInsertActivity">
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_feedback_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Insert new Feedback"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_feedback_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/horizontal_space"
+            android:text="Feedback Type"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_title" />
+
+        <Spinner
+            android:id="@+id/editor_feedback_type_sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_type_tv"
+            app:layout_constraintWidth_percent=".9" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_feedback_stuComment_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/horizontal_space"
+            android:text="Student Feedback"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_type_sp" />
+
+        <EditText
+            android:id="@+id/editor_feedback_stuComment_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style"
+            android:hint="Add a Comment"
+            android:inputType="textMultiLine"
+            android:maxLines="8"
+            android:minLines="4"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_stuComment_tv"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintWidth_percent=".9" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_feedback_AttachImgUrl_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/horizontal_space"
+            android:text="Attach an Image URL"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_stuComment_et" />
+
+        <EditText
+            android:id="@+id/editor_feedback_AttachImgUrl_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style"
+            android:hint="Attach an Image URL (optional)"
+            android:inputType="textUri"
+            android:maxLines="1"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_AttachImgUrl_tv"
+            app:layout_constraintWidth_percent=".9" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_feedback_admComment_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/horizontal_space"
+            android:text="Admin Reply"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_AttachImgUrl_et" />
+
+        <EditText
+            android:id="@+id/editor_feedback_admComment_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style"
+            android:hint="Add a Comment"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="8"
+            android:minLines="4"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textSize="16sp"
+            app:layout_constraintHeight_percent=".15"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_admComment_tv"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintWidth_percent=".9" />
+
+        <Button
+            android:id="@+id/editor_feedback_insert_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/horizontal_space"
+            android:text="@string/insert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_feedback_admComment_et" />
+
+        <!-- ProgressBar is visible when the list is Loading. -->
+        <ProgressBar
+            android:id="@+id/editor_feedback_progressbar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/editor_feedback_type_tv" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -22,6 +22,7 @@ import com.android.ososstar.learningepisode.course.Course;
 import com.android.ososstar.learningepisode.course.CourseActivity;
 import com.android.ososstar.learningepisode.course.CourseAdapter;
 import com.android.ososstar.learningepisode.course.CourseListActivity;
+import com.android.ososstar.learningepisode.feedback.FeedbackListActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -296,13 +297,13 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
 
         switch (position){
             case 0:
-                startActivity(new Intent(getBaseContext(), CourseListActivity.class));
+                startActivity(new Intent(HomeStudentActivity.this, CourseListActivity.class));
                 break;
             case 1:
-                Toast.makeText(this, "Profile Activity is under construction", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeStudentActivity.this, ProfileActivity.class));
                 break;
             case 2:
-                Toast.makeText(this, "Feedback Activity is under construction", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeStudentActivity.this, FeedbackListActivity.class));
                 break;
         }
 

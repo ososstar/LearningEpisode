@@ -270,32 +270,4 @@ public class AccountsListActivity extends AppCompatActivity implements UserAdapt
 
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu options from the res/menu/menu_editor.xml file.
-//        // This adds menu items to the app bar for the admin.
-//        if (user.getType() == 0){
-//            getMenuInflater().inflate(R.menu.menu_add, menu);
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle presses on the action bar items
-//        switch (item.getItemId()) {
-//             //Respond to a click on the "Insert" icon menu option
-//            case R.id.action_insert_new:
-//                // move to insert course activity
-////                startActivity(new Intent(AccountsListActivity.this, InsertAccountActivity.class));
-//                Toast.makeText(AccountsListActivity.this, "Under Construction", Toast.LENGTH_SHORT).show();
-//                // Exit Activity
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
 }
