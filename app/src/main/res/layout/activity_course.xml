@@ -63,6 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Created On"
+            android:maxLines="1"
             app:layout_constraintHorizontal_bias=".85"
             app:layout_constraintWidth_percent=".5"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -75,6 +75,11 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         holder.lesson_ID = currentLesson.getID();
         holder.course_ID = currentLesson.getCourseID();
 
+        holder.lesson_title = currentLesson.getTitle();
+        holder.lesson_description = currentLesson.getDescription();
+        holder.lesson_downloadURL = currentLesson.getLink();
+        holder.lesson_videoURL = currentLesson.getVideoURL();
+
     }
 
     @Override
@@ -83,8 +88,8 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private TextView lessonID, lessonTitle, lessonDescription, lessonLink, lessonImage, lessonCreationDate;
-        private String admin_ID, lesson_ID, course_ID;
+        private TextView lessonID, lessonTitle, lessonCreationDate;
+        private String admin_ID, lesson_ID, course_ID, lesson_title, lesson_description, lesson_downloadURL, lesson_videoURL;
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
@@ -140,6 +145,10 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
                     Bundle modifyBundle = new Bundle();
                     modifyBundle.putString("admin_ID", admin_ID);
                     modifyBundle.putString("lesson_ID", lesson_ID);
+                    modifyBundle.putString("lesson_title", lesson_title);
+                    modifyBundle.putString("lesson_description", lesson_description);
+                    modifyBundle.putString("lesson_downloadURL", lesson_downloadURL);
+                    modifyBundle.putString("lesson_videoURL", lesson_videoURL);
                     modifyBundle.putString("course_ID", course_ID);
                     modifyIntent.putExtras(modifyBundle);
                     try {

@@ -38,7 +38,7 @@ public class CourseModifyActivity extends AppCompatActivity {
 
     private RequestQueue mRequestQueue;
 
-    private String admin_ID, course_ID;
+    private String admin_ID, course_ID, course_name, course_description, course_image;
 
 
     @Override
@@ -52,11 +52,13 @@ public class CourseModifyActivity extends AppCompatActivity {
             if (modifyBundle.containsKey("admin_ID") && modifyBundle.containsKey("course_ID")) {
                 admin_ID = modifyBundle.getString("admin_ID");
                 course_ID = modifyBundle.getString("course_ID");
+                course_name = modifyBundle.getString("course_name");
+                course_description = modifyBundle.getString("course_description");
+                course_image = modifyBundle.getString("course_image");
             }
         }
 
         Log.d("CourseAdapter", "onCreate: " + "admin_ID=" + admin_ID + " course_ID=" + course_ID);
-
 
         TextView mCourse_tv = findViewById(R.id.editor_course_tv);
         mCourse_tv.setText("Modify Course Details");
@@ -66,6 +68,11 @@ public class CourseModifyActivity extends AppCompatActivity {
         modifyCourseName_et = findViewById(R.id.editor_course_name_et);
         modifyCourseDescription_et = findViewById(R.id.editor_course_description_et);
         modifyCourseImgURL_et = findViewById(R.id.editor_course_image_et);
+
+        modifyCourseName_et.setText(course_name);
+        if (!course_description.matches("null"))
+            modifyCourseDescription_et.setText(course_description);
+        if (!course_image.matches("null")) modifyCourseImgURL_et.setText(course_image);
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -91,69 +98,73 @@ public class CourseModifyActivity extends AppCompatActivity {
         course_description = modifyCourseDescription_et.getText().toString().trim();
         course_imgURL = modifyCourseImgURL_et.getText().toString().trim();
 
-        //check if there is any value in these strings
-        if (!TextUtils.isEmpty(course_name) || !TextUtils.isEmpty(course_description) || !TextUtils.isEmpty(course_imgURL)) {
-            //continue
-            modifyInsert_b.setEnabled(false);
-            progressBar.setVisibility(View.VISIBLE);
-
-            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_MODIFY_COURSE_DATA, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    progressBar.setVisibility(View.GONE);
-                    modifyInsert_b.setEnabled(true);
-                    try {
-                        JSONObject baseJSONObject = new JSONObject(response);
-                        if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(CourseModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            //finish this activity and start Activity CourseListActivity
-                            setResult(RESULT_OK);
-                            finish();
-                        } else {
-                            Toast.makeText(CourseModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    progressBar.setVisibility(View.GONE);
-                    modifyInsert_b.setEnabled(true);
-
-                }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() {
-                    Map<String, String> pars = new HashMap<>();
-                    pars.put("Content-Type", "application/x-www-form-urlencoded");
-                    return pars;
-                }
-
-                @Override
-                public Map<String, String> getParams() {
-                    Map<String, String> pars = new HashMap<>();
-                    pars.put("admin_ID", admin_ID);
-                    pars.put("course_ID", course_ID);
-                    if (!TextUtils.isEmpty(course_name)) {
-                        pars.put("name", course_name);
-                    }
-                    if (!TextUtils.isEmpty(course_description)) {
-                        pars.put("description", course_description);
-                    }
-                    if (!TextUtils.isEmpty(course_imgURL)) {
-                        pars.put("image", course_imgURL);
-                    }
-                    return pars;
-                }
-            };
-            mRequestQueue.add(request);
-        } else {
-            Toast.makeText(this, "Error: please make any modification to process", Toast.LENGTH_SHORT).show();
+        //validating inputs
+        if (TextUtils.isEmpty(course_name)) {
+            progressBar.setVisibility(View.GONE);
+            modifyCourseName_et.setError("Please specify the course name");
+            modifyCourseName_et.requestFocus();
+            return;
         }
+
+        //check if there is any value in these strings
+        //continue
+        modifyInsert_b.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+
+        StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_MODIFY_COURSE_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressBar.setVisibility(View.GONE);
+                modifyInsert_b.setEnabled(true);
+                try {
+                    JSONObject baseJSONObject = new JSONObject(response);
+                    if (!baseJSONObject.getBoolean("error")) {
+                        Toast.makeText(CourseModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        //finish this activity and start Activity CourseListActivity
+                        setResult(RESULT_OK);
+                        finish();
+                    } else {
+                        Toast.makeText(CourseModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                modifyInsert_b.setEnabled(true);
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("Content-Type", "application/x-www-form-urlencoded");
+                return pars;
+            }
+
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("admin_ID", admin_ID);
+                pars.put("course_ID", course_ID);
+                if (!TextUtils.isEmpty(course_name)) {
+                    pars.put("name", course_name);
+                }
+                if (!TextUtils.isEmpty(course_description)) {
+                    pars.put("description", course_description);
+                }
+                if (!TextUtils.isEmpty(course_imgURL)) {
+                    pars.put("image", course_imgURL);
+                }
+                return pars;
+            }
+        };
+        mRequestQueue.add(request);
 
     }
 

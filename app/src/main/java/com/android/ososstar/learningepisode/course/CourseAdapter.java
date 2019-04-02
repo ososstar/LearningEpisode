@@ -90,6 +90,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
         holder.course_ID = currentCourse.getCourseID();
 
+        holder.course_Name = currentCourse.getCourseName();
+
+        holder.course_Description = currentCourse.getCourseDescription();
+
+        holder.course_Image = currentCourse.getCourseImage();
+
     }
 
     @Override
@@ -100,7 +106,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         private CircleImageView courseImage;
         private TextView courseName, courseDescription, courseEnrolls, courseDate;
-        private String admin_ID, course_ID;
+        private String admin_ID, course_ID, course_Name, course_Description, course_Image;
         //getting the current user
         private User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
@@ -156,6 +162,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                     Bundle modifyBundle = new Bundle();
                     modifyBundle.putString("admin_ID", admin_ID);
                     modifyBundle.putString("course_ID", course_ID);
+                    modifyBundle.putString("course_name", course_Name);
+                    modifyBundle.putString("course_description", course_Description);
+                    modifyBundle.putString("course_image", course_Image);
                     modifyIntent.putExtras(modifyBundle);
                     ((CourseListActivity) mContext).startActivityForResult(modifyIntent, 1);
                     return true;

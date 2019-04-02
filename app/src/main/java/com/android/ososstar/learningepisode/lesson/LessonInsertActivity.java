@@ -116,13 +116,6 @@ public class LessonInsertActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(lesson_videoURL)) {
-            progressBar.setVisibility(View.GONE);
-            insertLessonVideoUrl_et.setError("Please enter valid video URL");
-            insertLessonVideoUrl_et.requestFocus();
-            return;
-        }
-
         //if everything is fine start StringRequest
         StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_INSERT_NEW_LESSON, new Response.Listener<String>() {
             @Override

@@ -1,8 +1,6 @@
 package com.android.ososstar.learningepisode.course;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -12,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
@@ -44,14 +43,6 @@ public class CourseInsertActivity extends AppCompatActivity {
 
     private RequestQueue mRequestQueue;
 
-    /**
-     * check if network is Connected or not
-     */
-    public static boolean isConnected(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +72,7 @@ public class CourseInsertActivity extends AppCompatActivity {
         icourse_insert_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isConnected(getBaseContext())) {
+                if (ConnectivityHelper.isNetworkAvailable(CourseInsertActivity.this)) {
                     progressBar.setVisibility(View.VISIBLE);
                     insertNewCourse();
                 }else {

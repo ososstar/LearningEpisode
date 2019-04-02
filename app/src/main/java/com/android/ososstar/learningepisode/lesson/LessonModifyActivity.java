@@ -37,7 +37,7 @@ public class LessonModifyActivity extends AppCompatActivity {
     //show progressBar spinner when sending data
     private ProgressBar progressBar;
     private RequestQueue mRequestQueue;
-    private String admin_ID, lesson_ID, course_ID;
+    private String admin_ID, lesson_ID, lesson_title, lesson_description, lesson_downloadURL, lesson_videoURL, course_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,10 @@ public class LessonModifyActivity extends AppCompatActivity {
             if (modifyBundle.containsKey("admin_ID") && modifyBundle.containsKey("lesson_ID") && modifyBundle.containsKey("course_ID")) {
                 admin_ID = modifyBundle.getString("admin_ID");
                 lesson_ID = modifyBundle.getString("lesson_ID");
+                lesson_title = modifyBundle.getString("lesson_title");
+                lesson_description = modifyBundle.getString("lesson_description");
+                lesson_downloadURL = modifyBundle.getString("lesson_downloadURL");
+                lesson_videoURL = modifyBundle.getString("lesson_videoURL");
                 course_ID = modifyBundle.getString("course_ID");
             }
         }
@@ -62,6 +66,12 @@ public class LessonModifyActivity extends AppCompatActivity {
         modifyLessonDescription_et = findViewById(R.id.editor_lesson_description_et);
         modifyLessonLink_et = findViewById(R.id.editor_lesson_link_et);
         modifyLessonVideoUrl_et = findViewById(R.id.editor_lesson_video_et);
+
+        modifyLessonTitle_et.setText(lesson_title);
+        if (!lesson_description.matches("null"))
+            modifyLessonDescription_et.setText(lesson_description);
+        if (!lesson_downloadURL.matches("null")) modifyLessonLink_et.setText(lesson_downloadURL);
+        if (!lesson_videoURL.matches("null")) modifyLessonVideoUrl_et.setText(lesson_videoURL);
 
         //define progressBar
         progressBar = findViewById(R.id.editor_lesson_progressBar);
@@ -102,84 +112,84 @@ public class LessonModifyActivity extends AppCompatActivity {
         lesson_videoURL = modifyLessonVideoUrl_et.getText().toString().trim();
 
         //validating the input in lesson title
-        if (!TextUtils.isEmpty(lesson_title) || !TextUtils.isEmpty(lesson_description) || !TextUtils.isEmpty(lesson_link) || !TextUtils.isEmpty(lesson_videoURL)) {
-            // if the new video url is not youtube url
-            if (!TextUtils.isEmpty(lesson_videoURL)) {
-                boolean isValidYoutube = youtubePattern.matcher(lesson_videoURL).matches();
-                if (!isValidYoutube) {
-                    progressBar.setVisibility(View.GONE);
-                    modifyLessonVideoUrl_et.setError("Please enter valid YouTube URL");
-                    modifyLessonVideoUrl_et.requestFocus();
-                    modifyInsert_b.setEnabled(true);
-                    return;
+        if (TextUtils.isEmpty(lesson_title)) {
+            progressBar.setVisibility(View.GONE);
+            modifyLessonTitle_et.setError("Please enter the Lesson Title");
+            modifyLessonTitle_et.requestFocus();
+            return;
+        }
+
+//        // if the new video url is not youtube url
+//        if (!TextUtils.isEmpty(lesson_videoURL)) {
+//            boolean isValidYoutube = youtubePattern.matcher(lesson_videoURL).matches();
+//            if (!isValidYoutube) {
+//                progressBar.setVisibility(View.GONE);
+//                modifyLessonVideoUrl_et.setError("Please enter valid YouTube URL");
+//                modifyLessonVideoUrl_et.requestFocus();
+//                modifyInsert_b.setEnabled(true);
+//                return;
+//            }
+//        }
+
+        //continue
+
+        StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_MODIFY_LESSON_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressBar.setVisibility(View.GONE);
+                modifyInsert_b.setEnabled(true);
+                try {
+                    JSONObject baseJSONObject = new JSONObject(response);
+                    if (!baseJSONObject.getBoolean("error")) {
+                        Toast.makeText(LessonModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        //finish this activity and start Activity LessonListActivity
+                        setResult(RESULT_OK);
+                        finish();
+                    } else {
+                        Toast.makeText(LessonModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                modifyInsert_b.setEnabled(true);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("Content-Type", "application/x-www-form-urlencoded");
+                return pars;
             }
 
-            //continue
-
-            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_MODIFY_LESSON_DATA, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    progressBar.setVisibility(View.GONE);
-                    modifyInsert_b.setEnabled(true);
-                    try {
-                        JSONObject baseJSONObject = new JSONObject(response);
-                        if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(LessonModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
-                            //finish this activity and start Activity LessonListActivity
-                            setResult(RESULT_OK);
-                            finish();
-                        } else {
-                            Toast.makeText(LessonModifyActivity.this, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
+            @Override
+            public Map<String, String> getParams() {
+                Map<String, String> pars = new HashMap<>();
+                pars.put("admin_ID", admin_ID);
+                pars.put("lesson_ID", lesson_ID);
+                pars.put("course_ID", course_ID);
+                if (!TextUtils.isEmpty(lesson_title)) {
+                    pars.put("title", lesson_title);
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    progressBar.setVisibility(View.GONE);
-                    modifyInsert_b.setEnabled(true);
+                if (!TextUtils.isEmpty(lesson_description)) {
+                    pars.put("description", lesson_description);
                 }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() {
-                    Map<String, String> pars = new HashMap<>();
-                    pars.put("Content-Type", "application/x-www-form-urlencoded");
-                    return pars;
+                if (!TextUtils.isEmpty(lesson_link)) {
+                    pars.put("link", lesson_link);
                 }
-
-                @Override
-                public Map<String, String> getParams() {
-                    Map<String, String> pars = new HashMap<>();
-                    pars.put("admin_ID", admin_ID);
-                    pars.put("lesson_ID", lesson_ID);
-                    pars.put("course_ID", course_ID);
-                    if (!TextUtils.isEmpty(lesson_title)) {
-                        pars.put("title", lesson_title);
-                    }
-                    if (!TextUtils.isEmpty(lesson_description)) {
-                        pars.put("description", lesson_description);
-                    }
-                    if (!TextUtils.isEmpty(lesson_link)) {
-                        pars.put("link", lesson_link);
-                    }
-                    if (!TextUtils.isEmpty(lesson_videoURL)) {
-                        pars.put("video", lesson_videoURL);
-                    }
-                    return pars;
+                if (!TextUtils.isEmpty(lesson_videoURL)) {
+                    pars.put("video", lesson_videoURL);
                 }
-            };
-            mRequestQueue.add(request);
-
-        } else {
-            modifyInsert_b.setEnabled(true);
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(this, "Error: please make any modification to process", Toast.LENGTH_SHORT).show();
-        }
+                return pars;
+            }
+        };
+        mRequestQueue.add(request);
 
     }
 
