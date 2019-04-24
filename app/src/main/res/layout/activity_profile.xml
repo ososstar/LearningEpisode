@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
-            android:text="Date"
+            android:text="@string/dateHash"
             android:maxLines="1"
             android:textSize="18dp" />
 
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
-            android:text="ID"
+            android:text="@string/idHash"
             android:maxLines="1"
             android:textSize="18dp" />
 
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
-            android:text="Username"
+            android:text="@string/usernameHash"
             android:maxLines="1"
             android:textSize="18dp" />
 
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
-            android:text="Type"
+            android:text="@string/typeHash"
             android:maxLines="1"
             android:textSize="18dp" />
 
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/horizontal_space"
-            android:text="Email"
+            android:text="@string/emailHash"
             android:maxLines="1"
             android:textSize="18dp" />
     </LinearLayout>

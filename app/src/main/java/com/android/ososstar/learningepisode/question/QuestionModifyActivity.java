@@ -59,7 +59,7 @@ public class QuestionModifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_question);
 
-        setTitle("Modify a Question");
+        setTitle(R.string.modify_the_question);
 
         progressBar = findViewById(R.id.eQuestionProgressBar);
 
@@ -86,10 +86,10 @@ public class QuestionModifyActivity extends AppCompatActivity {
 
         // Initializing a String Array
         String[] choices = new String[]{
-                "unspecified",
-                "Choice One",
-                "Choice Two",
-                "Choice Three"
+                getString(R.string.unspecified),
+                getString(R.string.choiceOne),
+                getString(R.string.choiceTwo),
+                getString(R.string.choiceThree)
         };
 
         // Initializing an ArrayAdapter for spinner
@@ -153,7 +153,7 @@ public class QuestionModifyActivity extends AppCompatActivity {
 
             // if the new video url is not youtube url
             if (TextUtils.isEmpty(question_answer) || question_answer == null) {
-                Toast.makeText(this, "Please specify the question answer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.specify_the_answer), Toast.LENGTH_SHORT).show();
                 answerSpinner.requestFocus();
                 return;
             }

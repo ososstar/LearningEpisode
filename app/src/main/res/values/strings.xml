@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">LearningEpisode</string>
-    <string name="ProjectName">LearningEpisode</string>
-    <string name="email">E-Mail #</string>
+    <string name="ProjectName" translatable="false">LearningEpisode</string>
+    <string name="email">E-Mail</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="username">Username #</string>
+    <string name="usernameHash">Username #</string>
     <string name="name">Name</string>
     <string name="create_an_account">Create an Account</string>
     <string name="have_an_account">Already have an account? Login</string>
@@ -24,7 +24,7 @@
     <string name="enroll">ENROLL</string>
     <string name="lessons_list">Lessons List</string>
     <string name="lesson_title">Lesson Title</string>
-    <string name="id">ID #</string>
+    <string name="id">ID</string>
     <string name="creation_date">Created On #</string>
     <string name="lesson_description">Lesson Description</string>
     <string name="download_lesson">Download Lesson</string>
@@ -58,4 +58,14 @@
     <string name="feedbackList">Feedback List</string>
     <string name="idHash">ID #</string>
     <string name="dateHash">Created on #</string>
+    <string name="typeHash">Type #</string>
+    <string name="emailHash">Email #</string>
+    <string name="username">Username</string>
+    <string name="unspecified">unspecified</string>
+    <string name="choiceOne">Choice One</string>
+    <string name="choiceTwo">Choice Two</string>
+    <string name="choiceThree">Choice Three</string>
+    <string name="modify_the_question">Modify The Question</string>
+    <string name="specify_the_answer">Please specify the question answer</string>
+    <string name="question_title">Question Title</string>
 </resources>

@@ -86,7 +86,6 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
         //getting values of course, admin or student IDs
         course_ID = intent.getStringExtra(EXTRA_COURSE_ID);
 
-
         mEmptyStateTextView = findViewById(R.id.l_empty_view);
 
         mList = findViewById(R.id.l_RV);

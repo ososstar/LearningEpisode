@@ -116,7 +116,7 @@ public class LessonActivity extends AppCompatActivity {
         setTitle(title);
 
         TextView lessonIdTV = findViewById(R.id.lesson_id_tv);
-        lessonIdTV.setText(getString(R.string.id) + id);
+        lessonIdTV.setText(getString(R.string.idHash) + id);
 
         TextView lessonTitleTV = findViewById(R.id.lesson_title_tv);
         lessonTitleTV.setText(title);

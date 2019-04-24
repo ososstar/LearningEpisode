@@ -69,7 +69,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Lesson currentLesson = mLessonList.get(position);
 
-        holder.lessonID.setText(mContext.getString(R.string.id) + currentLesson.getID());
+        holder.lessonID.setText(mContext.getString(R.string.idHash) + currentLesson.getID());
         holder.lessonTitle.setText(currentLesson.getTitle());
         holder.lessonCreationDate.setText(mContext.getString(R.string.created_on) + currentLesson.getCreationDate());
         holder.lesson_ID = currentLesson.getID();

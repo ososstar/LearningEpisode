@@ -12,11 +12,14 @@
         android:id="@+id/lesson_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:maxLines="1"
         android:text="@string/lesson_title"
         android:textSize="@dimen/title"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:maxLines="1"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <me.grantland.widget.AutofitTextView
         android:id="@+id/lesson_id_tv"
