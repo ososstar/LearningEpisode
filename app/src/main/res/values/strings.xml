@@ -68,4 +68,7 @@
     <string name="modify_the_question">Modify The Question</string>
     <string name="specify_the_answer">Please specify the question answer</string>
     <string name="question_title">Question Title</string>
+    <string name="insert_new_user">Insert New User</string>
+    <string name="account_type">Account Type</string>
+    <string name="password_optional">Password (Optional)</string>
 </resources>

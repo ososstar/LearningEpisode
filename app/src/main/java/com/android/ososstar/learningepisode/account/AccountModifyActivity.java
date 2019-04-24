@@ -125,7 +125,7 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountNameET = findViewById(R.id.eName_et);
         eAccountImageET = findViewById(R.id.eImage_et);
 
-        eAccountPasswordTL.setHint("Password (Optional)");
+        eAccountPasswordTL.setHint(getString(R.string.password_optional));
 
         //insert old values
         eAccountUsernameET.setText(eAccountUsername);

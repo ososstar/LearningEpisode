@@ -51,24 +51,28 @@ public class ProfileViewActivity extends AppCompatActivity {
         Picasso.with(ProfileViewActivity.this).load(imageURL).placeholder(R.drawable.man).error(R.drawable.man).noFade().into(profilePicture);
         profileName.setText(name);
 
-        StringBuilder ID_sb = new StringBuilder(getString(R.string.id));
+        StringBuilder ID_sb = new StringBuilder(getString(R.string.idHash));
         ID_sb.append(id);
         profileID.setText(ID_sb);
 
-        StringBuilder username_sb = new StringBuilder(getString(R.string.username));
+        StringBuilder username_sb = new StringBuilder(getString(R.string.usernameHash));
         username_sb.append(username);
         profileUsername.setText(username_sb);
 
-        StringBuilder email_sb = new StringBuilder(getString(R.string.email));
+        StringBuilder email_sb = new StringBuilder(getString(R.string.emailHash));
         email_sb.append(email);
         profileEmail.setText(email_sb);
 
+        StringBuilder type_sb = new StringBuilder(getString(R.string.typeHash));
+
         switch (type) {
             case "0":
-                profileType.setText(getString(R.string.admin));
+                type_sb.append(getString(R.string.admin));
+                profileType.setText(type_sb);
                 break;
             case "1":
-                profileType.setText(getString(R.string.student));
+                type_sb.append(getString(R.string.student));
+                profileType.setText(type_sb);
                 break;
         }
 
