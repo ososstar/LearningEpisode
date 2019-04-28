@@ -52,7 +52,6 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
     private CourseAdapter mCourseAdapter;
     private ArrayList<Course> enrollmentList;
     private RequestQueue mRequestQueue;
-
     public static final String EXTRA_ID = "id";
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_DESCRIPTION = "description";
