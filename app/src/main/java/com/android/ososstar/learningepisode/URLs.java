@@ -4,9 +4,10 @@ public final class URLs {
 
     //online host
     //https://learningepisode.000webhostapp.com
+    //http://192.168.137.1
 
     //localhost
-    private static final String ROOT_URL = "http://192.168.1.2/learning_episode/";
+    private static final String ROOT_URL = "http://192.168.137.1/learning_episode/";
 
     private static final String ACCOUNT_API = ROOT_URL+"apiA.php?apicall=";
     public static final String URL_LOGIN = ACCOUNT_API + "login";
