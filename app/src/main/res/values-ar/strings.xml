@@ -71,4 +71,6 @@
     <string name="account_type">نوع الحساب</string>
     <string name="insert_new_user">إضافة حساب جديد</string>
     <string name="password_optional">كلمة المرور (اختياري)</string>
+    <string name="total_enrolls_hash">عدد التسجيلات #</string>
+    <string name="view_lessons">شاهد قائمة الدروس</string>
 </resources>

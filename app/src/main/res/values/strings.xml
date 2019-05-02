@@ -71,4 +71,6 @@
     <string name="insert_new_user">Insert New User</string>
     <string name="account_type">Account Type</string>
     <string name="password_optional">Password (Optional)</string>
+    <string name="total_enrolls_hash">Total Enrolls #</string>
+    <string name="view_lessons">View Lessons</string>
 </resources>
