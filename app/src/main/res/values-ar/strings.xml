@@ -39,7 +39,7 @@
     <string name="login">سجل الدخول</string>
     <string name="logout">سجل الخروج</string>
     <string name="modify_user_data">تعديل بيانات المستخدم</string>
-    <string name="my_courses">دوراتي</string>
+    <string name="my_courses">دوراتي المسجلة</string>
     <string name="name">الاسم</string>
     <string name="noInternet">من فضلك تأكد من اتصال الانترنت</string>
     <string name="no_course">لا يوجد دورات حالياً</string>
@@ -60,7 +60,7 @@
     <string name="usernameHash">اسم المستخدم #</string>
     <string name="video_url">رابط الفيديو</string>
     <string name="video_url_optional">رابط الفيديو (اختياري)</string>
-    <string name="welcome">مرحباً، اسم_المستخدم</string>
+    <string name="welcome">"مرحباً، "</string>
     <string name="unspecified">غير معرف</string>
     <string name="choiceOne">الخيار الأول</string>
     <string name="choiceThree">الخيار الثاني</string>
@@ -71,6 +71,11 @@
     <string name="account_type">نوع الحساب</string>
     <string name="insert_new_user">إضافة حساب جديد</string>
     <string name="password_optional">كلمة المرور (اختياري)</string>
-    <string name="total_enrolls_hash">عدد التسجيلات #</string>
+    <string name="total_enrolls_hash">مجموع التسجيلات #</string>
     <string name="view_lessons">شاهد قائمة الدروس</string>
+    <string name="feedback">التعليقات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="courses">الدورات</string>
+    <string name="accounts">الحسابات</string>
+    <string name="homepage">الصفحة الرئيسية</string>
 </resources>

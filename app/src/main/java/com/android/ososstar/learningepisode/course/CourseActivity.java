@@ -93,10 +93,14 @@ public class CourseActivity extends AppCompatActivity {
         course_description.setText(description);
 
         enrolls = intent.getStringExtra(EXTRA_ENROLLS);
-        course_enrolls_tv.setText("Total Enrolls " + enrolls);
+        StringBuilder totalEnrollsSB = new StringBuilder(getString(R.string.total_enrolls_hash));
+        totalEnrollsSB.append(enrolls);
+        course_enrolls_tv.setText(totalEnrollsSB);
 
         creation_date = intent.getStringExtra(EXTRA_DATE);
-        course_date_tv.setText("Created On " + creation_date);
+        StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
+        creationDateSB.append(creation_date);
+        course_date_tv.setText(creationDateSB);
 
         setTitle(name);
 

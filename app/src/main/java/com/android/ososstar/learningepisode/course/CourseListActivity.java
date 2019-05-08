@@ -127,8 +127,7 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            startActivity(new Intent(this, CourseListActivity.class));
-            finish();
+            parseJSON();
         }
     }
 
@@ -152,13 +151,18 @@ public class CourseListActivity extends AppCompatActivity implements CourseAdapt
     }
 
     private void parseJSON(){
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URLs.URL_REQUEST_COURSE_LIST, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         mEmptyStateTextView.setVisibility(View.GONE);
                         progressBar.setVisibility(View.GONE);
+
                         if (response != null) {
+
+                            courseList.clear();
+
                             try {
                                 //if no error in response
                                 if (!response.getBoolean("error")) {

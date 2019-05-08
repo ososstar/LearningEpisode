@@ -81,12 +81,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.courseName.setText(currentCourse.getCourseName());
 
         if (!currentCourse.getCourseDescription().isEmpty()) {
-            holder.courseDescription.setText(String.valueOf(currentCourse.getCourseDescription()));
+            holder.courseDescription.setText(currentCourse.getCourseDescription());
         }else {
             holder.courseDescription.setText(R.string.no_description);
         }
-        holder.courseEnrolls.setText(new StringBuffer().append("Total Enrolls ").append(String.valueOf(currentCourse.getCourseEnrolls())));
-        holder.courseDate.setText("Created ON " + String.valueOf(currentCourse.getCourseCreationDate()));
+        holder.courseEnrolls.setText(new StringBuffer().append(holder.itemView.getContext().getString(R.string.total_enrolls_hash)).append(currentCourse.getCourseEnrolls()));
+        holder.courseDate.setText(new StringBuffer(holder.itemView.getContext().getString(R.string.creation_date)).append(currentCourse.getCourseCreationDate()));
 
         holder.course_ID = currentCourse.getCourseID();
 

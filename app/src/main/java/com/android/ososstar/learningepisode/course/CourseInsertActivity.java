@@ -117,8 +117,8 @@ public class CourseInsertActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
 
                         //start Activity CourseListActivity
-                        finish();
                         setResult(RESULT_OK);
+                        finish();
 
                     }else{
                         Toast.makeText(getApplicationContext(), baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();

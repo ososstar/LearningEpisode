@@ -12,7 +12,7 @@
     <string name="don_t_have_an_account">Don\'t have an account? Register</string>
     <string name="logout">Logout</string>
     <string name="title">Title</string>
-    <string name="welcome">Welcome, User_Name</string>
+    <string name="welcome">"Welcome, "</string>
     <string name="noInternet">please check your Internet Connection.</string>
     <string name="no_course">Currently no course available</string>
     <string name="no_users">currently no students data in the database</string>
@@ -73,4 +73,9 @@
     <string name="password_optional">Password (Optional)</string>
     <string name="total_enrolls_hash">Total Enrolls #</string>
     <string name="view_lessons">View Lessons</string>
+    <string name="courses">Courses</string>
+    <string name="accounts">Accounts</string>
+    <string name="feedback">Feedback</string>
+    <string name="profile">Profile</string>
+    <string name="homepage">Home Page</string>
 </resources>

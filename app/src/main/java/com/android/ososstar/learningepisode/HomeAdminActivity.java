@@ -25,7 +25,7 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_admin);
-        setTitle("Home Page");
+        setTitle(getString(R.string.homepage));
 
         //if the user is not logged in
         //starting the login activity
@@ -39,15 +39,18 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         User user = SharedPrefManager.getInstance(this).getUser();
 
         //greeting user in home activity
+        StringBuilder greetingSB = new StringBuilder(getString(R.string.welcome));
+        greetingSB.append(user.getName());
+
         TextView homeUser = findViewById(R.id.home_user);
-        homeUser.setText("Welcome, " + user.getName());
+        homeUser.setText(greetingSB);
 
 
         // Create a list of user Options
         final ArrayList<Option> options = new ArrayList<>();
-        options.add(new Option("Courses",R.drawable.books));
-        options.add(new Option("Accounts",R.drawable.userlist));
-        options.add(new Option("Feedback",R.drawable.feedback));
+        options.add(new Option(getString(R.string.courses), R.drawable.books));
+        options.add(new Option(getString(R.string.accounts), R.drawable.userlist));
+        options.add(new Option(getString(R.string.feedback), R.drawable.feedback));
 
         // Create an {@link OptionAdapter}, whose data source is a list of {@link Option}s. The
         // adapter knows how to create list items for each item in the list.

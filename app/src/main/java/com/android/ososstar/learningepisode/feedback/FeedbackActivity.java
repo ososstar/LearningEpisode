@@ -2,6 +2,7 @@ package com.android.ososstar.learningepisode.feedback;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -106,7 +107,9 @@ public class FeedbackActivity extends AppCompatActivity {
         //declaring ImageView for the attached image, hide ImageView if no attached image url
         ImageView attachedImage_IV = findViewById(R.id.feedback_attached_image);
         if (!attached_image.matches("null")) {
-            Picasso.with(FeedbackActivity.this).load(attached_image).placeholder(R.drawable.defaultplaceholder).error(R.drawable.defaultplaceholder).noFade().into(attachedImage_IV);
+            if (!TextUtils.isEmpty(attached_image)) {
+                Picasso.with(FeedbackActivity.this).load(attached_image).placeholder(R.drawable.defaultplaceholder).error(R.drawable.defaultplaceholder).noFade().into(attachedImage_IV);
+            }
         } else {
             attachedImage_IV.setVisibility(View.GONE);
         }
