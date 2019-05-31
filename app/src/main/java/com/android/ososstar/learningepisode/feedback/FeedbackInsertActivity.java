@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -163,12 +164,14 @@ public class FeedbackInsertActivity extends AppCompatActivity {
         attachImage = eFeedback_attachImage.getText().toString().trim();
         admComment = eFeedback_admComment.getText().toString().trim();
 
+        Log.d("fares", "insertNewFeedback: " + student_ID + typeChoice + stuComment + attachImage + admComment);
+
         //validating student Feedback Type Data
         if (typeChoice == null) {
             progressBar.setVisibility(View.GONE);
             eFeedback_type_sp.requestFocus();
             TextView errorText = (TextView) eFeedback_type_sp.getSelectedView();
-            errorText.setError(getString(R.string.specify_the_right_answer));
+            errorText.setError(getString(R.string.unspecified));
             errorText.setTextColor(Color.RED);//just to highlight that this is an error
             eFeedback_insert_b.setEnabled(true);
             return;

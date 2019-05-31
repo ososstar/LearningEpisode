@@ -1,114 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false"
     android:orientation="vertical"
-    android:padding="@dimen/horizontal_space"
-    tools:context=".lesson.LessonActivity">
+    android:padding="10dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintHorizontal_weight="1"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/course_image"
+    app:layout_constraintVertical_bias=".02">
 
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/lesson_title_tv"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:maxLines="1"
-        android:text="@string/lesson_title"
-        android:textSize="@dimen/title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/lesson_id_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/id"
-        android:textSize="12sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_title_tv"
-        app:layout_constraintWidth_percent=".45"
-        android:maxLines="1"/>
-
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/lesson_date_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/creation_date"
-        android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_title_tv"
-        app:layout_constraintWidth_percent=".5"
-        android:maxLines="1"/>
-
-    <FrameLayout
-        android:id="@+id/playerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_id_tv"
-        app:layout_constraintVertical_bias=".02">
+        android:padding="@dimen/horizontal_space"
+        tools:context=".lesson.LessonActivity">
 
-        <fragment
-            android:id="@+id/youtubeFragment"
-            android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+        <!--<me.grantland.widget.AutofitTextView-->
+        <!--android:id="@+id/lesson_title_tv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:gravity="center"-->
+        <!--android:maxLines="1"-->
+        <!--android:text="@string/lesson_title"-->
+        <!--android:textSize="@dimen/title"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--android:layout_marginLeft="16dp" />-->
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/lesson_id_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/id"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".45" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/lesson_date_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/creation_date"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".5" />
+
+        <FrameLayout
+            android:id="@+id/playerLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#A6000000"
-            android:visibility="gone"
-            app:controller_layout_id="@layout/exo_playback_control_view"
-            app:player_layout_id="@layout/exo_simple_player_view"
-            app:repeat_toggle_modes="none"
-            app:resize_mode="fixed_height"
-            app:show_timeout="45000"
-            app:surface_type="texture_view" />
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_id_tv"
+            app:layout_constraintVertical_bias=".02">
 
-        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-            android:id="@+id/exoPlayer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center" />
+            <fragment
+                android:id="@+id/youtubeFragment"
+                android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#A6000000"
+                android:visibility="gone"
+                app:controller_layout_id="@layout/exo_playback_control_view"
+                app:player_layout_id="@layout/exo_simple_player_view"
+                app:repeat_toggle_modes="none"
+                app:resize_mode="fixed_height"
+                app:show_timeout="45000"
+                app:surface_type="texture_view" />
 
-    </FrameLayout>
+            <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                android:id="@+id/exoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center" />
 
-    <TextView
-        android:id="@+id/lesson_description_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lesson_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playerLayout"
-        app:layout_constraintVertical_bias=".02" />
+        </FrameLayout>
 
-    <Button
-        android:id="@+id/lesson_download_b"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/download_lesson"
-        app:layout_constraintHorizontal_bias=".5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_description_tv" />
+        <TextView
+            android:id="@+id/lesson_description_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:layout_marginBottom="@dimen/vertical_space"
+            android:background="@color/white"
+            android:padding="20dp"
+            android:text="@string/lesson_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playerLayout"
+            app:layout_constraintVertical_bias=".02"
+            app:layout_constraintWidth_percent="1" />
 
-    <Button
-        android:id="@+id/lesson_questions_b"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/lesson_questions"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lesson_download_b"
-        app:layout_constraintVertical_bias=".005" />
+        <Button
+            android:id="@+id/lesson_download_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/download_lesson"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_description_tv" />
 
+        <Button
+            android:id="@+id/lesson_questions_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lesson_questions"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lesson_download_b"
+            app:layout_constraintVertical_bias=".005" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

@@ -118,8 +118,8 @@ public class LessonActivity extends AppCompatActivity {
         TextView lessonIdTV = findViewById(R.id.lesson_id_tv);
         lessonIdTV.setText(getString(R.string.idHash) + id);
 
-        TextView lessonTitleTV = findViewById(R.id.lesson_title_tv);
-        lessonTitleTV.setText(title);
+//        TextView lessonTitleTV = findViewById(R.id.lesson_title_tv);
+//        lessonTitleTV.setText(title);
 
         TextView lessonDescriptionTV = findViewById(R.id.lesson_description_tv);
         if (!description.isEmpty() && !description.equals("null")) {

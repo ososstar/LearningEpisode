@@ -90,10 +90,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         String userImg = currentUser.getImageURL();
         if (userImg != null && userImg.isEmpty()) {
-            holder.user_image.setImageResource(R.drawable.man);
+            holder.user_image.setImageResource(R.drawable.user);
         } else {
             Picasso.with(mContext).load(userImg)
-                    .placeholder(R.drawable.man).error(R.drawable.man).noFade()
+                    .placeholder(R.drawable.user).error(R.drawable.user).noFade()
                     .into(holder.user_image);
         }
 

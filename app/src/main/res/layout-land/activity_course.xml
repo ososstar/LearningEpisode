@@ -14,8 +14,8 @@
         android:src="@drawable/defaultplaceholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:text="Total Enrolls #"
         app:layout_constraintHorizontal_bias=".05"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/course_image" />
 
     <TextView
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:text="Created On"
         app:layout_constraintHorizontal_bias=".75"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/course_image" />
 
     <android.support.constraint.ConstraintLayout
@@ -46,8 +46,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/course_enrolls_tv"
         app:layout_constraintVertical_bias=".02">
 
@@ -61,8 +61,8 @@
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias=".8"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias=".02"
             app:layout_constraintWidth_percent=".6" />
@@ -73,8 +73,8 @@
             android:layout_height="wrap_content"
             android:text="Course Description"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/course_name_tv"
             app:layout_constraintVertical_bias=".05" />
 
@@ -87,8 +87,8 @@
             app:layout_constraintHeight_min="35dp"
             app:layout_constraintHeight_percent=".03"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintLeft_toLeftOf="@id/course_lessons_b"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/course_lessons_b"
             app:layout_constraintTop_toTopOf="@id/course_name_tv" />
 
         <Button
@@ -97,8 +97,8 @@
             android:layout_height="wrap_content"
             android:text="View Lessons"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/course_description_tv"
             app:layout_constraintVertical_bias="0.05"
             app:layout_constraintWidth_percent=".95" />

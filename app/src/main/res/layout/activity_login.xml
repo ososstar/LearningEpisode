@@ -16,8 +16,8 @@
         android:textSize="32sp"
         app:fontFamily="@font/rock_salt"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2"
         tools:fontFamily="@font/rock_salt" />
@@ -93,8 +93,8 @@
         android:layout_centerInParent="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/l_password_TL"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/l_Username_TL"
         app:layout_constraintVertical_bias="0.5" />
 
@@ -106,8 +106,8 @@
         android:text="@string/login"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l_password_TL"
         app:layout_constraintVertical_bias="0.1"
@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:text="@string/don_t_have_an_account"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l_login_b" />
 </android.support.constraint.ConstraintLayout>

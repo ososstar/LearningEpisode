@@ -21,7 +21,7 @@
             android:maxLines="1"
             android:text="@string/id"
             android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".45" />
 
@@ -32,7 +32,7 @@
             android:maxLines="1"
             android:text="@string/creation_date"
             android:textSize="16sp"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".5" />
 
@@ -66,8 +66,8 @@
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:src="@drawable/defaultplaceholder"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/feedback_type" />
 
         <me.grantland.widget.AutofitTextView

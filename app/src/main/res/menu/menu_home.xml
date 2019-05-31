@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_profile"
-        android:icon="@drawable/profileicon"
+        android:icon="@drawable/user"
         android:title=""
         app:showAsAction="ifRoom" />
     <item android:id="@+id/menu_logout"

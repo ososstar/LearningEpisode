@@ -15,7 +15,7 @@
             android:maxLines="1"
             android:text="@string/lesson_title"
             android:textSize="@dimen/title"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.5" />
 
@@ -27,8 +27,8 @@
             android:text="@string/id"
             android:textSize="12sp"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintLeft_toRightOf="@id/lesson_title_tv"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lesson_title_tv"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".20" />
 
@@ -40,8 +40,8 @@
             android:text="@string/creation_date"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/lesson_title_tv"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/lesson_title_tv"
             app:layout_constraintTop_toBottomOf="@id/lesson_id_tv"
             app:layout_constraintVertical_bias="0.02"
             app:layout_constraintWidth_percent=".5" />
@@ -74,8 +74,8 @@
             android:text="@string/lesson_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lesson_title_tv"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".45" />
@@ -87,8 +87,8 @@
             android:text="@string/download_lesson"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias=".2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/youtubeFragment"
+            app:layout_constraintEnd_toStartOf="@id/youtubeFragment"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lesson_description_tv"
             app:layout_constraintVertical_bias=".58"
             app:layout_constraintWidth_percent="0.4" />
@@ -100,9 +100,9 @@
             android:text="@string/lesson_questions"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/youtubeFragment"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/youtubeFragment"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lesson_download_b"
             app:layout_constraintVertical_bias=".005"
             app:layout_constraintWidth_percent="0.4" />

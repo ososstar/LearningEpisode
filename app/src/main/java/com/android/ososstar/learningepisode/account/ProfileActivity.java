@@ -47,9 +47,9 @@ public class ProfileActivity extends AppCompatActivity {
         //define ImageView
         ImageView profilePicture = findViewById(R.id.profilePic);
         if (imageURL != null && imageURL.isEmpty()) {
-            profilePicture.setImageResource(R.drawable.man);
+            profilePicture.setImageResource(R.drawable.user);
         } else {
-            Picasso.with(ProfileActivity.this).load(imageURL).placeholder(R.drawable.man).error(R.drawable.man).noFade().into(profilePicture);
+            Picasso.with(ProfileActivity.this).load(imageURL).placeholder(R.drawable.user).error(R.drawable.user).noFade().into(profilePicture);
         }
 
         //define TextViews of profileActivity
@@ -65,20 +65,32 @@ public class ProfileActivity extends AppCompatActivity {
         StringBuilder idBuilder = new StringBuilder(getString(R.string.idHash));
         idBuilder.append(id);
         profileID.setText(idBuilder);
-        profileUsername.setText(username);
-        profileEmail.setText(email);
+
+        StringBuilder username_sb = new StringBuilder(getString(R.string.usernameHash));
+        username_sb.append(username);
+        profileUsername.setText(username_sb);
+
+        StringBuilder email_sb = new StringBuilder(getString(R.string.emailHash));
+        email_sb.append(email);
+        profileEmail.setText(email_sb);
         profileName.setText(name);
 
+
+        StringBuilder type_sb = new StringBuilder(getString(R.string.typeHash));
         switch (type) {
             case "0":
-                profileType.setText(getString(R.string.admin));
+                type_sb.append(getString(R.string.admin));
+                profileType.setText(type_sb);
                 break;
             case "1":
-                profileType.setText(getString(R.string.student));
+                type_sb.append(getString(R.string.student));
+                profileType.setText(type_sb);
                 break;
         }
 
-        profileDate.setText(date);
+        StringBuilder date_sb = new StringBuilder(getString(R.string.creation_date));
+        date_sb.append(date);
+        profileDate.setText(date_sb);
 
     }
 

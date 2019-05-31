@@ -48,7 +48,7 @@ public class ProfileViewActivity extends AppCompatActivity {
         profileDate = findViewById(R.id.profileDate);
 
         //set values to show the profile picture and the TextViews
-        Picasso.with(ProfileViewActivity.this).load(imageURL).placeholder(R.drawable.man).error(R.drawable.man).noFade().into(profilePicture);
+        Picasso.with(ProfileViewActivity.this).load(imageURL).placeholder(R.drawable.user).error(R.drawable.user).noFade().into(profilePicture);
         profileName.setText(name);
 
         StringBuilder ID_sb = new StringBuilder(getString(R.string.idHash));

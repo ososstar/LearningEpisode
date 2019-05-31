@@ -131,7 +131,7 @@ public class AccountModifyActivity extends AppCompatActivity {
         eAccountUsernameET.setText(eAccountUsername);
         eAccountEmailET.setText(eAccountEmail);
         eAccountNameET.setText(eAccountName);
-        eAccountImageET.setText(eAccountImage);
+        if (!eAccountImage.equals("null")) eAccountImageET.setText(eAccountImage);
 
         eAccountUsernameET.addTextChangedListener(new TextWatcher() {
             @Override
