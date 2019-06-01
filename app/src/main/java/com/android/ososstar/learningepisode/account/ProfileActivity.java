@@ -14,6 +14,10 @@ import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -30,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        setTitle(R.string.profile);
 
         //getting user values
         User user = SharedPrefManager.getInstance(this).getUser();
@@ -88,9 +93,40 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
         }
 
-        StringBuilder date_sb = new StringBuilder(getString(R.string.creation_date));
-        date_sb.append(date);
-        profileDate.setText(date_sb);
+//        StringBuilder date_sb = new StringBuilder(getString(R.string.creation_date));
+//        date_sb.append(date);
+//        profileDate.setText(date_sb);
+
+        StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("يوم " + "EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            profileDate.setText(creationDateSB);
+        } else {
+            Locale localeAR = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            profileDate.setText(creationDateSB);
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package com.android.ososstar.learningepisode;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +18,6 @@ import com.android.ososstar.learningepisode.course.CourseListActivity;
 import com.android.ososstar.learningepisode.feedback.FeedbackListActivity;
 
 import java.util.ArrayList;
-
 
 public class HomeAdminActivity extends AppCompatActivity implements OptionAdapter.OnItemClickListener {
 
@@ -42,7 +42,12 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         StringBuilder greetingSB = new StringBuilder(getString(R.string.welcome));
         greetingSB.append(user.getName());
 
+//        Typeface myfont = Typeface.createFromAsset(this.getAssets(), "fonts/segoeui.ttf");
+
+
         TextView homeUser = findViewById(R.id.home_user);
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/segoeui.ttf");
+        homeUser.setTypeface(type);
         homeUser.setText(greetingSB);
 
 

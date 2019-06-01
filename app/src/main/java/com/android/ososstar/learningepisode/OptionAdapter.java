@@ -1,6 +1,7 @@
 package com.android.ososstar.learningepisode;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -67,6 +68,8 @@ public class OptionAdapter extends RecyclerView.Adapter<com.android.ososstar.lea
 
             optionTitle = itemView.findViewById(R.id.option_title);
             optionImage = itemView.findViewById(R.id.option_image);
+            Typeface type = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/segoeui.ttf");
+            optionTitle.setTypeface(type);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

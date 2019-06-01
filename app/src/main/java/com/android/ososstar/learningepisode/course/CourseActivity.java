@@ -1,6 +1,7 @@
 package com.android.ososstar.learningepisode.course;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -90,8 +91,11 @@ public class CourseActivity extends AppCompatActivity {
 
         id = intent.getStringExtra(EXTRA_ID);
 
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/segoeui.ttf");
+
         name = intent.getStringExtra(EXTRA_NAME);
         course_name_tv.setText(name);
+        course_name_tv.setTypeface(type);
 
         description = intent.getStringExtra(EXTRA_DESCRIPTION);
         course_description.setText(description);
@@ -100,6 +104,7 @@ public class CourseActivity extends AppCompatActivity {
         StringBuilder totalEnrollsSB = new StringBuilder(getString(R.string.total_enrolls_hash));
         totalEnrollsSB.append(enrolls);
         course_enrolls_tv.setText(totalEnrollsSB);
+        course_enrolls_tv.setTypeface(type);
 
         creation_date = intent.getStringExtra(EXTRA_DATE);
 
@@ -133,7 +138,7 @@ public class CourseActivity extends AppCompatActivity {
             creationDateSB.append(format);
             course_date_tv.setText(creationDateSB);
         }
-
+        course_date_tv.setTypeface(type);
 
         setTitle(name);
 

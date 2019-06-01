@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/editProfile"
-        android:icon="@drawable/profileedit"
+        android:icon="@drawable/edit_1"
         android:title="@string/edit"
         app:showAsAction="ifRoom" />
-
 </menu>

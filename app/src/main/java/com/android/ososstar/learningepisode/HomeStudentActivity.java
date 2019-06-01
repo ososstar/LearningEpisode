@@ -2,6 +2,7 @@ package com.android.ososstar.learningepisode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -93,6 +94,8 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
         greetingSB.append(user.getName());
 
         TextView homeUser = findViewById(R.id.home_user);
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/segoeui.ttf");
+        homeUser.setTypeface(type);
         homeUser.setText(greetingSB);
 
         // Create a list of user Options

@@ -60,7 +60,7 @@
                 app:layout_constraintStart_toEndOf="@id/course_enroll_b"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias=".02"
-                app:layout_constraintWidth_percent=".6" />
+                app:layout_constraintWidth_percent=".65" />
 
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/course_enrolls_tv"

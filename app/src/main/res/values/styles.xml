@@ -7,6 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/textPrimary</item>
+
+        <item name="android:textViewStyle">@style/SegoeUiTextViewStyle</item>
+        <item name="android:buttonStyle">@style/SegoeUiButtonStyle</item>
     </style>
 
     <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -25,6 +28,15 @@
         <item name="colorControlNormal">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>
+    </style>
+
+
+    <style name="SegoeUiTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/segoeui</item>
+    </style>
+
+    <style name="SegoeUiButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/segoeui</item>
     </style>
 
 </resources>
