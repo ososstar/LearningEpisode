@@ -56,7 +56,7 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".5" />
+            app:layout_constraintWidth_percent=".6" />
 
         <FrameLayout
             android:id="@+id/playerLayout"

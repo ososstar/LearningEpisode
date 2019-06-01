@@ -29,9 +29,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -71,7 +74,41 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 
         holder.lessonID.setText(mContext.getString(R.string.idHash) + currentLesson.getID());
         holder.lessonTitle.setText(currentLesson.getTitle());
-        holder.lessonCreationDate.setText(mContext.getString(R.string.created_on) + currentLesson.getCreationDate());
+//        holder.lessonCreationDate.setText(mContext.getString(R.string.created_on) + currentLesson.getCreationDate());
+
+        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.created_on));
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(currentLesson.getCreationDate());
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            holder.lessonCreationDate.setText(creationDateSB);
+        } else {
+            Locale localeAR = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(currentLesson.getCreationDate());
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            holder.lessonCreationDate.setText(creationDateSB);
+        }
+
+
+
         holder.lesson_ID = currentLesson.getID();
         holder.course_ID = currentLesson.getCourseID();
 

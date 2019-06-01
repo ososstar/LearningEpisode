@@ -65,7 +65,7 @@ public class FeedbackModifyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_editor_feedback);
 
         TextView modifyTitle_tv = findViewById(R.id.editor_feedback_title);
-        modifyTitle_tv.setText("Modify Feedback");
+        modifyTitle_tv.setText(getString(R.string.modify_feedback));
 
         //get received values from bundle
         Bundle modifyBundle = getIntent().getExtras();
@@ -264,8 +264,8 @@ public class FeedbackModifyActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> pars = new HashMap<>();
-                if (admin_ID != null) pars.put("admin_ID", String.valueOf(admin_ID));
-                if (student_ID != null) pars.put("student_ID", String.valueOf(student_ID));
+                if (admin_ID != null) pars.put("admin_ID", admin_ID);
+                if (student_ID != null) pars.put("student_ID", student_ID);
                 pars.put("feedback_ID", feedback_ID);
                 pars.put("f_type", feedback_typeChoice);
                 pars.put("f_student_comment", stuComment);

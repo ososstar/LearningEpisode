@@ -50,6 +50,9 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DATE;
@@ -129,7 +132,38 @@ public class LessonActivity extends AppCompatActivity {
         }
 
         TextView lessonDateTv = findViewById(R.id.lesson_date_tv);
-        lessonDateTv.setText(getString(R.string.creation_date) + creation_date);
+//        lessonDateTv.setText(getString(R.string.creation_date) + creation_date);
+
+        StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(creation_date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("يوم " + "EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            lessonDateTv.setText(creationDateSB);
+        } else {
+            Locale localeAR = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(creation_date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            lessonDateTv.setText(creationDateSB);
+        }
 
         //define youtubePlayerFragment
         youTubePlayerFragment = (YouTubePlayerSupportFragment) getSupportFragmentManager()

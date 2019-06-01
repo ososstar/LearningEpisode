@@ -8,12 +8,12 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/vine"
+        android:icon="@mipmap/expand"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/vine"
+        android:roundIcon="@mipmap/expand_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feedback.FeedbackModifyActivity"></activity>
+        <activity android:name=".feedback.FeedbackModifyActivity" />
         <activity android:name=".feedback.FeedbackInsertActivity" />
         <activity android:name=".feedback.FeedbackActivity" />
         <activity android:name=".feedback.FeedbackListActivity" />

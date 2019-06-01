@@ -30,9 +30,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHolder> {
@@ -83,9 +86,42 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
                     break;
             }
 
-            StringBuilder dateHash = new StringBuilder(mContext.getString(R.string.dateHash));
-            dateHash.append(currentFeedback.getDate());
-            holder.feedbackDate.setText(dateHash);
+//            StringBuilder dateHash = new StringBuilder(mContext.getString(R.string.dateHash));
+//            dateHash.append(currentFeedback.getDate());
+//            holder.feedbackDate.setText(dateHash);
+
+            StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.created_on));
+            if (Locale.getDefault().getLanguage().equals("ar")) {
+                Locale localeAR = new Locale("ar");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+                Date date3 = null;
+                try {
+                    date3 = sdf.parse(currentFeedback.getDate());
+                } catch (Exception e) {
+
+                }
+                sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+                String format = sdf.format(date3);
+                Log.wtf("result", format);
+                creationDateSB.append(format);
+                holder.feedbackDate.setText(creationDateSB);
+            } else {
+                Locale localeAR = new Locale("en");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+                Date date3 = null;
+                try {
+                    date3 = sdf.parse(currentFeedback.getDate());
+                } catch (Exception e) {
+
+                }
+                sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+                String format = sdf.format(date3);
+                Log.wtf("result", format);
+                creationDateSB.append(format);
+                holder.feedbackDate.setText(creationDateSB);
+            }
+
+
 
             holder.feedbackStudentComment.setText(currentFeedback.getStudentComment());
 

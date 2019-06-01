@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,9 +30,12 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -86,7 +90,39 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             holder.courseDescription.setText(R.string.no_description);
         }
         holder.courseEnrolls.setText(new StringBuffer().append(holder.itemView.getContext().getString(R.string.total_enrolls_hash)).append(currentCourse.getCourseEnrolls()));
-        holder.courseDate.setText(new StringBuffer(holder.itemView.getContext().getString(R.string.creation_date)).append(currentCourse.getCourseCreationDate()));
+
+        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.created_on));
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(currentCourse.getCourseCreationDate());
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("يوم " + "EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            holder.courseDate.setText(creationDateSB);
+        } else {
+            Locale localeAR = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(currentCourse.getCourseCreationDate());
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            holder.courseDate.setText(creationDateSB);
+        }
+
+
 
         holder.course_ID = currentCourse.getCourseID();
 

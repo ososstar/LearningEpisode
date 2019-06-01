@@ -67,8 +67,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/total_enrolls_hash"
+                android:layout_marginTop="@dimen/vertical_space"
+                android:maxLines="1"
                 app:layout_constraintHorizontal_bias=".05"
-                app:layout_constraintWidth_percent=".4"
+                app:layout_constraintWidth_percent=".3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/course_name_tv" />
@@ -79,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/created_on"
                 android:maxLines="1"
+                android:layout_marginTop="@dimen/vertical_space"
                 app:layout_constraintHorizontal_bias=".85"
                 app:layout_constraintWidth_percent=".5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +106,7 @@
             <Button
                 android:id="@+id/course_enroll_b"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:text="@string/enroll"
                 app:layout_constraintBottom_toBottomOf="@id/course_name_tv"
                 app:layout_constraintHeight_min="35dp"

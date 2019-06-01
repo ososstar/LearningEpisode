@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,7 +28,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DATE;
@@ -98,9 +102,38 @@ public class CourseActivity extends AppCompatActivity {
         course_enrolls_tv.setText(totalEnrollsSB);
 
         creation_date = intent.getStringExtra(EXTRA_DATE);
+
         StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
-        creationDateSB.append(creation_date);
-        course_date_tv.setText(creationDateSB);
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(creation_date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            course_date_tv.setText(creationDateSB);
+        } else {
+            Locale localeAR = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(creation_date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            course_date_tv.setText(creationDateSB);
+        }
+
 
         setTitle(name);
 

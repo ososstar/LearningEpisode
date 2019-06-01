@@ -3,6 +3,7 @@ package com.android.ososstar.learningepisode.feedback;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +22,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_ADMIN_REPLY;
@@ -64,13 +68,45 @@ public class FeedbackActivity extends AppCompatActivity {
         feedbackAdminComment = findViewById(R.id.feedback_admComment);
 
         //defining TextViews of Feedback Activity
-        StringBuilder idBuilder = new StringBuilder("ID #");
+        StringBuilder idBuilder = new StringBuilder(getString(R.string.idHash));
         idBuilder.append(id);
         feedbackIDTV.setText(idBuilder);
 
-        StringBuilder dateBuilder = new StringBuilder("Created On #");
-        dateBuilder.append(date);
-        feedbackDateTV.setText(dateBuilder);
+//        StringBuilder dateBuilder = new StringBuilder(getString(R.string.created_on));
+//        dateBuilder.append(date);
+//        feedbackDateTV.setText(dateBuilder);
+
+        StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            feedbackDateTV.setText(creationDateSB);
+        } else {
+            Locale localeAR = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(date);
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            feedbackDateTV.setText(creationDateSB);
+        }
+
 
         StringBuilder typeBuilder = new StringBuilder("#");
 
@@ -90,9 +126,12 @@ public class FeedbackActivity extends AppCompatActivity {
 
         feedbackStudentCommentTV.setText(student_comment);
 
+        Log.d("fares", "onCreate: " + admin_comment);
         //determines of admin added reply or not
-        if (!admin_comment.matches("null")) {
+        if (!TextUtils.isEmpty(admin_comment)) {
             feedbackAdminComment.setText(admin_comment);
+            feedbackAdminCommentTitle.setVisibility(View.VISIBLE);
+            feedbackAdminComment.setVisibility(View.VISIBLE);
         } else {
             feedbackAdminCommentTitle.setVisibility(View.GONE);
             feedbackAdminComment.setVisibility(View.GONE);
@@ -130,7 +169,7 @@ public class FeedbackActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                StringBuilder nameBuilder = new StringBuilder("Feedback By #");
+                StringBuilder nameBuilder = new StringBuilder(getString(R.string.feedback_by));
                 nameBuilder.append(student_name);
                 feedbackStudentName.setText(nameBuilder);
             }

@@ -71,11 +71,21 @@
     <string name="account_type">نوع الحساب</string>
     <string name="insert_new_user">إضافة حساب جديد</string>
     <string name="password_optional">كلمة المرور (اختياري)</string>
-    <string name="total_enrolls_hash">مجموع التسجيلات #</string>
+    <string name="total_enrolls_hash">التسجيلات #</string>
     <string name="view_lessons">شاهد قائمة الدروس</string>
     <string name="feedback">التعليقات</string>
     <string name="profile">الملف الشخصي</string>
     <string name="courses">الدورات</string>
     <string name="accounts">الحسابات</string>
     <string name="homepage">الصفحة الرئيسية</string>
+    <string name="feedback_type">نوع التعليق</string>
+    <string name="student_comment">التعليق</string>
+    <string name="admin_reply">تعليق المسئول</string>
+    <string name="feedback_by">التعليق بواسطة #</string>
+    <string name="add_a_comment">اضف تعليق</string>
+    <string name="attach_an_image_url">ارفق رابط صورة</string>
+    <string name="attach_an_image_url_optional">ارفق رابط صورة (اختياري)</string>
+    <string name="insert_new_feedback">اضف تعليق جديد</string>
+    <string name="student_feedback">التعليق</string>
+    <string name="modify_feedback">عدل التعليق</string>
 </resources>

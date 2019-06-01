@@ -213,7 +213,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
                         mLessonAdapter.setOnItemClickListener(LessonListActivity.this);
 
                     } else {
-                        // Set empty state text to display "No earthquakes found."
+                        mEmptyStateTextView.setVisibility(View.VISIBLE);
                         mEmptyStateTextView.setText(baseJSONObject.getString("message"));
                     }
 
