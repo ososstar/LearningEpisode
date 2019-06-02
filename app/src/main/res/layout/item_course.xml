@@ -8,48 +8,53 @@
     app:cardCornerRadius="8dp">
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="16dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/course_item_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/icon_android"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#C7C6C6"/>
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/course_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Course Name"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/course_item_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/icon_android"
+                    app:civ_border_color="#C7C6C6"
+                    app:civ_border_width="2dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp">
+                    android:paddingStart="@dimen/horizontal_space"
+                    android:paddingEnd="@dimen/horizontal_space">
 
-                    <me.grantland.widget.AutofitTextView
-                            android:id="@+id/course_item_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                        android:maxLines="1"
-                            android:text="Course Name"
-                            android:textSize="22sp"/>
+                    <TextView
+                        android:id="@+id/course_item_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/course_description"
+                        android:textSize="@dimen/NormalSize" />
 
-                        <TextView
-                            android:id="@+id/course_item_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Course Description"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:id="@+id/course_item_enrolls"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Course Enrolls"
-                            android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/course_item_enrolls"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/course_enrolls"
+                        android:textSize="12sp" />
 
                     <me.grantland.widget.AutofitLayout
                         android:layout_width="match_parent"
@@ -67,6 +72,7 @@
 
                     </me.grantland.widget.AutofitLayout>
                 </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

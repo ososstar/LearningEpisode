@@ -4,12 +4,11 @@
     <string name="Error_no_data_received">خطأ: لا يوجد بيانات مستلمة</string>
     <string name="admin">مسئول</string>
     <string name="course_desc_optional">وصف الدورة (اختياري)</string>
-    <string name="course_description">وصف الدورة</string>
     <string name="course_list">قائمة الدورات</string>
     <string name="course_name">اسم الدورة</string>
     <string name="create_an_account">سجل حساب جديد</string>
     <string name="created_on">أنشئ في #</string>
-    <string name="creation_date">أنشئ في #</string>
+    <string name="creation_date">تاريخ الإنشاء #</string>
     <string name="current_enrollments">الدورات المسجلة</string>
     <string name="dateHash">أنشئ في #</string>
     <string name="don_t_have_an_account">ليس لديك حساب؟ سجل حساب</string>
@@ -88,4 +87,9 @@
     <string name="insert_new_feedback">اضف تعليق جديد</string>
     <string name="student_feedback">التعليق</string>
     <string name="modify_feedback">عدل التعليق</string>
+    <string name="course_enrolls">تسجيلات الدرس</string>
+    <string name="course_description">وصف الكورس</string>
+    <string name="choice_one">الخيار الأول</string>
+    <string name="choice_three">الخيار الثاني</string>
+    <string name="choice_two">الخيار الثالث</string>
 </resources>

@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/blurred_background_10__max_width_1024_max_height_768_"
+        android:src="@drawable/blurred_background"
         app:layout_constraintBottom_toBottomOf="@id/profileName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

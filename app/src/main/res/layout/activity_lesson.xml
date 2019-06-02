@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:fillViewport="false"
     android:orientation="vertical"
     android:padding="10dp"
@@ -18,7 +18,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="@dimen/horizontal_space"
         tools:context=".lesson.LessonActivity">
 
@@ -45,7 +44,9 @@
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".45" />
+            app:layout_constraintBottom_toBottomOf="@id/playerLayout"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".4" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/lesson_date_tv"
@@ -56,25 +57,26 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/playerLayout"
+            app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".6" />
 
         <FrameLayout
             android:id="@+id/playerLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/lesson_description_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent=".5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lesson_id_tv"
-            app:layout_constraintVertical_bias=".02">
+            app:layout_constraintHeight_percent=".6">
 
             <fragment
                 android:id="@+id/youtubeFragment"
                 android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="240dp"
                 android:background="#A6000000"
                 android:visibility="gone"
                 app:controller_layout_id="@layout/exo_playback_control_view"
@@ -87,48 +89,47 @@
             <com.google.android.exoplayer2.ui.SimpleExoPlayerView
                 android:id="@+id/exoPlayer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="240dp"
                 android:gravity="center" />
-
         </FrameLayout>
 
         <TextView
             android:id="@+id/lesson_description_tv"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/vertical_space"
             android:layout_marginBottom="@dimen/vertical_space"
             android:background="@color/white"
             android:padding="20dp"
             android:text="@string/lesson_description"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/playerLayout"
-            app:layout_constraintVertical_bias=".02"
-            app:layout_constraintWidth_percent="1" />
+            app:layout_constraintVertical_bias=".02" />
 
-        <Button
-            android:id="@+id/lesson_download_b"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/download_lesson"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lesson_description_tv" />
+            app:layout_constraintTop_toBottomOf="@id/lesson_description_tv">
 
-        <Button
-            android:id="@+id/lesson_questions_b"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/lesson_questions"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lesson_download_b"
-            app:layout_constraintVertical_bias=".005" />
+            <Button
+                android:id="@+id/lesson_download_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/half_horizontal_space"
+                android:text="@string/download_lesson" />
+
+            <Button
+                android:id="@+id/lesson_questions_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lesson_questions" />
+        </LinearLayout>
+
 
     </android.support.constraint.ConstraintLayout>
 

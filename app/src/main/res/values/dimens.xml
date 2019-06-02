@@ -6,4 +6,5 @@
     <dimen name="mainpadding">16dp</dimen>
     <dimen name="half_horizontal_space">7dp</dimen>
     <dimen name="mainTitle">32sp</dimen>
+    <dimen name="NormalSize">12sp</dimen>
 </resources>

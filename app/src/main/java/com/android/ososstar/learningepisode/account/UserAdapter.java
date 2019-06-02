@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,9 +30,12 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
@@ -82,10 +86,42 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 break;
         }
 
-        holder.dateSB = new StringBuilder(mContext.getString(R.string.created_on));
-        holder.dateSB.append(currentUser.getDate());
+//        holder.dateSB = new StringBuilder(mContext.getString(R.string.creation_date));
+//        holder.dateSB.append(currentUser.getDate());
+//        holder.user_creation_date.setText(holder.dateSB);
 
-        holder.user_creation_date.setText(holder.dateSB);
+        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.creation_date));
+        if (Locale.getDefault().getLanguage().equals("ar")) {
+            Locale localeAR = new Locale("ar");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(currentUser.getDate());
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            holder.user_creation_date.setText(creationDateSB);
+        } else {
+            Locale locale = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Date date3 = null;
+            try {
+                date3 = sdf.parse(currentUser.getDate());
+            } catch (Exception e) {
+
+            }
+            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", locale);
+            String format = sdf.format(date3);
+            Log.wtf("result", format);
+            creationDateSB.append(format);
+            holder.user_creation_date.setText(creationDateSB);
+        }
+
+
         holder.student_ID = String.valueOf(currentUser.getID());
 
         String userImg = currentUser.getImageURL();

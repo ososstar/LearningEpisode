@@ -97,7 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
 //        date_sb.append(date);
 //        profileDate.setText(date_sb);
 
-        StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
+        StringBuilder creationDateSB = new StringBuilder(getString(R.string.creation_date));
         if (Locale.getDefault().getLanguage().equals("ar")) {
             Locale localeAR = new Locale("ar");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
@@ -107,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("يوم " + "EEEE, d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
             String format = sdf.format(date3);
             Log.wtf("result", format);
             creationDateSB.append(format);

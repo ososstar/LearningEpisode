@@ -22,6 +22,12 @@
 
 
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="green">#00ff00</color>
-    <color name="question_title">#303030</color>
+    <color name="orgwan">#631338</color>
+    <color name="white_shift">#daeaf2</color>
+    <color name="shade_of_gray">#4b5b64</color>
+
+    <color name="correct_spirit_3">#cee276</color>
+    <color name="correct_spirit_d">#b8d437</color>
 </resources>

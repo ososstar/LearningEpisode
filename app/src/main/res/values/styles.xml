@@ -37,6 +37,7 @@
 
     <style name="SegoeUiButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/segoeui</item>
+        <item name="android:background">@color/colorPrimaryLight</item>
     </style>
 
 </resources>

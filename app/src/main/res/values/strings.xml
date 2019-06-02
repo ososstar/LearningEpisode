@@ -25,7 +25,7 @@
     <string name="lessons_list">Lessons List</string>
     <string name="lesson_title">Lesson Title</string>
     <string name="id">ID</string>
-    <string name="creation_date">Created On #</string>
+    <string name="creation_date">Creation Date #</string>
     <string name="lesson_description">Lesson Description</string>
     <string name="download_lesson">Download Lesson</string>
     <string name="lesson_questions">Lesson Questions</string>
@@ -36,7 +36,6 @@
     <string name="image_url_optional">Image Url (Optional)</string>
     <string name="insert">Insert</string>
     <string name="course_desc_optional">Course Desc. (optional)</string>
-    <string name="course_description">Course Description</string>
     <string name="lesson_desc_optional">Lesson Desc. (Optional)</string>
     <string name="download_link">Download Link</string>
     <string name="download_url_optional">Download URL (optional)</string>
@@ -67,7 +66,6 @@
     <string name="choiceThree">Choice Three</string>
     <string name="modify_the_question">Modify The Question</string>
     <string name="specify_the_answer">Please specify the question answer</string>
-    <string name="question_title">Question Title</string>
     <string name="insert_new_user">Insert New User</string>
     <string name="account_type">Account Type</string>
     <string name="password_optional">Password (Optional)</string>
@@ -79,7 +77,7 @@
     <string name="profile">Profile</string>
     <string name="homepage">Home Page</string>
     <string name="feedback_type">Feedback Type</string>
-    <string name="student_comment">Student Comment</string>
+    <string name="student_comment">Comment</string>
     <string name="admin_reply">Admin Reply</string>
     <string name="feedback_by">Feedback By #</string>
     <string name="insert_new_feedback">Insert new Feedback</string>
@@ -88,4 +86,10 @@
     <string name="attach_an_image_url">Attach an Image URL</string>
     <string name="attach_an_image_url_optional">Attach an Image URL (optional)</string>
     <string name="modify_feedback">Modify Feedback</string>
+    <string name="course_enrolls">Course Enrolls</string>
+    <string name="course_description">Course Description</string>
+    <string name="choice_one">Choice One</string>
+    <string name="choice_two">Choice Two</string>
+    <string name="choice_three">Choice Three</string>
+    <string name="question_title">Question Title</string>
 </resources>

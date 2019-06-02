@@ -244,7 +244,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         case R.id.q_choice1:
                             if (RQuestionChoice1.getText().toString().equals(question_Answer)) {
                                 Log.d("QuestionAdapter", "onCheckedChanged: " + "right");
-                                RQuestionChoice1.setBackgroundColor(0xFF00FF00);
+//                                RQuestionChoice1.setBackgroundColor(0xFF00FF00);
+                                RQuestionChoice1.setBackgroundResource(R.drawable.question_right_answer_style);
                                 rightAnswer();
 
                             }
@@ -252,14 +253,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                         case R.id.q_choice2:
                             if (RQuestionChoice2.getText().toString().equals(question_Answer)) {
                                 Log.d("QuestionAdapter", "onCheckedChanged: " + "right");
-                                RQuestionChoice2.setBackgroundColor(0xFF00FF00);
+//                                RQuestionChoice2.setBackgroundColor(0xFF00FF00);
+                                RQuestionChoice2.setBackgroundResource(R.drawable.question_right_answer_style);
                                 rightAnswer();
                             }
                             break;
                         case R.id.q_choice3:
                             if (RQuestionChoice3.getText().toString().equals(question_Answer)) {
                                 Log.d("QuestionAdapter", "onCheckedChanged: " + "right");
-                                RQuestionChoice3.setBackgroundColor(0xFF00FF00);
+//                                RQuestionChoice3.setBackgroundColor(0xFF00FF00);
+                                RQuestionChoice3.setBackgroundResource(R.drawable.question_right_answer_style);
                                 rightAnswer();
                             }
                             break;
