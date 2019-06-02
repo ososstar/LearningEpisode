@@ -7,4 +7,5 @@
     <dimen name="half_horizontal_space">7dp</dimen>
     <dimen name="mainTitle">32sp</dimen>
     <dimen name="NormalSize">12sp</dimen>
+    <dimen name="mainName">26sp</dimen>
 </resources>

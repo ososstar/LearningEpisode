@@ -93,7 +93,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.creation_date));
         if (Locale.getDefault().getLanguage().equals("ar")) {
             Locale localeAR = new Locale("ar");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(currentUser.getDate());
@@ -107,7 +107,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.user_creation_date.setText(creationDateSB);
         } else {
             Locale locale = new Locale("en");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(currentUser.getDate());

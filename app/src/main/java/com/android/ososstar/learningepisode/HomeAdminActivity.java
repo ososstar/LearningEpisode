@@ -3,6 +3,7 @@ package com.android.ososstar.learningepisode;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +26,13 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_admin);
-        setTitle(getString(R.string.homepage));
+//        setTitle(getString(R.string.homepage));
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.homepage);
+        actionBar.setIcon(R.mipmap.expand_circle);
+        actionBar.setDisplayShowHomeEnabled(true);
+
 
         //if the user is not logged in
         //starting the login activity
@@ -54,7 +61,7 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         // Create a list of user Options
         final ArrayList<Option> options = new ArrayList<>();
         options.add(new Option(getString(R.string.courses), R.drawable.books));
-        options.add(new Option(getString(R.string.accounts), R.drawable.userlist));
+        options.add(new Option(getString(R.string.accounts), R.drawable.accounts));
         options.add(new Option(getString(R.string.feedback), R.drawable.feedback));
 
         // Create an {@link OptionAdapter}, whose data source is a list of {@link Option}s. The
@@ -68,6 +75,10 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         // {@link GridView} will display list items for each {@link Option} in the list.
         home_rv_options.setAdapter(adapter);
         adapter.setOnItemClickListener(HomeAdminActivity.this);
+
+//        Picasso.with(HomeAdminActivity.this).load(SharedPrefManager.getInstance(this).getUser().getImageURL())
+//                .placeholder(R.drawable.user).error(R.drawable.user).noFade()
+//                .into(actionProfile);
 
     }
 
@@ -88,7 +99,6 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu_add options from the res/menu_add/menu_home.xmll file.
@@ -96,6 +106,12 @@ public class HomeAdminActivity extends AppCompatActivity implements OptionAdapte
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
+
+//    @Override
+//    public void onPrepareOptionsMenu(Menu menu) {
+//        super.onPrepareOptionsMenu(menu);
+//        MenuItem menuItem = menu.findItem(R.id.action_profile); // You can change the state of the menu item here if you call getActivity().supportInvalidateOptionsMenu(); somewhere in your code
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

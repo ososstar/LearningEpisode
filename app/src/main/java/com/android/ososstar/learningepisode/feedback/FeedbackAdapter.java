@@ -93,28 +93,28 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
             StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.created_on));
             if (Locale.getDefault().getLanguage().equals("ar")) {
                 Locale localeAR = new Locale("ar");
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+                SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
                 Date date3 = null;
                 try {
                     date3 = sdf.parse(currentFeedback.getDate());
                 } catch (Exception e) {
 
                 }
-                sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+                sdf = new SimpleDateFormat(mContext.getString(R.string.daydatetime), localeAR);
                 String format = sdf.format(date3);
                 Log.wtf("result", format);
                 creationDateSB.append(format);
                 holder.feedbackDate.setText(creationDateSB);
             } else {
-                Locale localeAR = new Locale("en");
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+                Locale locale = new Locale("en");
+                SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
                 Date date3 = null;
                 try {
                     date3 = sdf.parse(currentFeedback.getDate());
                 } catch (Exception e) {
 
                 }
-                sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+                sdf = new SimpleDateFormat(mContext.getString(R.string.daydatetime), locale);
                 String format = sdf.format(date3);
                 Log.wtf("result", format);
                 creationDateSB.append(format);

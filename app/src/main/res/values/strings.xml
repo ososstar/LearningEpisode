@@ -75,7 +75,7 @@
     <string name="accounts">Accounts</string>
     <string name="feedback">Feedback</string>
     <string name="profile">Profile</string>
-    <string name="homepage">Home Page</string>
+    <string name="homepage" translatable="false">&#160; &#160;LearningEpisode &#160; &#160;</string>
     <string name="feedback_type">Feedback Type</string>
     <string name="student_comment">Comment</string>
     <string name="admin_reply">Admin Reply</string>
@@ -92,4 +92,8 @@
     <string name="choice_two">Choice Two</string>
     <string name="choice_three">Choice Three</string>
     <string name="question_title">Question Title</string>
+    <string name="time_pattern" translatable="false">yyyy-MM-d hh:mm:ss</string>
+    <string name="date" translatable="false">d MMMM yyyy</string>
+    <string name="daydate" translatable="false">EEEE, d MMMM yyyy</string>
+    <string name="daydatetime" translatable="false">EEEE, d MMMM yyyy, h:mm a</string>
 </resources>

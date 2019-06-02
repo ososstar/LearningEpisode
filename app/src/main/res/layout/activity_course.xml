@@ -57,7 +57,7 @@
                 app:layout_constraintHorizontal_bias=".5"
                 app:layout_constraintStart_toEndOf="@id/course_enroll_b"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".65" />
+                app:layout_constraintWidth_percent="1" />
 
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/course_enrolls_tv"
@@ -102,13 +102,16 @@
 
             <Button
                 android:id="@+id/course_enroll_b"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:text="@string/enroll"
+                android:layout_marginEnd="@dimen/horizontal_space"
+                android:layout_marginRight="@dimen/horizontal_space"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@id/course_name_tv"
                 app:layout_constraintHeight_min="35dp"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/course_name_tv"
                 app:layout_constraintStart_toStartOf="@id/course_lessons_b"
                 app:layout_constraintTop_toTopOf="@id/course_name_tv" />
 

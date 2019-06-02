@@ -91,31 +91,31 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         }
         holder.courseEnrolls.setText(new StringBuffer().append(holder.itemView.getContext().getString(R.string.total_enrolls_hash)).append(currentCourse.getCourseEnrolls()));
 
-        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.created_on));
+        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.creation_date));
         if (Locale.getDefault().getLanguage().equals("ar")) {
             Locale localeAR = new Locale("ar");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(currentCourse.getCourseCreationDate());
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("يوم " + "EEEE, d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat(mContext.getString(R.string.date), localeAR);
             String format = sdf.format(date3);
             Log.wtf("result", format);
             creationDateSB.append(format);
             holder.courseDate.setText(creationDateSB);
         } else {
-            Locale localeAR = new Locale("en");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Locale locale = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(currentCourse.getCourseCreationDate());
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat(mContext.getString(R.string.date), locale);
             String format = sdf.format(date3);
             Log.wtf("result", format);
             creationDateSB.append(format);

@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -76,7 +77,12 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_student);
-        setTitle(getString(R.string.homepage));
+//        setTitle(getString(R.string.homepage));
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(R.string.homepage);
+        actionBar.setIcon(R.mipmap.expand_circle);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         //if the user is not logged in
         //starting the login activity

@@ -76,33 +76,33 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         holder.lessonTitle.setText(currentLesson.getTitle());
 //        holder.lessonCreationDate.setText(mContext.getString(R.string.created_on) + currentLesson.getCreationDate());
 
-        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.created_on));
+        StringBuilder creationDateSB = new StringBuilder(holder.itemView.getContext().getString(R.string.creation_date));
         if (Locale.getDefault().getLanguage().equals("ar")) {
             Locale localeAR = new Locale("ar");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(currentLesson.getCreationDate());
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat(mContext.getString(R.string.daydate), localeAR);
             String format = sdf.format(date3);
-            Log.wtf("result", format);
+//            Log.wtf("result", format);
             creationDateSB.append(format);
             holder.lessonCreationDate.setText(creationDateSB);
         } else {
-            Locale localeAR = new Locale("en");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            Locale locale = new Locale("en");
+            SimpleDateFormat sdf = new SimpleDateFormat(mContext.getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(currentLesson.getCreationDate());
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat(mContext.getString(R.string.daydate), locale);
             String format = sdf.format(date3);
-            Log.wtf("result", format);
+//            Log.wtf("result", format);
             creationDateSB.append(format);
             holder.lessonCreationDate.setText(creationDateSB);
         }

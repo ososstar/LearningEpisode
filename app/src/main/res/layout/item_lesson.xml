@@ -23,24 +23,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Lesson ID #"
-                android:gravity="center"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".6"/>
+                app:layout_constraintWidth_percent=".3" />
 
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/lesson_item_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="Created On"
+                android:text="@string/creation_date"
                 android:textSize="12sp"
                 android:typeface="monospace"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/lesson_item_ID"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".4"/>
+                app:layout_constraintWidth_percent=".7" />
         </android.support.constraint.ConstraintLayout>
 
         <me.grantland.widget.AutofitTextView
