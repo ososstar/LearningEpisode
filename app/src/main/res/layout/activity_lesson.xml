@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/playerLayout"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".4" />
+            app:layout_constraintWidth_percent=".3" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/lesson_date_tv"
@@ -59,7 +59,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/playerLayout"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".6" />
+            app:layout_constraintWidth_percent=".7" />
 
         <FrameLayout
             android:id="@+id/playerLayout"
