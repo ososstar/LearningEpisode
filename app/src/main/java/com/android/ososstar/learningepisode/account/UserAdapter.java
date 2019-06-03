@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -37,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+//import android.util.Log;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
@@ -102,7 +103,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }
             sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
             String format = sdf.format(date3);
-            Log.wtf("result", format);
+//            Log.wtf("result", format);
             creationDateSB.append(format);
             holder.user_creation_date.setText(creationDateSB);
         } else {
@@ -116,7 +117,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }
             sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", locale);
             String format = sdf.format(date3);
-            Log.wtf("result", format);
+//            Log.wtf("result", format);
             creationDateSB.append(format);
             holder.user_creation_date.setText(creationDateSB);
         }

@@ -8,6 +8,7 @@ public final class URLs {
 
     //localhost
     private static final String ROOT_URL = "http://192.168.137.1/learning_episode/";
+//    private static final String ROOT_URL = "https://learningepisode.000webhostapp.com/learning_episode/";
 
     private static final String ACCOUNT_API = ROOT_URL+"apiA.php?apicall=";
     public static final String URL_LOGIN = ACCOUNT_API + "login";

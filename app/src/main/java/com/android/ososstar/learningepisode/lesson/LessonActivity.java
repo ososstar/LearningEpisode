@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -61,6 +60,8 @@ import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXT
 import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_LINK;
 import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_TITLE;
 import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_VIDEO;
+
+//import android.util.Log;
 
 public class LessonActivity extends AppCompatActivity {
 
@@ -146,7 +147,7 @@ public class LessonActivity extends AppCompatActivity {
             }
             sdf = new SimpleDateFormat("يوم " + "EEEE, d MMMM yyyy", localeAR);
             String format = sdf.format(date3);
-            Log.wtf("result", format);
+//            Log.wtf("result", format);
             creationDateSB.append(format);
             lessonDateTv.setText(creationDateSB);
         } else {
@@ -160,7 +161,7 @@ public class LessonActivity extends AppCompatActivity {
             }
             sdf = new SimpleDateFormat("EEEE, d MMMM yyyy", localeAR);
             String format = sdf.format(date3);
-            Log.wtf("result", format);
+//            Log.wtf("result", format);
             creationDateSB.append(format);
             lessonDateTv.setText(creationDateSB);
         }
@@ -206,7 +207,7 @@ public class LessonActivity extends AppCompatActivity {
                     questionsIntent.putExtra(LESSON_ID, id);
                     startActivity(questionsIntent);
                 }catch (Exception e){
-                    Log.e("Lesson Activity ->", String.valueOf(e));
+//                    Log.e("Lesson Activity ->", String.valueOf(e));
                 }
 
             }
@@ -346,7 +347,7 @@ public class LessonActivity extends AppCompatActivity {
 
         videoURL = lessonBundle.getString(EXTRA_LESSON_VIDEO);
 
-        Log.d("LessonActivity", "onResume: " + videoURL);
+//        Log.d("LessonActivity", "onResume: " + videoURL);
 
 
         if (youtubePattern.matcher(videoURL).matches()) {
