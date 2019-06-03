@@ -116,7 +116,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public static final String EXTRA_QUESTION_CHOICE_3 = "q_choice3";
         public static final String EXTRA_QUESTION_ANSWER = "q_answer";
         private RadioButton RQuestionChoice1, RQuestionChoice2, RQuestionChoice3;
-        private String admin_ID, question_ID, question_Title, question_Choice1, question_Choice2, question_Choice3, question_Answer, student_ID;
+        private String admin_ID, question_ID, question_Title, question_Choice1, question_Choice2, question_Choice3, question_Answer, student_ID, answer_status;
         public ViewHolder(View itemView, final OnItemClickListener mListener) {
             super(itemView);
             //getting the current user type
@@ -153,7 +153,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 case R.id.option_2:
                     deleteQuestion();
                     return true;
-
             }
             return false;
         }
@@ -175,7 +174,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private void deleteQuestion() {
             mRequestQueue = Volley.newRequestQueue(mContext);
 
-            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_QUESTION_DATA, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_SHOW_STUDENT_ANSWER, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
@@ -231,7 +230,12 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             RQuestionChoice1.setText(question.getChoice1());
             RQuestionChoice2.setText(question.getChoice2());
             RQuestionChoice3.setText(question.getChoice3());
+            question_ID = question.getID();
             question_Answer = question.getAnswer();
+
+            if (user.getType() == 1) {
+                checkStudentAnswer();
+            }
 
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -274,6 +278,75 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         /** Handles playback of all the sound files */
         private MediaPlayer mMediaPlayer;
 
+        private void checkStudentAnswer() {
+
+            student_ID = String.valueOf(user.getID());
+
+            mRequestQueue = Volley.newRequestQueue(mContext);
+
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_SHOW_STUDENT_ANSWER, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject baseJSONObject = new JSONObject(response);
+                        Log.i("QuestionAdapter", "base" + baseJSONObject);
+                        if (!baseJSONObject.getBoolean("error")) {
+                            JSONObject questionData = baseJSONObject.getJSONObject("question");
+                            Log.i("QuestionAdapter", "base" + questionData);
+                            answer_status = questionData.getString("answer_status");
+                            Log.i("QuestionAdapter", "answer status" + answer_status);
+                        }
+
+                        if (answer_status.equals("1")) {
+                            if (question_Choice1.equals(question_Answer)) {
+                                RQuestionChoice1.setBackgroundResource(R.drawable.question_right_answer_style);
+                                RQuestionChoice1.setEnabled(false);
+                                RQuestionChoice2.setEnabled(false);
+                                RQuestionChoice3.setEnabled(false);
+
+                            }
+                            if (question_Choice2.equals(question_Answer)) {
+                                RQuestionChoice2.setBackgroundResource(R.drawable.question_right_answer_style);
+                                RQuestionChoice1.setEnabled(false);
+                                RQuestionChoice2.setEnabled(false);
+                                RQuestionChoice3.setEnabled(false);
+                            }
+                            if (question_Choice3.equals(question_Answer)) {
+                                RQuestionChoice3.setBackgroundResource(R.drawable.question_right_answer_style);
+                                RQuestionChoice1.setEnabled(false);
+                                RQuestionChoice2.setEnabled(false);
+                                RQuestionChoice3.setEnabled(false);
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> pars = new HashMap<>();
+                    pars.put("Content-Type", "application/x-www-form-urlencoded");
+                    return pars;
+                }
+
+                @Override
+                public Map<String, String> getParams() {
+                    Map<String, String> pars = new HashMap<>();
+                    pars.put("student_ID", student_ID);
+                    pars.put("question_ID", question_ID);
+                    return pars;
+                }
+            };
+            mRequestQueue.add(request);
+        }
+
         private void rightAnswer(){
             // Create and setup the {@link MediaPlayer} for the audio resource associated
             // with the correct answer
@@ -283,7 +356,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
             //getting the current user
             User user = SharedPrefManager.getInstance(mContext).getUser();
-
 
             if (user.getType() == 1) {
                 student_ID = String.valueOf(user.getID());
@@ -299,6 +371,26 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                        }
+
+                        if (question_Choice1.equals(question_Answer)) {
+                            RQuestionChoice1.setBackgroundResource(R.drawable.question_right_answer_style);
+                            RQuestionChoice1.setEnabled(false);
+                            RQuestionChoice2.setEnabled(false);
+                            RQuestionChoice3.setEnabled(false);
+
+                        }
+                        if (question_Choice2.equals(question_Answer)) {
+                            RQuestionChoice2.setBackgroundResource(R.drawable.question_right_answer_style);
+                            RQuestionChoice1.setEnabled(false);
+                            RQuestionChoice2.setEnabled(false);
+                            RQuestionChoice3.setEnabled(false);
+                        }
+                        if (question_Choice3.equals(question_Answer)) {
+                            RQuestionChoice3.setBackgroundResource(R.drawable.question_right_answer_style);
+                            RQuestionChoice1.setEnabled(false);
+                            RQuestionChoice2.setEnabled(false);
+                            RQuestionChoice3.setEnabled(false);
                         }
                     }
                 }, new Response.ErrorListener() {

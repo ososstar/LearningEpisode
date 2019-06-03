@@ -1,133 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".course.CourseInsertActivity">
-    <TextView
-        android:id="@+id/editor_course_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/insert_new_course"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".05"/>
+    android:layout_height="match_parent">
 
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/editor_course_name_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="@string/course_name"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_course_tv"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintWidth_percent=".3"/>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".course.CourseInsertActivity">
 
-    <EditText
-        android:id="@+id/editor_course_name_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/course_name"
-        android:inputType="textCapWords"
-        android:padding="10dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/editor_course_name_tv"
-        app:layout_constraintHorizontal_bias=".9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editor_course_name_tv"
-        app:layout_constraintTop_toTopOf="@id/editor_course_name_tv"
-        app:layout_constraintWidth_percent=".65"/>
+        <TextView
+            android:id="@+id/editor_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/insert_new_course"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".05" />
 
-    <TextView
-        android:id="@+id/editor_course_description_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/course_description"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_course_name_tv"
-        app:layout_constraintVertical_bias="0.05" />
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_course_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:maxLines="1"
+            android:text="@string/course_name"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_tv"
+            app:layout_constraintWidth_percent=".3" />
 
-    <EditText
-        android:id="@+id/editor_course_description_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/course_desc_optional"
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:minLines="5"
-        android:padding="10dp"
-        android:scrollbars="vertical"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_course_description_tv"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".9"/>
+        <EditText
+            android:id="@+id/editor_course_name_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/course_name"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_name_tv"
+            app:layout_constraintWidth_percent=".9" />
 
-    <TextView
-        android:id="@+id/editor_course_image_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/image_url"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_course_description_et"
-        app:layout_constraintVertical_bias="0.05"/>
+        <TextView
+            android:id="@+id/editor_course_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/course_description"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_name_et" />
 
-    <EditText
-        android:id="@+id/editor_course_image_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/image_url_optional"
-        android:inputType="textUri"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_course_image_tv"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".9"/>
+        <EditText
+            android:id="@+id/editor_course_description_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/course_desc_optional"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="5"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_description_tv"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".9" />
 
-    <Button
-        android:id="@+id/editor_course_insert_b"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/insert"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_course_image_et"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintWidth_percent=".7"/>
+        <TextView
+            android:id="@+id/editor_course_image_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/image_url"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_description_et" />
 
-    <!-- ProgressBar is visible when the list is Loading. -->
-    <ProgressBar
-        android:id="@+id/icourse_spinner"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/editor_course_image_et"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/editor_course_name_et" />
+        <EditText
+            android:id="@+id/editor_course_image_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/image_url_optional"
+            android:inputType="textUri"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_image_tv"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".9" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/editor_course_insert_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/insert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_course_image_et"
+            app:layout_constraintWidth_percent=".7" />
+
+        <!-- ProgressBar is visible when the list is Loading. -->
+        <ProgressBar
+            android:id="@+id/icourse_spinner"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/editor_course_image_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/editor_course_name_et" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

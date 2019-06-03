@@ -8,4 +8,5 @@
     <dimen name="mainTitle">32sp</dimen>
     <dimen name="NormalSize">12sp</dimen>
     <dimen name="mainName">26sp</dimen>
+    <dimen name="mainOption">20sp</dimen>
 </resources>

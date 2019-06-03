@@ -1,167 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/mainpadding"
-    tools:context=".lesson.LessonInsertActivity">
-    <TextView
-        android:id="@+id/editor_lesson_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/insert_new_lesson"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".05"/>
+    android:layout_height="match_parent">
 
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/editor_lesson_title_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/lesson_title"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_tv"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintWidth_percent=".3"/>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/mainpadding"
+        tools:context=".lesson.LessonInsertActivity">
 
-    <EditText
-        android:id="@+id/editor_lesson_title_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/lesson_title"
-        android:inputType="textCapWords"
-        android:padding="10dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/editor_lesson_title_tv"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editor_lesson_title_tv"
-        app:layout_constraintTop_toTopOf="@id/editor_lesson_title_tv"
-        app:layout_constraintVertical_bias=".5" />
+        <TextView
+            android:id="@+id/editor_lesson_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/insert_new_lesson"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".05" />
 
-    <TextView
-        android:id="@+id/editor_lesson_description_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/lesson_description"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_title_tv"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintWidth_percent=".5"/>
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_lesson_title_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/lesson_title"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_tv"
+            app:layout_constraintWidth_percent=".4" />
 
-    <EditText
-        android:id="@+id/editor_lesson_description_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/lesson_desc_optional"
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:minLines="5"
-        android:padding="10dp"
-        android:scrollbars="vertical"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_description_tv"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintWidth_percent=".9"/>
+        <EditText
+            android:id="@+id/editor_lesson_title_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/lesson_title"
+            android:inputType="textCapWords"
+            android:padding="10dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_title_tv"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".9" />
 
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/editor_lesson_link_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="@string/download_link"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_description_et"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintWidth_percent=".5"/>
+        <TextView
+            android:id="@+id/editor_lesson_description_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/lesson_description"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_title_et"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintWidth_percent=".5" />
 
-    <EditText
-        android:id="@+id/editor_lesson_link_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/download_url_optional"
-        android:inputType="textUri"
-        android:maxLines="1"
-        android:padding="10dp"
-        android:textSize="16sp"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_link_tv"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".9"/>
+        <EditText
+            android:id="@+id/editor_lesson_description_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/lesson_desc_optional"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="5"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_description_tv"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintWidth_percent=".9" />
 
-    <me.grantland.widget.AutofitTextView
-        android:id="@+id/editor_lesson_video_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="@string/video_url"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_link_et"
-        app:layout_constraintVertical_bias="0.045"
-        app:layout_constraintWidth_percent=".5" />
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_lesson_link_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:maxLines="1"
+            android:text="@string/download_link"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_description_et"
+            app:layout_constraintWidth_percent=".5" />
 
-    <EditText
-        android:id="@+id/editor_lesson_video_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_style"
-        android:hint="@string/video_url_optional"
-        android:inputType="textUri"
-        android:maxLines="1"
-        android:padding="10dp"
-        android:textSize="16sp"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_video_tv"
-        app:layout_constraintVertical_bias=".01"
-        app:layout_constraintWidth_percent=".9"/>
+        <EditText
+            android:id="@+id/editor_lesson_link_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/download_url_optional"
+            android:inputType="textUri"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_link_tv"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".9" />
 
-    <Button
-        android:id="@+id/editor_lesson_insert_b"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/insert"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editor_lesson_video_et"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintWidth_percent=".7"/>
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/editor_lesson_video_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:maxLines="1"
+            android:text="@string/video_url"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_link_et"
+            app:layout_constraintWidth_percent=".5" />
 
-    <!-- ProgressBar is visible when the list is Loading. -->
-    <ProgressBar
-        android:id="@+id/editor_lesson_progressBar"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/editor_lesson_video_et"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/editor_lesson_title_et" />
+        <EditText
+            android:id="@+id/editor_lesson_video_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_et_style"
+            android:hint="@string/video_url_optional"
+            android:inputType="textUri"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_video_tv"
+            app:layout_constraintVertical_bias=".01"
+            app:layout_constraintWidth_percent=".9" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/editor_lesson_insert_b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/insert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editor_lesson_video_et"
+            app:layout_constraintWidth_percent=".7" />
+
+        <!-- ProgressBar is visible when the list is Loading. -->
+        <ProgressBar
+            android:id="@+id/editor_lesson_progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/editor_lesson_video_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/editor_lesson_title_et" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
