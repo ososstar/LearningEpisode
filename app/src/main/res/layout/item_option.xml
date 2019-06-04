@@ -12,7 +12,7 @@
             android:id="@+id/option_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="fill"
+            android:layout_gravity="center"
             android:scaleType="centerInside"
             android:paddingStart="15dp"
             android:paddingTop="15dp"

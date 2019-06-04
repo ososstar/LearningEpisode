@@ -1,7 +1,6 @@
 package com.android.ososstar.learningepisode.account;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -55,10 +54,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button Login_b;
 
     public void supportSSL() {
-        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {
+//        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {}
             Intent sslIntent = new Intent(this, sslService.class);
             startService(sslIntent);
-        }
     }
 
     @Override

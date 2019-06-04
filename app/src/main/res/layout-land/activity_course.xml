@@ -1,107 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".course.CourseActivity">
-
-    <ImageView
-        android:id="@+id/course_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/defaultplaceholder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
-
-    <TextView
-        android:id="@+id/course_enrolls_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Enrolls #"
-        app:layout_constraintHorizontal_bias=".05"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/course_image" />
-
-    <TextView
-        android:id="@+id/course_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Created On"
-        app:layout_constraintHorizontal_bias=".75"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/course_image" />
+    android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="@dimen/horizontal_space"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/course_enrolls_tv"
-        app:layout_constraintVertical_bias=".02">
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5"
+        android:padding="@dimen/vertical_space"
+        tools:context=".course.CourseActivity">
+
+        <ImageView
+            android:id="@+id/course_image"
+            android:layout_width="250dp"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/defaultplaceholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent=".5" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/course_enrolls_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:maxLines="1"
+            android:text="@string/total_enrolls_hash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".05"
+            app:layout_constraintStart_toEndOf="@id/course_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/course_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:maxLines="1"
+            android:text="@string/created_on"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".2"
+            app:layout_constraintStart_toEndOf="@id/course_enrolls_tv"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/course_name_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:maxLines="1"
-            android:text="Course Name"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias=".8"
+            android:paddingLeft="@dimen/horizontal_space"
+            android:paddingRight="@dimen/horizontal_space"
+            android:text="@string/course_name"
+            android:textSize="@dimen/mainTitle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".02"
-            app:layout_constraintWidth_percent=".6" />
+            app:layout_constraintHorizontal_bias=".5"
+            app:layout_constraintStart_toEndOf="@id/course_enroll_b"
+            app:layout_constraintTop_toBottomOf="@id/course_enrolls_tv"
+            app:layout_constraintWidth_percent="1" />
 
         <TextView
             android:id="@+id/course_description_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Course Description"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:background="@drawable/gradient_auburn"
+            android:gravity="center"
+            android:padding="@dimen/horizontal_space"
+            android:text="@string/course_description"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/course_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/course_name_tv"
-            app:layout_constraintVertical_bias=".05" />
+            app:layout_constraintWidth_percent=".55" />
 
         <Button
             android:id="@+id/course_enroll_b"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="Enroll"
-            app:layout_constraintBottom_toBottomOf="@id/course_name_tv"
-            app:layout_constraintHeight_min="35dp"
-            app:layout_constraintHeight_percent=".03"
-            app:layout_constraintHorizontal_bias="0"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/horizontal_space"
+            android:layout_marginRight="@dimen/horizontal_space"
+            android:gravity="center"
+            android:text="@string/enroll"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/course_lessons_b"
+            app:layout_constraintHorizontal_bias=".05"
+            app:layout_constraintStart_toEndOf="@id/course_image"
             app:layout_constraintTop_toTopOf="@id/course_name_tv" />
 
         <Button
             android:id="@+id/course_lessons_b"
-            android:layout_width="0dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="View Lessons"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/course_description_tv"
-            app:layout_constraintVertical_bias="0.05"
-            app:layout_constraintWidth_percent=".95" />
+            android:layout_marginTop="@dimen/vertical_space"
+            android:text="@string/view_lessons"
+            app:layout_constraintEnd_toEndOf="@id/course_image"
+            app:layout_constraintHorizontal_bias=".1"
+            app:layout_constraintStart_toStartOf="@id/course_image"
+            app:layout_constraintTop_toBottomOf="@id/course_image" />
     </android.support.constraint.ConstraintLayout>
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

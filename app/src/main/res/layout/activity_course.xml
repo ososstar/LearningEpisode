@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     tools:context=".course.CourseActivity">
 
     <ImageView
@@ -89,7 +90,8 @@
                 android:id="@+id/course_description_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@drawable/gradient_auburn"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:padding="@dimen/horizontal_space"
                 android:text="@string/course_description"
@@ -98,11 +100,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/course_enrolls_tv"
                 app:layout_constraintVertical_bias=".02"
-                app:layout_constraintWidth_percent=".9" />
+                app:layout_constraintWidth_percent=".95" />
 
             <Button
                 android:id="@+id/course_enroll_b"
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/enroll"
                 android:layout_marginEnd="@dimen/horizontal_space"

@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfcfc">
+    android:background="@drawable/gradient_sea">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/above_art_background_733852"
+        android:layout_height="wrap_content"
         tools:context=".account.LoginActivity">
 
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_horizontal_space"
+            android:src="@drawable/expandt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/appname"
+            android:id="@+id/login_appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rock_salto"
             android:text="@string/ProjectName"
             android:textSize="32sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintTop_toBottomOf="@id/login_logo"
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/l_login_tv"
@@ -33,11 +41,13 @@
             android:layout_height="wrap_content"
             android:text="@string/login"
             android:textSize="24sp"
+            android:fontFamily="@font/segoeui"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appname"
+            app:layout_constraintTop_toBottomOf="@id/login_appName"
             app:layout_constraintVertical_bias="0" />
 
         <android.support.design.widget.TextInputLayout
@@ -45,10 +55,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="@string/login"
             android:textAlignment="viewStart"
             android:textSize="24sp"
-            android:theme="@style/TextLabel"
+            android:theme="@style/TextLabel2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -77,7 +86,7 @@
             android:text="@string/login"
             android:textAlignment="viewStart"
             android:textSize="24sp"
-            android:theme="@style/TextLabel"
+            android:theme="@style/TextLabel2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -114,16 +123,19 @@
         <Button
             android:id="@+id/l_login_b"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/gradient_button2"
             android:clickable="true"
             android:focusable="true"
             android:maxLines="1"
             android:text="@string/login"
+            android:fontFamily="@font/segoeui"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/l_password_TL"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.25"
             app:layout_constraintWidth_percent=".7" />
 
         <TextView
@@ -131,9 +143,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
+            android:textColor="@color/white"
             android:text="@string/don_t_have_an_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/l_login_b" />
     </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>

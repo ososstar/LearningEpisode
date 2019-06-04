@@ -5,87 +5,105 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="16dp">
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_auburn"
+        android:orientation="vertical">
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/course_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="@dimen/half_horizontal_space"
+            android:text="Course Name"
+            android:textColor="@color/white_shift"
+            android:textSize="22sp" />
+
+        <View
+            android:id="@+id/l_line"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <me.grantland.widget.AutofitTextView
-                android:id="@+id/course_item_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:maxLines="1"
-                android:background="@color/black"
-                android:padding="@dimen/half_horizontal_space"
-                android:text="Course Name"
-                android:textColor="@color/white_shift"
-                android:textSize="22sp" />
-
-            <LinearLayout
+                android:id="@+id/course_item_enrolls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/horizontal_space"
+                android:layout_marginEnd="@dimen/horizontal_space"
+                android:layout_weight="1"
+                android:fontFamily="@font/segoeui"
+                android:text="@string/course_enrolls"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
 
-                <me.grantland.widget.AutofitTextView
-                    android:id="@+id/course_item_enrolls"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/horizontal_space"
-                    android:layout_marginEnd="@dimen/horizontal_space"
-                    android:text="@string/course_enrolls"
-                    android:textSize="10sp" />
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/course_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="@font/segoeui"
+                android:layoutDirection="rtl"
+                android:maxLines="1"
+                android:text="@string/created_on"
+                android:textColor="@color/white"
+                android:textDirection="rtl"
+                android:textSize="10sp"
+                android:typeface="monospace" />
+        </LinearLayout>
 
-                <me.grantland.widget.AutofitTextView
-                    android:id="@+id/course_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:text="@string/created_on"
-                    android:textSize="10sp"
-                    android:typeface="monospace" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/horizontal_space"
+            android:paddingTop="@dimen/half_horizontal_space"
+            android:paddingEnd="@dimen/horizontal_space"
+            android:paddingBottom="@dimen/horizontal_space">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/course_item_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/icon_android"
+                app:civ_border_color="@color/colorAccent"
+                app:civ_border_width="1dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/horizontal_space"
-                android:paddingTop="@dimen/half_horizontal_space"
-                android:paddingEnd="@dimen/horizontal_space"
-                android:paddingBottom="@dimen/horizontal_space">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/horizontal_space"
+                android:paddingRight="@dimen/horizontal_space">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/course_item_image"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/icon_android"
-                    app:civ_border_color="@color/colorAccent"
-                    app:civ_border_width="1dp" />
-
-                <LinearLayout
+                <me.grantland.widget.AutofitLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingStart="@dimen/horizontal_space"
-                    android:paddingEnd="@dimen/horizontal_space">
+                    android:layout_height="wrap_content">
 
-                    <me.grantland.widget.AutofitLayout
+                    <TextView
+                        android:id="@+id/course_item_description"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/segoeui"
+                        android:text="@string/course_description"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/NormalSize" />
 
-                        <TextView
-                            android:id="@+id/course_item_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/course_description"
-                            android:textSize="@dimen/NormalSize" />
-
-                    </me.grantland.widget.AutofitLayout>
-                </LinearLayout>
+                </me.grantland.widget.AutofitLayout>
             </LinearLayout>
-
         </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

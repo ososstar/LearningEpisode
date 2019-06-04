@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfcfc">
+    android:background="@drawable/gradient_sea">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/above_art_background_733852"
         tools:context=".account.RegisterActivity">
+
+        <ImageView
+            android:id="@+id/register_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/half_horizontal_space"
+            android:layout_marginTop="@dimen/vertical_space"
+            android:src="@drawable/expandt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/register_appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rock_salto"
+            android:text="@string/ProjectName"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_logo"
+            app:layout_constraintVertical_bias="0" />
 
         <TextView
             android:id="@+id/create_an_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-
             android:text="@string/create_an_account"
+            android:fontFamily="@font/segoeui"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".2" />
+            app:layout_constraintTop_toBottomOf="@id/register_appName"
+            app:layout_constraintVertical_bias="0" />
 
         <EditText
             android:id="@+id/r_username"
@@ -110,9 +134,12 @@
         <Button
             android:id="@+id/r_register_b"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/gradient_button2"
             android:maxLines="1"
             android:text="@string/register"
+            android:fontFamily="@font/segoeui"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,8 +153,9 @@
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="@string/have_an_account"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/r_register_b" />
     </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>

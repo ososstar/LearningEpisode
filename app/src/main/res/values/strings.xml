@@ -96,4 +96,5 @@
     <string name="date" translatable="false">d MMMM yyyy</string>
     <string name="daydate" translatable="false">EEEE, d MMMM yyyy</string>
     <string name="daydatetime" translatable="false">EEEE, d MMMM yyyy, h:mm a</string>
+    <string name="title_name">Title Name</string>
 </resources>

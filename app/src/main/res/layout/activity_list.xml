@@ -6,76 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".course.CourseListActivity">
 
-    <!--<TextView-->
-        <!--android:id="@+id/l_title"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.11"-->
-        <!--app:layout_constraintVertical_bias=".03"-->
-        <!--android:text="List"-->
-        <!--android:textSize="32sp"/>-->
-
-    <!--<View-->
-        <!--android:id="@+id/l_line"-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="3dp"-->
-        <!--android:layout_marginLeft="20dp"-->
-        <!--android:background="#EE1837"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/l_title"-->
-        <!--app:layout_constraintLeft_toLeftOf="@id/l_title"-->
-        <!--app:layout_constraintRight_toRightOf="@id/l_title"/>-->
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/l_RV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
-        <!-- Empty view is only visible when the list has no items. -->
+    <!-- Empty view is only visible when the list has no items. -->
     <me.grantland.widget.AutofitTextView
         android:id="@+id/l_empty_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:maxLines="2"
-        app:layout_constraintWidth_percent=".8"
-        android:gravity="center"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8" />
 
     <!-- ProgressBar is visible when the list is Loading. -->
     <ProgressBar
         android:id="@+id/l_spinner"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_centerInParent="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/l_insertFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/plus"
         android:layout_margin="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/plus"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

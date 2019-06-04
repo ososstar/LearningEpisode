@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/gradient_moss"
         android:padding="16dp">
 
     <android.support.constraint.ConstraintLayout
@@ -23,6 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Lesson ID #"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="@string/creation_date"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:typeface="monospace"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +49,9 @@
             android:id="@+id/lesson_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title Name"
+            android:text="@string/title_name"
+            android:textColor="@color/white"
             android:maxLines="1"
             android:textSize="22sp"/>
-
-
     </LinearLayout>
-
 </android.support.v7.widget.CardView>

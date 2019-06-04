@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/mainpadding">
+    android:padding="@dimen/main_padding">
 
     <TextView
         android:id="@+id/q_title"
@@ -13,7 +13,7 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="@string/question_title"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 
     <RadioGroup
@@ -31,7 +31,7 @@
             android:layoutDirection="rtl"
             android:gravity="center"
             android:text="@string/choice_one"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:padding="8dp"
             android:textDirection="rtl" />
         <RadioButton
@@ -42,7 +42,7 @@
             android:layoutDirection="rtl"
             android:text="@string/choice_two"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:padding="8dp"
             android:textDirection="rtl" />
         <RadioButton
@@ -53,7 +53,7 @@
             android:layoutDirection="rtl"
             android:text="@string/choice_three"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
 
             android:padding="8dp"
             android:textDirection="rtl" />

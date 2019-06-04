@@ -31,6 +31,23 @@
         <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
 
+    <style name="TextLabel2" parent="Theme.AppCompat.DayNight">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/white_shift</item>
+    </style>
+
+    <style name="VerticalThemeLayoutInputs">
+        <item name="android:background">@drawable/gradient_clouds</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 
     <style name="SegoeUiTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/segoeui</item>
@@ -38,7 +55,7 @@
 
     <style name="SegoeUiButtonStyle" parent="android:Widget.Holo.Button">
         <item name="android:fontFamily">@font/segoeui</item>
-        <item name="android:background">@color/colorPrimaryLight</item>
+        <item name="android:background">@drawable/gradient_sea</item>
     </style>
 
 </resources>
