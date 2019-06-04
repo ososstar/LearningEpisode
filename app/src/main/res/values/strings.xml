@@ -60,7 +60,6 @@
     <string name="typeHash">Account Type #</string>
     <string name="emailHash">Email #</string>
     <string name="username">Username</string>
-    <string name="unspecified">unspecified</string>
     <string name="choiceOne">Choice One</string>
     <string name="choiceTwo">Choice Two</string>
     <string name="choiceThree">Choice Three</string>
@@ -68,6 +67,7 @@
     <string name="specify_the_answer">Please specify the question answer</string>
     <string name="insert_new_user">Insert New User</string>
     <string name="account_type">Account Type</string>
+    <string name="account_type_hash">Account Type #</string>
     <string name="password_optional">Password (Optional)</string>
     <string name="total_enrolls_hash">Total Enrolls #</string>
     <string name="view_lessons">View Lessons</string>
@@ -96,5 +96,11 @@
     <string name="date" translatable="false">d MMMM yyyy</string>
     <string name="daydate" translatable="false">EEEE, d MMMM yyyy</string>
     <string name="daydatetime" translatable="false">EEEE, d MMMM yyyy, h:mm a</string>
-    <string name="title_name">Title Name</string>
+    <string name="title_name" translatable="false">Title Name</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="technical_issue">Technical Issue</string>
+    <string name="other">Other</string>
+    <string name="unspecified">unspecified</string>
+    <string name="feedback_description">Feedback Description</string>
+    <string name="feedback_type_hash">Feedback Type #</string>
 </resources>

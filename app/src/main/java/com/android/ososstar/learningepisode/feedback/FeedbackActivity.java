@@ -76,31 +76,31 @@ public class FeedbackActivity extends AppCompatActivity {
 //        dateBuilder.append(date);
 //        feedbackDateTV.setText(dateBuilder);
 
-        StringBuilder creationDateSB = new StringBuilder(getString(R.string.created_on));
+        StringBuilder creationDateSB = new StringBuilder(getString(R.string.creation_date));
         if (Locale.getDefault().getLanguage().equals("ar")) {
             Locale localeAR = new Locale("ar");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(date);
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat(getString(R.string.daydatetime), localeAR);
             String format = sdf.format(date3);
             Log.wtf("result", format);
             creationDateSB.append(format);
             feedbackDateTV.setText(creationDateSB);
         } else {
             Locale localeAR = new Locale("en");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-d");
+            SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.time_pattern));
             Date date3 = null;
             try {
                 date3 = sdf.parse(date);
             } catch (Exception e) {
 
             }
-            sdf = new SimpleDateFormat("d MMMM yyyy", localeAR);
+            sdf = new SimpleDateFormat(getString(R.string.daydatetime), localeAR);
             String format = sdf.format(date3);
             Log.wtf("result", format);
             creationDateSB.append(format);
@@ -108,17 +108,17 @@ public class FeedbackActivity extends AppCompatActivity {
         }
 
 
-        StringBuilder typeBuilder = new StringBuilder("#");
+        StringBuilder typeBuilder = new StringBuilder(getString(R.string.feedback_type_hash));
 
         switch (type) {
             case "0":
-                typeBuilder.append("Suggestion");
+                typeBuilder.append(getString(R.string.suggestion));
                 break;
             case "1":
-                typeBuilder.append("Technical Issue");
+                typeBuilder.append(getString(R.string.technical_issue));
                 break;
             case "2":
-                typeBuilder.append("Other");
+                typeBuilder.append(getString(R.string.other));
                 break;
         }
 

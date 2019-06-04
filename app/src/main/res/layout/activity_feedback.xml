@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_clouds">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,9 +20,10 @@
             android:maxLines="1"
             android:text="@string/id"
             android:textSize="16sp"
+            android:fontFamily="@font/segoeui"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".45" />
+            app:layout_constraintWidth_percent=".40" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/feedback_date_tv"
@@ -30,17 +32,20 @@
             android:maxLines="1"
             android:text="@string/creation_date"
             android:textSize="16sp"
+            android:fontFamily="@font/segoeui"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".5" />
+            android:gravity="center"
+            app:layout_constraintWidth_percent=".6" />
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/feedback_stu_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="Student_name"
-            android:textSize="26sp"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/feedback_type"
-            android:textSize="20sp"
+            android:fontFamily="@font/segoeui"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,10 +65,10 @@
 
         <ImageView
             android:id="@+id/feedback_attached_image"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:src="@drawable/defaultplaceholder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +80,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/horizontal_space"
             android:text="@string/student_comment"
-            android:textSize="18sp"
+            android:background="@drawable/gradient_moss"
+            android:fontFamily="@font/segoeui"
+            android:padding="@dimen/half_horizontal_space"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,9 +92,14 @@
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/feedback_stuComment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Student Comment"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/segoeui"
+            android:padding="@dimen/horizontal_space"
+            android:textColor="@color/white"
+            app:layout_constraintWidth_percent="1"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -95,10 +110,14 @@
             android:id="@+id/feedback_admCommentTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/vertical_space"
+            android:layout_marginTop="@dimen/vertical_space"
             android:text="@string/admin_reply"
             android:textSize="20sp"
             android:visibility="gone"
+            android:background="@drawable/gradient_ash"
+            android:fontFamily="@font/segoeui"
+            android:padding="@dimen/half_horizontal_space"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,10 +125,15 @@
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/feedback_admComment"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/admin_reply"
             android:textSize="16sp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/segoeui"
+            android:padding="@dimen/horizontal_space"
+            android:textColor="@color/white"
+            app:layout_constraintWidth_percent="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"

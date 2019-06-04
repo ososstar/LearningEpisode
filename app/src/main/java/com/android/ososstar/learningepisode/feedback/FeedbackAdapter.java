@@ -77,13 +77,13 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
 
             switch (currentFeedback.getFeedbackType()) {
                 case "0":
-                    holder.feedbackType.setText("Suggestion");
+                    holder.feedbackType.setText(R.string.suggestion);
                     break;
                 case "1":
-                    holder.feedbackType.setText("Technical Issue");
+                    holder.feedbackType.setText(R.string.technical_issue);
                     break;
                 case "2":
-                    holder.feedbackType.setText("Other");
+                    holder.feedbackType.setText(R.string.other);
                     break;
             }
 

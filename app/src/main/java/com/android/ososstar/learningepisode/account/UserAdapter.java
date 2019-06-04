@@ -78,12 +78,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.type = String.valueOf(currentUser.getType());
 
         holder.user_name.setText(currentUser.getName());
+        StringBuilder userTypeSB = new StringBuilder(holder.itemView.getContext().getString(R.string.account_type_hash));
         switch (holder.type) {
             case "0":
-                holder.user_type.setText(mContext.getString(R.string.admin));
+                userTypeSB.append(mContext.getString(R.string.admin));
+                holder.user_type.setText(userTypeSB);
                 break;
             case "1":
-                holder.user_type.setText(mContext.getString(R.string.student));
+                userTypeSB.append(mContext.getString(R.string.student));
+                holder.user_type.setText(userTypeSB);
                 break;
         }
 

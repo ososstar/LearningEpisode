@@ -247,7 +247,6 @@ public class LessonActivity extends AppCompatActivity {
 
 
     private void closeFullscreenDialog() {
-
         ((ViewGroup) mExoPlayerView.getParent()).removeView(mExoPlayerView);
         ((FrameLayout) findViewById(R.id.playerLayout)).addView(mExoPlayerView);
         mExoPlayerFullscreen = false;
@@ -257,7 +256,6 @@ public class LessonActivity extends AppCompatActivity {
 
 
     private void initFullscreenButton() {
-
         PlaybackControlView controlView = mExoPlayerView.findViewById(R.id.exo_controller);
         mFullScreenIcon = controlView.findViewById(R.id.exo_fullscreen_icon);
         mFullScreenButton = controlView.findViewById(R.id.exo_fullscreen_button);
@@ -273,7 +271,6 @@ public class LessonActivity extends AppCompatActivity {
     }
 
     private void initExoPlayer() {
-
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
         TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
@@ -385,12 +382,12 @@ public class LessonActivity extends AppCompatActivity {
             }
         }
 
+
     }
 
 
     @Override
     protected void onPause() {
-
         super.onPause();
 
         if (mExoPlayerView != null && mExoPlayerView.getPlayer() != null) {

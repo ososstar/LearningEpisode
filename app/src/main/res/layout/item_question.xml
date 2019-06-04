@@ -13,7 +13,7 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="@string/question_title"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <RadioGroup
@@ -31,7 +31,7 @@
             android:layoutDirection="rtl"
             android:gravity="center"
             android:text="@string/choice_one"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:padding="8dp"
             android:textDirection="rtl" />
         <RadioButton
@@ -42,7 +42,7 @@
             android:layoutDirection="rtl"
             android:text="@string/choice_two"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:padding="8dp"
             android:textDirection="rtl" />
         <RadioButton
@@ -53,7 +53,7 @@
             android:layoutDirection="rtl"
             android:text="@string/choice_three"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
 
             android:padding="8dp"
             android:textDirection="rtl" />

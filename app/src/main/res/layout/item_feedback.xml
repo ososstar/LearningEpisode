@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/gradient_clouds"
         android:padding="16dp">
 
         <android.support.constraint.ConstraintLayout
@@ -22,38 +23,43 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Feedback ID #"
-                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
                 android:gravity="center"
+                android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".6" />
+                app:layout_constraintWidth_percent=".3" />
 
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/feedbackList_item_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="Created On"
-                android:textSize="12sp"
+                android:gravity="center"
+                android:text="@string/created_on"
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
                 android:typeface="monospace"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/feedbackList_item_ID"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent=".4" />
+                app:layout_constraintWidth_percent=".7" />
         </android.support.constraint.ConstraintLayout>
 
         <TextView
             android:id="@+id/feedbackList_item_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="feedback type"
+            android:text="@string/feedback_type"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/feedbackList_item_stuComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="feedback description"
+            android:text="@string/feedback_description"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp" />
     </LinearLayout>
 

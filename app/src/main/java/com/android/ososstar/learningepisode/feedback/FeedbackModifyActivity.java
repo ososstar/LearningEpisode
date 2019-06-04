@@ -103,10 +103,10 @@ public class FeedbackModifyActivity extends AppCompatActivity {
 
         // Initializing a String Array
         String[] choices = new String[]{
-                "unspecified",
-                "Suggestion",
-                "Technical Issue",
-                "Other"
+                getString(R.string.unspecified),
+                getString(R.string.suggestion),
+                getString(R.string.technical_issue),
+                getString(R.string.other)
         };
 
         // Initializing an ArrayAdapter for spinner

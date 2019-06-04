@@ -91,4 +91,10 @@
     <string name="choice_one">الخيار الأول</string>
     <string name="choice_three">الخيار الثاني</string>
     <string name="choice_two">الخيار الثالث</string>
+    <string name="suggestion">اقتراح</string>
+    <string name="technical_issue">مشكلة فنية</string>
+    <string name="other">أخر</string>
+    <string name="account_type_hash">نوع الحساب #</string>
+    <string name="feedback_description">وصف التعليق</string>
+    <string name="feedback_type_hash">نوع التعليق #</string>
 </resources>

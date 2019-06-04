@@ -105,7 +105,6 @@
                 android:textAlignment="viewStart" />
         </android.support.design.widget.TextInputLayout>
 
-
         <!-- ProgressBar is visible when the list is Loading. -->
         <ProgressBar
             android:id="@+id/login_spinner"

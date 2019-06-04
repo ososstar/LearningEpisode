@@ -17,7 +17,9 @@
         <activity android:name=".feedback.FeedbackInsertActivity" />
         <activity android:name=".feedback.FeedbackActivity" />
         <activity android:name=".feedback.FeedbackListActivity" />
-        <activity android:name=".account.ProfileViewActivity" />
+        <activity
+            android:name=".account.ProfileViewActivity"
+            android:theme="@style/AppFullScreenTheme" />
         <activity android:name=".account.ProfileActivity" />
         <activity android:name=".account.AccountModifyActivity" />
         <activity android:name=".account.AccountInsertActivity" />
@@ -35,7 +37,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".lesson.LessonActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="screenSize|layoutDirection" />
         <activity
             android:name=".lesson.LessonListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
