@@ -37,7 +37,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".lesson.LessonActivity"
-            android:configChanges="screenSize|layoutDirection" />
+            android:configChanges="orientation" />
         <activity
             android:name=".lesson.LessonListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -46,7 +46,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".course.CourseActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation" />
         <activity
             android:name=".course.CourseInsertActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />

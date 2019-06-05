@@ -1,125 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_fb_messenger">
+    android:background="@drawable/gradient_clouds"
+    tools:context=".account.ProfileActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <ImageView
+        android:id="@+id/fb_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/gradient_fb_messenger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <ImageView
+        android:id="@+id/profilePic"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/profilePic"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="150dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@drawable/user"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintVertical_bias=".1" />-->
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/profileName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_clouds"
-        tools:context=".account.ProfileActivity">
+        android:background="@android:color/background_dark"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingBottom="@dimen/half_horizontal_space"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/mainTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fb_background"
+        app:layout_constraintVertical_bias=".5" />
 
-        <ImageView
-            android:id="@+id/fb_background"
-            android:layout_width="0dp"
-            android:layout_height="400dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/gradient_fb_messenger"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/profilePic"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/user"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--<ImageView-->
-        <!--android:id="@+id/profilePic"-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="150dp"-->
-        <!--android:background="@color/white"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:src="@drawable/user"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias=".1" />-->
+    <LinearLayout
+        style="@style/VerticalThemeLayoutInputs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileName"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".9">
 
         <me.grantland.widget.AutofitTextView
-            android:id="@+id/profileName"
-            android:layout_width="0dp"
+            android:id="@+id/profileDate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
-            android:gravity="center"
             android:maxLines="1"
-            android:paddingBottom="@dimen/half_horizontal_space"
-            android:text="@string/name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/mainTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fb_background"
-            app:layout_constraintVertical_bias=".5" />
+            android:padding="@dimen/half_horizontal_space"
+            android:text="@string/dateHash"
+            android:textSize="18dp" />
 
-        <LinearLayout
-            style="@style/VerticalThemeLayoutInputs"
-            android:layout_width="0dp"
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/profileID"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileName"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".9">
+            android:maxLines="1"
+            android:padding="@dimen/half_horizontal_space"
+            android:text="@string/idHash"
+            android:textSize="18dp" />
 
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/profileDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="@dimen/half_horizontal_space"
-                android:text="@string/dateHash"
-                android:textSize="18dp" />
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/profileUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="@dimen/half_horizontal_space"
+            android:text="@string/usernameHash"
+            android:textSize="18dp" />
 
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/profileID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="@dimen/half_horizontal_space"
-                android:text="@string/idHash"
-                android:textSize="18dp" />
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/profileType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="@dimen/half_horizontal_space"
+            android:text="@string/typeHash"
+            android:textSize="18dp" />
 
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/profileUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="@dimen/half_horizontal_space"
-                android:text="@string/usernameHash"
-                android:textSize="18dp" />
-
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/profileType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="@dimen/half_horizontal_space"
-                android:text="@string/typeHash"
-                android:textSize="18dp" />
-
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/profileEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="@dimen/half_horizontal_space"
-                android:text="@string/emailHash"
-                android:textSize="18dp" />
-        </LinearLayout>
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/profileEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="@dimen/half_horizontal_space"
+            android:text="@string/emailHash"
+            android:textSize="18dp" />
+    </LinearLayout>
 
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+</android.support.constraint.ConstraintLayout>

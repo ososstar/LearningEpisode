@@ -124,6 +124,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:background="@drawable/gradient_button"
+                android:textColor="@color/white"
                 android:layout_marginBottom="@dimen/half_horizontal_space"
                 android:text="@string/download_lesson" />
 
@@ -131,6 +133,8 @@
                 android:id="@+id/lesson_questions_b"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:background="@drawable/gradient_button"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:text="@string/lesson_questions" />
         </LinearLayout>

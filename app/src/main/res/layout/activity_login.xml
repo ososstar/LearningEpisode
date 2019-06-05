@@ -25,7 +25,7 @@
             android:id="@+id/login_appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/rock_salto"
+            android:fontFamily="@font/prime"
             android:text="@string/ProjectName"
             android:textSize="32sp"
             android:textColor="@color/white"
