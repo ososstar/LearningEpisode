@@ -92,6 +92,7 @@
                 android:id="@+id/exoPlayer"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
+                app:resize_mode="fixed_width"
                 android:gravity="center" />
         </FrameLayout>
 
@@ -124,6 +125,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:padding="@dimen/vertical_space"
                 android:background="@drawable/gradient_button"
                 android:textColor="@color/white"
                 android:layout_marginBottom="@dimen/half_horizontal_space"
@@ -133,6 +136,8 @@
                 android:id="@+id/lesson_questions_b"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:maxLines="1"
+                android:padding="@dimen/vertical_space"
                 android:background="@drawable/gradient_button"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"

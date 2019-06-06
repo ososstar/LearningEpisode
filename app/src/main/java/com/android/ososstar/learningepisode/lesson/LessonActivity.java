@@ -2,6 +2,7 @@ package com.android.ososstar.learningepisode.lesson;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -262,10 +263,13 @@ public class LessonActivity extends AppCompatActivity {
         mFullScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!mExoPlayerFullscreen)
+                if (!mExoPlayerFullscreen) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                     openFullscreenDialog();
-                else
+                } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
                     closeFullscreenDialog();
+                }
             }
         });
     }
