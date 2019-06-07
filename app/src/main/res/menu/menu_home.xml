@@ -6,7 +6,8 @@
         android:icon="@drawable/user"
         android:title=""
         app:showAsAction="ifRoom|withText" />
-    <item android:id="@+id/menu_logout"
+    <item
+        android:id="@+id/menu_logout"
         android:title="@string/logout"
         app:showAsAction="collapseActionView" />
     <!--app:showAsAction="collapseActionView|withText"-->

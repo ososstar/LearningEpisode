@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#deeee6"
     android:fillViewport="false"
     android:orientation="vertical"
     android:padding="10dp"
@@ -13,7 +14,6 @@
     app:layout_constraintHorizontal_weight="1"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/course_image"
-    android:background="#deeee6"
     app:layout_constraintVertical_bias=".02">
 
     <android.support.constraint.ConstraintLayout
@@ -43,9 +43,9 @@
             android:maxLines="1"
             android:text="@string/id"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/playerLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/playerLayout"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".3" />
 
@@ -56,9 +56,9 @@
             android:maxLines="1"
             android:text="@string/creation_date"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/playerLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/playerLayout"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".7" />
 
@@ -70,9 +70,9 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/lesson_description_tv"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lesson_id_tv"
-            app:layout_constraintHeight_percent=".6">
+            app:layout_constraintTop_toBottomOf="@id/lesson_id_tv">
 
             <fragment
                 android:id="@+id/youtubeFragment"
@@ -92,8 +92,8 @@
                 android:id="@+id/exoPlayer"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                app:resize_mode="fixed_width"
-                android:gravity="center" />
+                android:gravity="center"
+                app:resize_mode="fixed_width" />
         </FrameLayout>
 
         <TextView
@@ -103,9 +103,9 @@
             android:layout_marginTop="@dimen/vertical_space"
             android:layout_marginBottom="@dimen/vertical_space"
             android:background="@drawable/gradient_moss"
-            android:textColor="@color/white"
             android:padding="20dp"
             android:text="@string/lesson_description"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/playerLayout"
@@ -123,25 +123,27 @@
             <Button
                 android:id="@+id/lesson_download_b"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:padding="@dimen/vertical_space"
-                android:background="@drawable/gradient_button"
-                android:textColor="@color/white"
                 android:layout_marginBottom="@dimen/half_horizontal_space"
-                android:text="@string/download_lesson" />
+                android:layout_weight="1"
+                android:background="@drawable/gradient_button"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/download_lesson"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/lesson_questions_b"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:maxLines="1"
-                android:padding="@dimen/vertical_space"
-                android:background="@drawable/gradient_button"
-                android:textColor="@color/white"
                 android:layout_height="wrap_content"
-                android:text="@string/lesson_questions" />
+                android:layout_weight="1"
+                android:background="@drawable/gradient_button"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/lesson_questions"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </LinearLayout>
 
 

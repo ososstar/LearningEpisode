@@ -10,16 +10,13 @@
 
     <ImageView
         android:id="@+id/fb_background"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
         android:src="@drawable/gradient_fb_messenger"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintBottom_toTopOf="@id/profileName" />
 
     <ImageView
         android:id="@+id/profilePic"
@@ -27,9 +24,9 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/user"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/profileName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".6"
+        app:layout_constraintHeight_percent="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
@@ -60,10 +57,12 @@
         android:textSize="@dimen/mainTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fb_background"
-        app:layout_constraintVertical_bias=".5" />
+        app:layout_constraintBottom_toTopOf="@id/dataLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
 
     <LinearLayout
+        android:id="@+id/dataLayout"
         style="@style/VerticalThemeLayoutInputs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -72,8 +71,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileName"
-        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
         app:layout_constraintWidth_percent=".9">
 
         <me.grantland.widget.AutofitTextView
