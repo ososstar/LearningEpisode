@@ -174,7 +174,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         private void deleteQuestion() {
             mRequestQueue = Volley.newRequestQueue(mContext);
 
-            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_SHOW_STUDENT_ANSWER, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_DELETE_QUESTION_DATA, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {

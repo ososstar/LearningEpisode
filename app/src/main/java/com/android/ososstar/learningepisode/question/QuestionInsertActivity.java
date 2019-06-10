@@ -72,10 +72,10 @@ public class QuestionInsertActivity extends AppCompatActivity {
 
         // Initializing a String Array
         String[] choices = new String[]{
-                "unspecified",
-                "Choice One",
-                "Choice Two",
-                "Choice Three"
+                getString(R.string.unspecified),
+                getString(R.string.choiceOne),
+                getString(R.string.choiceTwo),
+                getString(R.string.choiceThree)
         };
 
         // Initializing an ArrayAdapter for spinner

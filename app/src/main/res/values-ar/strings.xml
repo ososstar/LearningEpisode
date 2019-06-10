@@ -62,8 +62,8 @@
     <string name="welcome">"مرحباً، "</string>
     <string name="unspecified">غير معرف</string>
     <string name="choiceOne">الخيار الأول</string>
-    <string name="choiceThree">الخيار الثاني</string>
-    <string name="choiceTwo">الخيار الثالث</string>
+    <string name="choiceTwo">الخيار الثاني</string>
+    <string name="choiceThree">الخيار الثالث</string>
     <string name="modify_the_question">تعديل السؤال</string>
     <string name="specify_the_answer">من فضلك حدد إجابة السؤال الصحيحة</string>
     <string name="question_title">عنوان السؤال</string>
