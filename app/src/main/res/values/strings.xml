@@ -103,4 +103,8 @@
     <string name="unspecified">unspecified</string>
     <string name="feedback_description">Feedback Description</string>
     <string name="feedback_type_hash">Feedback Type #</string>
+    <string name="specify_question_title">Please specify the Question Title</string>
+    <string name="specify_choice_one">Please specify the Question Choice One</string>
+    <string name="specify_choice_two">Please specify the Question Choice Two</string>
+    <string name="specify_choice_three">Please specify the Question Choice Three</string>
 </resources>

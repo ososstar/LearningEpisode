@@ -177,15 +177,9 @@ public class LessonModifyActivity extends AppCompatActivity {
                 if (!TextUtils.isEmpty(lesson_title)) {
                     pars.put("title", lesson_title);
                 }
-                if (!TextUtils.isEmpty(lesson_description)) {
-                    pars.put("description", lesson_description);
-                }
-                if (!TextUtils.isEmpty(lesson_link)) {
-                    pars.put("link", lesson_link);
-                }
-                if (!TextUtils.isEmpty(lesson_videoURL)) {
-                    pars.put("video", lesson_videoURL);
-                }
+                pars.put("description", lesson_description);
+                pars.put("link", lesson_link);
+                pars.put("video", lesson_videoURL);
                 return pars;
             }
         };

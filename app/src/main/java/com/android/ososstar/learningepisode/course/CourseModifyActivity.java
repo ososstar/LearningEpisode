@@ -158,9 +158,7 @@ public class CourseModifyActivity extends AppCompatActivity {
                 pars.put("course_ID", course_ID);
                 if (!TextUtils.isEmpty(modifyCourseName_et.getText().toString().trim()))
                     pars.put("name", course_name);
-                if (!TextUtils.isEmpty(modifyCourseDescription_et.getText().toString().trim()))
                     pars.put("description", course_description);
-                if (!TextUtils.isEmpty(modifyCourseImgURL_et.getText().toString().trim()))
                     pars.put("image", course_image);
                 return pars;
             }

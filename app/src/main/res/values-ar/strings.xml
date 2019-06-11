@@ -97,4 +97,8 @@
     <string name="account_type_hash">نوع الحساب #</string>
     <string name="feedback_description">وصف التعليق</string>
     <string name="feedback_type_hash">نوع التعليق #</string>
+    <string name="specify_choice_one">من فضلك عرف الاختيار الأول</string>
+    <string name="specify_choice_three">من فضلك عرف الاختيار الثاني</string>
+    <string name="specify_choice_two">من فضلك عرف الاختيار الثالث</string>
+    <string name="specify_question_title">من فضلك عرف عنوان السؤال</string>
 </resources>

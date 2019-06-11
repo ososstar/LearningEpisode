@@ -145,7 +145,7 @@ public class QuestionInsertActivity extends AppCompatActivity {
         //validating the input in question title
         if (TextUtils.isEmpty(questionTitle)){
             progressBar.setVisibility(View.GONE);
-            eQuestionTitle.setError("Please specify the Question Title");
+            eQuestionTitle.setError(getString(R.string.specify_question_title));
             eQuestionTitle.requestFocus();
             insertButton.setEnabled(true);
             return;
@@ -153,7 +153,7 @@ public class QuestionInsertActivity extends AppCompatActivity {
         //validating the input in question choice one
         if (TextUtils.isEmpty(questionChoiceOne)){
             progressBar.setVisibility(View.GONE);
-            eQuestionChoiceOne.setError("Please specify the Question Title");
+            eQuestionChoiceOne.setError(getString(R.string.specify_choice_one));
             eQuestionChoiceOne.requestFocus();
             insertButton.setEnabled(true);
             return;
@@ -161,7 +161,7 @@ public class QuestionInsertActivity extends AppCompatActivity {
         //validating the input in question choice two
         if (TextUtils.isEmpty(questionChoiceTwo)){
             progressBar.setVisibility(View.GONE);
-            eQuestionChoiceTwo.setError("Please specify the Question Title");
+            eQuestionChoiceTwo.setError(getString(R.string.specify_choice_two));
             eQuestionChoiceTwo.requestFocus();
             insertButton.setEnabled(true);
             return;
@@ -169,7 +169,7 @@ public class QuestionInsertActivity extends AppCompatActivity {
         //validating the input in question choice three
         if (TextUtils.isEmpty(questionChoiceThree)){
             progressBar.setVisibility(View.GONE);
-            eQuestionChoiceThree.setError("Please specify the Question Title");
+            eQuestionChoiceThree.setError(getString(R.string.specify_choice_three));
             eQuestionChoiceThree.requestFocus();
             insertButton.setEnabled(true);
             return;
