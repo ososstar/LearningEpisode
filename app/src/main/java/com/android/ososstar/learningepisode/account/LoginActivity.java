@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.HomeAdminActivity;
 import com.android.ososstar.learningepisode.HomeStudentActivity;
+import com.android.ososstar.learningepisode.HttpsTrustManager;
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
@@ -55,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void supportSSL() {
 //        if (Build.VERSION.SDK_INT > 16 && Build.VERSION.SDK_INT < 20 || SharedPrefManager.getInstance(this).getSSLStatus()) {}
-            Intent sslIntent = new Intent(this, sslService.class);
-            startService(sslIntent);
+        Intent sslIntent = new Intent(this, sslService.class);
+        startService(sslIntent);
     }
 
     @Override
@@ -185,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
         Login_b.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
 
+        HttpsTrustManager.allowAllSSL();
         StringRequest request = new StringRequest(Request.Method.POST, URLs.URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -254,6 +256,7 @@ public class LoginActivity extends AppCompatActivity {
                 Login_b.setEnabled(true);
 
                 SharedPrefManager.getInstance(LoginActivity.this).setSSLStatus(1);
+                supportSSL();
 
                 error.printStackTrace();
                 // Set empty state text to display "No Users is found."

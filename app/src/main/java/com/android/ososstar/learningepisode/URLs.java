@@ -10,7 +10,7 @@ public final class URLs {
     //web
 //    private static final String ROOT_URL = "https://learningepisode.000webhostapp.com/learning_episode/";
 
-    private static final String ACCOUNT_API = ROOT_URL+"apiA.php?apicall=";
+    private static final String ACCOUNT_API = ROOT_URL + "apiA.php?apicall=";
     public static final String URL_LOGIN = ACCOUNT_API + "login";
     public static final String URL_REGISTER = ACCOUNT_API + "signup";
     public static final String URL_REQUEST_STUDENT_LIST = ACCOUNT_API + "request_student_list";
@@ -18,7 +18,7 @@ public final class URLs {
     public static final String URL_DELETE_STUDENT_DATA = ACCOUNT_API + "delete_student_data";
     public static final String URL_REQUEST_STUDENT_NAME = ACCOUNT_API + "request_student_name";
 
-    private static final String COURSE_API = ROOT_URL+"apiC.php?apicall=";
+    private static final String COURSE_API = ROOT_URL + "apiC.php?apicall=";
     public static final String URL_INSERT_NEW_COURSE = COURSE_API + "insert_new_course";
     public static final String URL_REQUEST_COURSE_LIST = COURSE_API + "request_course_list";
     public static final String URL_REQUEST_COURSE_DATA = COURSE_API + "request_course_data";
@@ -52,18 +52,6 @@ public final class URLs {
     public static final String URL_REQUEST_FEEDBACK_LIST = FEEDBACK_API + "request_feedback_list";
     public static final String URL_MODIFY_FEEDBACK = FEEDBACK_API + "modify_feedback";
     public static final String URL_DELETE_FEEDBACK = FEEDBACK_API + "delete_feedback";
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
