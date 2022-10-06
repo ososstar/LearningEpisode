@@ -3,8 +3,6 @@ package com.android.ososstar.learningepisode.feedback;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
@@ -41,8 +42,8 @@ import java.util.Map;
 
 public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHolder> {
     private OnItemClickListener mListener;
-    private Context mContext;
-    private List<Feedback> mFeedbackList;
+    private final Context mContext;
+    private final List<Feedback> mFeedbackList;
 
     /**
      * Create a new {@link FeedbackAdapter} object.
@@ -149,7 +150,10 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private TextView feedbackID, feedbackType, feedbackDate, feedbackStudentComment;
+        private final TextView feedbackID;
+        private final TextView feedbackType;
+        private final TextView feedbackDate;
+        private final TextView feedbackStudentComment;
         public static final String EXTRA_ADMIN_ID = "admin_ID";
         public static final String EXTRA_STUDENT_ID = "student_ID";
         public static final String EXTRA_FEEDBACK_ID = "feedback_ID";
@@ -169,7 +173,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
         private RequestQueue mRequestQueue;
         private String admin_ID, student_ID, feedback_ID, feedback_type, feedback_stuComment, feedback_attachImage, feedback_admComment;
         //getting the current user
-        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private final User user = SharedPrefManager.getInstance(mContext).getUser();
         public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             itemView.setOnCreateContextMenuListener(this);
@@ -195,7 +199,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
-                        int position = getAdapterPosition();
+                        int position = getAbsoluteAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             mListener.onItemClick(position);
                         }
@@ -252,15 +256,15 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.ViewHo
                     try {
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                             //Remove deleted row from RecyclerView List
-                            mFeedbackList.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            mFeedbackList.remove(getAbsoluteAdapterPosition());
+                            notifyItemRemoved(getAbsoluteAdapterPosition());
+                            notifyItemRangeChanged(getAbsoluteAdapterPosition(), getItemCount());
                             itemView.setVisibility(View.GONE);
 
                         } else {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

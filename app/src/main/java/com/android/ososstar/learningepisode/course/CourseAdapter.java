@@ -3,8 +3,6 @@ package com.android.ososstar.learningepisode.course;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
@@ -24,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -37,14 +39,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 //import android.util.Log;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
     private OnItemClickListener mListener;
-    private Context mContext;
-    private List<Course> mCourseList;
+    private final Context mContext;
+    private final List<Course> mCourseList;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -79,7 +80,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         if (courseImg != null && courseImg.isEmpty()) {
             holder.courseImage.setImageResource(R.drawable.defaultplaceholder);
         } else {
-        Picasso.with(mContext).load(courseImg)
+            Picasso.get().load(courseImg)
                 .placeholder(R.drawable.defaultplaceholder).error(R.drawable.defaultplaceholder).noFade()
                 .into(holder.courseImage);
         }
@@ -141,11 +142,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private CircleImageView courseImage;
-        private TextView courseName, courseDescription, courseEnrolls, courseDate;
+        private final ShapeableImageView courseImage;
+        private final TextView courseName;
+        private final TextView courseDescription;
+        private final TextView courseEnrolls;
+        private final TextView courseDate;
         private String admin_ID, course_ID, course_Name, course_Description, course_Image;
         //getting the current user
-        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private final User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
@@ -170,7 +174,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     if (mListener != null){
-                        int position = getAdapterPosition();
+                        int position = getAbsoluteAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
                             mListener.onItemClick(position);
                         }
@@ -222,15 +226,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                     try {
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                             //Remove deleted row from RecyclerView List
-                            mCourseList.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            mCourseList.remove(getAbsoluteAdapterPosition());
+                            notifyItemRemoved(getAbsoluteAdapterPosition());
+                            notifyItemRangeChanged(getAbsoluteAdapterPosition(), getItemCount());
                             itemView.setVisibility(View.GONE);
 
                         } else {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -1,14 +1,17 @@
 package com.android.ososstar.learningepisode.lesson;
 
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.COURSE_ID;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
@@ -30,12 +33,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.COURSE_ID;
-
 public class LessonInsertActivity extends AppCompatActivity {
 
     //getting the current user
-    private User user = SharedPrefManager.getInstance(this).getUser();
+    private final User user = SharedPrefManager.getInstance(this).getUser();
 
     //show progressBar spinner when sending data
     private ProgressBar progressBar;

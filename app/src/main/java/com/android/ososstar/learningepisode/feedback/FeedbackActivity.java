@@ -1,12 +1,21 @@
 package com.android.ososstar.learningepisode.feedback;
 
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_ADMIN_REPLY;
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_DATE;
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_ID;
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_STUDENT_ATTACHED_IMAGE;
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_STUDENT_COMMENT;
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_STUDENT_ID;
+import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_TYPE;
+
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
@@ -27,14 +36,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_ADMIN_REPLY;
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_DATE;
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_ID;
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_STUDENT_ATTACHED_IMAGE;
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_STUDENT_COMMENT;
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_STUDENT_ID;
-import static com.android.ososstar.learningepisode.feedback.FeedbackListActivity.EXTRA_FEEDBACK_TYPE;
 
 public class FeedbackActivity extends AppCompatActivity {
 
@@ -147,7 +148,7 @@ public class FeedbackActivity extends AppCompatActivity {
         ImageView attachedImage_IV = findViewById(R.id.feedback_attached_image);
         if (!attached_image.matches("null")) {
             if (!TextUtils.isEmpty(attached_image)) {
-                Picasso.with(FeedbackActivity.this).load(attached_image).placeholder(R.drawable.defaultplaceholder).error(R.drawable.defaultplaceholder).noFade().into(attachedImage_IV);
+                Picasso.get().load(attached_image).placeholder(R.drawable.defaultplaceholder).error(R.drawable.defaultplaceholder).noFade().into(attachedImage_IV);
             }
         } else {
             attachedImage_IV.setVisibility(View.GONE);

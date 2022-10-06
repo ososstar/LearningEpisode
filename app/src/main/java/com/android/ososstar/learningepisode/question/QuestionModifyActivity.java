@@ -1,7 +1,14 @@
 package com.android.ososstar.learningepisode.question;
 
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_ADMIN_ID;
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_ANSWER;
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_CHOICE_1;
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_CHOICE_2;
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_CHOICE_3;
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_ID;
+import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_TITLE;
+
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.URLs;
@@ -28,14 +37,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_ADMIN_ID;
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_ANSWER;
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_CHOICE_1;
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_CHOICE_2;
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_CHOICE_3;
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_ID;
-import static com.android.ososstar.learningepisode.question.QuestionAdapter.ViewHolder.EXTRA_QUESTION_TITLE;
 
 public class QuestionModifyActivity extends AppCompatActivity {
 

@@ -3,8 +3,6 @@ package com.android.ososstar.learningepisode.account;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -14,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
@@ -42,8 +43,8 @@ import java.util.Map;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private OnItemClickListener mListener;
-    private Context mContext;
-    private List<User> mUserList;
+    private final Context mContext;
+    private final List<User> mUserList;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
@@ -132,7 +133,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         if (userImg != null && userImg.isEmpty()) {
             holder.user_image.setImageResource(R.drawable.user);
         } else {
-            Picasso.with(mContext).load(userImg)
+            Picasso.get().load(userImg)
                     .placeholder(R.drawable.user).error(R.drawable.user).noFade()
                     .into(holder.user_image);
         }
@@ -149,12 +150,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private TextView user_name, user_type, user_creation_date;
-        private ImageView user_image;
+        private final TextView user_name;
+        private final TextView user_type;
+        private final TextView user_creation_date;
+        private final ImageView user_image;
         private StringBuilder dateSB;
 
         //getting the current user
-        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private final User user = SharedPrefManager.getInstance(mContext).getUser();
         private RequestQueue mRequestQueue;
         public static final String ADMIN_ID = "admin_ID";
         private String admin_ID, student_ID, username, email, name, imageURL, type;
@@ -193,7 +196,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
-                        int position = getAdapterPosition();
+                        int position = getAbsoluteAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             mListener.onItemClick(position);
                         }
@@ -242,15 +245,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     try {
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                             //Remove deleted row from RecyclerView List
-                            mUserList.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            mUserList.remove(getAbsoluteAdapterPosition());
+                            notifyItemRemoved(getAbsoluteAdapterPosition());
+                            notifyItemRangeChanged(getAbsoluteAdapterPosition(), getItemCount());
                             itemView.setVisibility(View.GONE);
 
                         } else {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

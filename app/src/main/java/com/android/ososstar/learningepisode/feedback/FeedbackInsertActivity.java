@@ -3,7 +3,6 @@ package com.android.ososstar.learningepisode.feedback;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
@@ -39,7 +40,7 @@ public class FeedbackInsertActivity extends AppCompatActivity {
 
     int student_ID, admin_ID;
     //getting the current user
-    private User user = SharedPrefManager.getInstance(this).getUser();
+    private final User user = SharedPrefManager.getInstance(this).getUser();
     //declaring progressBar
     private ProgressBar progressBar;
 

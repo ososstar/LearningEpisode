@@ -9,12 +9,12 @@
         <item name="android:textColorPrimary">@color/textPrimary</item>
 
         <item name="android:textViewStyle">@style/SegoeUiTextViewStyle</item>
-        <item name="android:buttonStyle">@style/SegoeUiButtonStyle</item>
+        <item name="buttonStyle">@style/SegoeUiButtonStyle</item>
     </style>
 
     <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <!--<item name="android:windowFullscreen">true</item>-->
         <item name="android:windowContentOverlay">@null</item>
@@ -42,7 +42,7 @@
     </style>
 
     <style name="VerticalThemeLayoutInputs">
-        <item name="android:background">@drawable/gradient_clouds</item>
+        <item name="background">@drawable/gradient_clouds</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
@@ -50,12 +50,17 @@
     </style>
 
     <style name="SegoeUiTextViewStyle" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/segoeui</item>
+        <item name="fontFamily">@font/segoeui</item>
     </style>
 
-    <style name="SegoeUiButtonStyle" parent="android:Widget.Holo.Button">
-        <item name="android:fontFamily">@font/segoeui</item>
-        <item name="android:background">@drawable/gradient_sea</item>
+    <style name="SegoeUiButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="fontFamily">@font/segoeui</item>
+        <item name="background">@drawable/gradient_sea</item>
+    </style>
+
+    <style name="circleShapeStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

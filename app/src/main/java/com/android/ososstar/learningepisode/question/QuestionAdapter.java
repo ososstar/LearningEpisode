@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -17,6 +15,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
@@ -37,10 +38,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder>{
+public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
     private OnItemClickListener mListener;
-    private Context mContext;
-    private List<Question> mQuestionList;
+    private final Context mContext;
+    private final List<Question> mQuestionList;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -92,13 +93,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private TextView questionTitle, questiodID;
-        private RadioGroup radioGroup;
+        private final TextView questionTitle;
+        private final RadioGroup radioGroup;
+        //getting the current user
+        private final User user = SharedPrefManager.getInstance(mContext).getUser();
         public static final String EXTRA_ADMIN_ID = "admin_ID";
         public static final String EXTRA_QUESTION_ID = "question_ID";
-
-        //getting the current user
-        private User user = SharedPrefManager.getInstance(mContext).getUser();
+        private final RadioButton RQuestionChoice1;
         private RequestQueue mRequestQueue;
         public static final String EXTRA_QUESTION_TITLE = "q_title";
 
@@ -115,8 +116,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public static final String EXTRA_QUESTION_CHOICE_2 = "q_choice2";
         public static final String EXTRA_QUESTION_CHOICE_3 = "q_choice3";
         public static final String EXTRA_QUESTION_ANSWER = "q_answer";
-        private RadioButton RQuestionChoice1, RQuestionChoice2, RQuestionChoice3;
+        private final RadioButton RQuestionChoice2;
+        private final RadioButton RQuestionChoice3;
+        private TextView questiodID;
         private String admin_ID, question_ID, question_Title, question_Choice1, question_Choice2, question_Choice3, question_Answer, student_ID, answer_status;
+
         public ViewHolder(View itemView, final OnItemClickListener mListener) {
             super(itemView);
             //getting the current user type
@@ -180,15 +184,15 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                     try {
                         JSONObject baseJSONObject = new JSONObject(response);
                         if (!baseJSONObject.getBoolean("error")) {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                             //Remove deleted row from RecyclerView List
-                            mQuestionList.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            mQuestionList.remove(getAbsoluteAdapterPosition());
+                            notifyItemRemoved(getAbsoluteAdapterPosition());
+                            notifyItemRangeChanged(getAbsoluteAdapterPosition(), getItemCount());
                             itemView.setVisibility(View.GONE);
 
                         } else {
-                            Toast.makeText(mContext, String.valueOf(baseJSONObject.getString("message")), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, baseJSONObject.getString("message"), Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

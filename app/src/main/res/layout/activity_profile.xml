@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:id="@+id/fb_background"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/gradient_fb_messenger"
+        app:srcCompat="@drawable/gradient_fb_messenger"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/user"
+        app:srcCompat="@drawable/user"
         app:layout_constraintBottom_toTopOf="@id/profileName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="1"
@@ -122,4 +122,4 @@
     </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

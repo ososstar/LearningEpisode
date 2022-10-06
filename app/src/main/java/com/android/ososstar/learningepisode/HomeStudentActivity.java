@@ -6,16 +6,17 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.account.LoginActivity;
 import com.android.ososstar.learningepisode.account.ProfileActivity;
@@ -62,7 +63,7 @@ public class HomeStudentActivity extends AppCompatActivity implements CourseAdap
     public static final String EXTRA_DATE = "date";
 
     //getting the current user
-    private User user = SharedPrefManager.getInstance(HomeStudentActivity.this).getUser();
+    private final User user = SharedPrefManager.getInstance(HomeStudentActivity.this).getUser();
     String student_ID = String.valueOf(user.getID());
 
     /**

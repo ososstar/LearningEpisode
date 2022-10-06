@@ -16,7 +16,7 @@
     app:layout_constraintTop_toBottomOf="@id/course_image"
     app:layout_constraintVertical_bias=".02">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".HomeStudentActivity">
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stuhome_rv_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             app:layout_constraintWidth_percent=".95" />
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stu_home_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,5 +76,5 @@
             app:layout_constraintTop_toBottomOf="@id/Enroll_tv"
             app:layout_constraintVertical_bias=".75" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

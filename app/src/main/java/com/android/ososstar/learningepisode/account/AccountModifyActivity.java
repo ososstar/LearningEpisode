@@ -1,8 +1,20 @@
 package com.android.ososstar.learningepisode.account;
 
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_EMAIL;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_ID;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_IMAGE;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_NAME;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_TYPE;
+import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_USERNAME;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.ADMIN_ID;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_EMAIL;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_ID;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_IMAGE;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_NAME;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_TYPE;
+import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_USERNAME;
+
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,6 +29,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
 import com.android.ososstar.learningepisode.URLs;
@@ -26,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,20 +48,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_EMAIL;
-import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_ID;
-import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_IMAGE;
-import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_NAME;
-import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_TYPE;
-import static com.android.ososstar.learningepisode.account.ProfileActivity.USER_USERNAME;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.ADMIN_ID;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_EMAIL;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_ID;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_IMAGE;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_NAME;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_TYPE;
-import static com.android.ososstar.learningepisode.account.UserAdapter.ViewHolder.STUDENT_USERNAME;
 
 public class AccountModifyActivity extends AppCompatActivity {
 

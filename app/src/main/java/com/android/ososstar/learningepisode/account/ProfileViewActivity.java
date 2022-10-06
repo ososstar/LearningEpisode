@@ -1,18 +1,5 @@
 package com.android.ososstar.learningepisode.account;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.android.ososstar.learningepisode.R;
-import com.squareup.picasso.Picasso;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.ADMIN_ID;
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.PROFILE_DATE;
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.PROFILE_EMAIL;
@@ -21,6 +8,20 @@ import static com.android.ososstar.learningepisode.account.AccountsListActivity.
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.PROFILE_PICTURE;
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.PROFILE_TYPE;
 import static com.android.ososstar.learningepisode.account.AccountsListActivity.PROFILE_USERNAME;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.ososstar.learningepisode.R;
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ProfileViewActivity extends AppCompatActivity {
 
@@ -53,7 +54,7 @@ public class ProfileViewActivity extends AppCompatActivity {
         profileDate = findViewById(R.id.profileDate);
 
         //set values to show the profile picture and the TextViews
-        Picasso.with(ProfileViewActivity.this).load(imageURL).placeholder(R.drawable.user).error(R.drawable.user).noFade().into(profilePicture);
+        Picasso.get().load(imageURL).placeholder(R.drawable.user).error(R.drawable.user).noFade().into(profilePicture);
         profileName.setText(name);
 
         StringBuilder ID_sb = new StringBuilder(getString(R.string.idHash));

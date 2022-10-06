@@ -2,13 +2,14 @@ package com.android.ososstar.learningepisode.account;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
@@ -54,7 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (imageURL != null && imageURL.isEmpty()) {
             profilePicture.setImageResource(R.drawable.user);
         } else {
-            Picasso.with(ProfileActivity.this).load(imageURL).placeholder(R.drawable.user).error(R.drawable.user).noFade().into(profilePicture);
+            Picasso.get().load(imageURL).placeholder(R.drawable.user).error(R.drawable.user).noFade().into(profilePicture);
         }
 
         //define TextViews of profileActivity

@@ -1,16 +1,16 @@
 package com.android.ososstar.learningepisode;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LinearLayoutPagerManager extends LinearLayoutManager {
 
-    private int mItemsPerPage;
+    private final int mItemsPerPage;
 
-    public int getItemsPerPage()
-    {
+    public int getItemsPerPage() {
         return mItemsPerPage;
     }
 

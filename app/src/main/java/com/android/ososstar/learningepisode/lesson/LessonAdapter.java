@@ -3,8 +3,6 @@ package com.android.ososstar.learningepisode.lesson;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -14,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.SharedPrefManager;
@@ -40,8 +41,8 @@ import java.util.Map;
 
 public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
     private OnItemClickListener mListener;
-    private Context mContext;
-    private List<Lesson> mLessonList;
+    private final Context mContext;
+    private final List<Lesson> mLessonList;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -125,11 +126,13 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
-        private TextView lessonID, lessonTitle, lessonCreationDate;
+        private final TextView lessonID;
+        private final TextView lessonTitle;
+        private final TextView lessonCreationDate;
         private String admin_ID, lesson_ID, course_ID, lesson_title, lesson_description, lesson_downloadURL, lesson_videoURL;
         //getting the current user
-        private User user = SharedPrefManager.getInstance(mContext).getUser();
-        private RequestQueue mRequestQueue;
+        private final User user = SharedPrefManager.getInstance(mContext).getUser();
+        private final RequestQueue mRequestQueue;
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -153,7 +156,7 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     if (mListener != null){
-                        int position = getAdapterPosition();
+                        int position = getAbsoluteAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
                             mListener.onItemClick(position);
                         }
@@ -213,9 +216,9 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
                         if (!baseJSONObject.getBoolean("error")) {
                             Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
                             //Remove deleted row from RecyclerView List
-                            mLessonList.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), getItemCount());
+                            mLessonList.remove(getAbsoluteAdapterPosition());
+                            notifyItemRemoved(getAbsoluteAdapterPosition());
+                            notifyItemRangeChanged(getAbsoluteAdapterPosition(), getItemCount());
                             itemView.setVisibility(View.GONE);
 
                         } else {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/c_cv"
     android:layout_width="match_parent"
@@ -15,9 +14,9 @@
         android:background="@drawable/gradient_moss"
         android:padding="16dp">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/lesson_item_ID"
@@ -44,7 +43,7 @@
                 app:layout_constraintStart_toEndOf="@id/lesson_item_ID"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent=".7" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/lesson_item_title"
@@ -53,6 +52,6 @@
             android:text="@string/title_name"
             android:textColor="@color/white"
             android:maxLines="1"
-            android:textSize="22sp"/>
+            android:textSize="22sp" />
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

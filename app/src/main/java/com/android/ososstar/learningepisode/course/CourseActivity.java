@@ -1,16 +1,24 @@
 package com.android.ososstar.learningepisode.course;
 
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DATE;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DESCRIPTION;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_ENROLLS;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_ID;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_IMAGE;
+import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_NAME;
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
@@ -35,17 +43,10 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DATE;
-import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_DESCRIPTION;
-import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_ENROLLS;
-import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_ID;
-import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_IMAGE;
-import static com.android.ososstar.learningepisode.course.CourseListActivity.EXTRA_NAME;
-
 public class CourseActivity extends AppCompatActivity {
 
     //getting the current user
-    private User user = SharedPrefManager.getInstance(this).getUser();
+    private final User user = SharedPrefManager.getInstance(this).getUser();
 
     public static final String EXTRA_COURSE_ID = "id";
     public static final String EXTRA_STUDENT_ID ="student_ID";
@@ -78,7 +79,7 @@ public class CourseActivity extends AppCompatActivity {
         if (image != null && image.isEmpty()) {
             courseImage.setImageResource(R.drawable.defaultplaceholder);
         } else {
-            Picasso.with(CourseActivity.this).load(image)
+            Picasso.get().load(image)
                     .placeholder(R.drawable.defaultplaceholder).error(R.drawable.defaultplaceholder)
                     .into(courseImage);
         }

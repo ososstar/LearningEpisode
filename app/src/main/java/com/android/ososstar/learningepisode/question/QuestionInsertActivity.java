@@ -1,9 +1,11 @@
 package com.android.ososstar.learningepisode.question;
 
+import static com.android.ososstar.learningepisode.question.QuestionListActivity.EXTRA_ADMIN_ID;
+import static com.android.ososstar.learningepisode.question.QuestionListActivity.EXTRA_LESSON_ID;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.URLs;
@@ -30,9 +34,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.android.ososstar.learningepisode.question.QuestionListActivity.EXTRA_ADMIN_ID;
-import static com.android.ososstar.learningepisode.question.QuestionListActivity.EXTRA_LESSON_ID;
 
 public class QuestionInsertActivity extends AppCompatActivity {
 

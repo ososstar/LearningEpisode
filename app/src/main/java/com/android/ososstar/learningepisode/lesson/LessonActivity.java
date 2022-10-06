@@ -1,13 +1,17 @@
 package com.android.ososstar.learningepisode.lesson;
 
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DATE;
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DESCRIPTION;
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_ID;
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_LINK;
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_TITLE;
+import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_VIDEO;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.ososstar.learningepisode.R;
 import com.android.ososstar.learningepisode.question.QuestionListActivity;
@@ -54,13 +62,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
-
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DATE;
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_DESCRIPTION;
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_ID;
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_LINK;
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_TITLE;
-import static com.android.ososstar.learningepisode.lesson.LessonListActivity.EXTRA_LESSON_VIDEO;
 
 //import android.util.Log;
 
@@ -298,14 +299,10 @@ public class LessonActivity extends AppCompatActivity {
     private class PlayerEventListener implements Player.EventListener {
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
-                    !playWhenReady) {
-
-                mExoPlayerView.setKeepScreenOn(false);
-            } else { // STATE_IDLE, STATE_ENDED
-                // This prevents the screen from getting dim/lock
-                mExoPlayerView.setKeepScreenOn(true);
-            }
+            // STATE_IDLE, STATE_ENDED
+            // This prevents the screen from getting dim/lock
+            mExoPlayerView.setKeepScreenOn(playbackState != Player.STATE_IDLE && playbackState != Player.STATE_ENDED &&
+                    playWhenReady);
         }
 
         @Override

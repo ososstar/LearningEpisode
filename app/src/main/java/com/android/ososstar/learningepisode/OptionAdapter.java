@@ -2,21 +2,22 @@ package com.android.ososstar.learningepisode;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OptionAdapter extends RecyclerView.Adapter<com.android.ososstar.learningepisode.OptionAdapter.ViewHolder> {
     private com.android.ososstar.learningepisode.OptionAdapter.OnItemClickListener mListener;
-    private Context mContext;
-    private List<Option> mOptionList;
+    private final Context mContext;
+    private final List<Option> mOptionList;
 
     public interface OnItemClickListener {
         void onItemClickOptions(int position);
@@ -60,8 +61,8 @@ public class OptionAdapter extends RecyclerView.Adapter<com.android.ososstar.lea
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView optionImage;
-        private TextView optionTitle;
+        private final ImageView optionImage;
+        private final TextView optionTitle;
 
         public ViewHolder(View itemView, final com.android.ososstar.learningepisode.OptionAdapter.OnItemClickListener listener) {
             super(itemView);
@@ -75,7 +76,7 @@ public class OptionAdapter extends RecyclerView.Adapter<com.android.ososstar.lea
                 @Override
                 public void onClick(View v) {
                     if (mListener != null){
-                        int position = getAdapterPosition();
+                        int position = getAbsoluteAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
                             mListener.onItemClickOptions(position);
                         }

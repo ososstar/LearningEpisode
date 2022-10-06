@@ -1,9 +1,16 @@
 package com.android.ososstar.learningepisode.feedback;
 
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_ADMIN_ID;
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_ADMIN_COMMENT;
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_ATTACHED_IMAGE;
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_ID;
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_STUDENT_COMMENT;
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_TYPE;
+import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_STUDENT_ID;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
@@ -32,14 +41,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_ADMIN_ID;
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_ADMIN_COMMENT;
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_ATTACHED_IMAGE;
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_ID;
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_STUDENT_COMMENT;
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_FEEDBACK_TYPE;
-import static com.android.ososstar.learningepisode.feedback.FeedbackAdapter.ViewHolder.EXTRA_STUDENT_ID;
 
 public class FeedbackModifyActivity extends AppCompatActivity {
 

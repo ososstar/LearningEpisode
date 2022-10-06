@@ -1,16 +1,18 @@
 package com.android.ososstar.learningepisode.lesson;
 
+import static com.android.ososstar.learningepisode.course.CourseActivity.EXTRA_COURSE_ID;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.ososstar.learningepisode.ConnectivityHelper;
 import com.android.ososstar.learningepisode.R;
@@ -23,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,8 +34,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.android.ososstar.learningepisode.course.CourseActivity.EXTRA_COURSE_ID;
 
 public class LessonListActivity extends AppCompatActivity implements LessonAdapter.OnItemClickListener {
 
@@ -55,7 +56,7 @@ public class LessonListActivity extends AppCompatActivity implements LessonAdapt
     private RequestQueue mRequestQueue;
 
     //getting the current user
-    private User user = SharedPrefManager.getInstance(LessonListActivity.this).getUser();
+    private final User user = SharedPrefManager.getInstance(LessonListActivity.this).getUser();
 
     private String course_ID, admin_ID, student_ID;
 
